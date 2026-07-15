@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TRB — Generar tiempos de rutas</title>
+  <style>
+    body{font-family:system-ui,sans-serif;max-width:1100px;margin:32px auto;padding:0 18px;color:#172033}
+    button{padding:10px 16px;border:0;border-radius:8px;cursor:pointer;font-weight:700}
+    progress{width:100%;height:20px;margin:16px 0}.muted{color:#667085}.ok{color:#087443}.error{color:#b42318}
+    table{width:100%;border-collapse:collapse;margin-top:18px;font-size:14px}th,td{padding:8px;border-bottom:1px solid #e4e7ec;text-align:left}
+  </style>
+</head>
+<body>
+  <h1>TRB — Calcular duración de las 93 rutas</h1>
+  <p class="muted">Ejecuta TRB con <code>python serve_trb.py</code>. La herramienta usa la carpeta <code>kmz/</code> y descarga desde el AMB únicamente los archivos que falten.</p>
+  <button id="run">Calcular y generar JSON</button>
+  <button id="download" disabled>Descargar resultado</button>
+  <progress id="progress" value="0" max="93"></progress>
+  <div id="status">Preparado.</div>
+  <table><thead><tr><th>Empresa</th><th>Ruta</th><th>Ida</th><th>Regreso</th><th>Promedio</th><th>Estado</th></tr></thead><tbody id="rows"></tbody></table>
+
+  <script src="../vendor/jszip.min.js"></script>
+  <script src="../trb_motor_rutas.js"></script>
+  <script>
+    let output = null;
+    const status = document.querySelector('#status');
+    const progress = document.querySelector('#progress');
+    const rows = document.querySelector('#rows');
+    document.querySelector('#run').addEventListener('click', async () => {
+      rows.innerHTML = ''; output = null; document.querySelector('#download').disabled = true;
+      try {
+        const catalog = await fetch('../data/trb_catalogo_rutas.json').then(r => { if(!r.ok) throw new Error(`Catálogo HTTP ${r.status}`); return r.json(); });
+        progress.max = catalog.rutas.length;
+        output = await TRBRouteEngine.processCatalog(catalog, {
+          onProgress: ({completed,total,item,result}) => {
+            progress.value = completed;
+            status.textContent = `Procesadas ${completed} de ${total}: ${item.empresa} ${item.ruta}`;
+            const metrics = result?.duracion_estimada;
+            const directions = metrics?.directions || [];
+            const ida = directions.find(d => d.direction === 'ida') || directions[0];
+            const regreso = directions.find(d => d.direction === 'regreso') || directions[1];
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${item.empresa}</td><td>${item.ruta}</td><td>${ida ? `${ida.distanceKm} km / ${ida.durationMinutes} min` : '—'}</td><td>${regreso ? `${regreso.distanceKm} km / ${regreso.durationMinutes} min` : '—'}</td><td>${metrics?.averageDurationMinutes ?? '—'} min</td><td class="${result?.error ? 'error':'ok'}">${result?.error || 'OK'}</td>`;
+            rows.appendChild(tr);
+          }
+        });
+        status.textContent = `Listo: ${output.rutas.filter(r => !r.error).length} rutas calculadas.`;
+        document.querySelector('#download').disabled = false;
+      } catch (error) { status.textContent = error.message; status.className = 'error'; }
+    });
+    document.querySelector('#download').addEventListener('click', () => output && TRBRouteEngine.downloadJson(output));
+  </script>
+</body>
+</html>
