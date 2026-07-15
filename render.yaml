@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: trb-barranquilla
+    runtime: python
+    plan: free
+    buildCommand: python -m py_compile serve_trb.py && python tests/test_project.py && python tests/test_server_geometry.py
+    startCommand: python serve_trb.py --host 0.0.0.0 --port $PORT --auto-prefetch
+    healthCheckPath: /healthz
+    autoDeployTrigger: commit
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: TRB_AUTO_PREFETCH
+        value: "1"
+
+      - key: TRB_GOOGLE_PLACES_API_KEY
+        sync: false
+      - key: TRB_DRIVER_TOKEN
+        sync: false

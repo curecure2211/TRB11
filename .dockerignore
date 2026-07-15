@@ -1,0 +1,5 @@
+.git
+__pycache__
+*.pyc
+kmz_errors.json
+.DS_Store

@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b2d5c" />
+  <meta name="description" content="TRB — aplicación web de movilidad para consultar rutas, trayectos y caminatas en Barranquilla." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="TRB" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="icons/trb-favicon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+  <link id="leafletStylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"
+        onerror="this.onerror=function(){this.onerror=null;this.href='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css'};this.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'" />
+  <link id="maplibreStylesheet" rel="stylesheet" href="vendor/maplibre/maplibre-gl.css?v=33" />
+  <link rel="stylesheet" href="styles.css?v=50" />
+  <title>TRB · Transporte de la Región de Barranquilla</title>
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <aside class="desktop-sidebar" aria-label="Navegación principal">
+      <div class="brand brand--sidebar">
+        <img src="icons/icon-192.png" alt="" class="brand__icon" />
+        <div><strong>TRB</strong><span>Movilidad Barranquilla</span></div>
+      </div>
+      <nav class="desktop-nav" data-nav></nav>
+      <div class="sidebar-status">
+        <span class="status-dot status-dot--warning"></span>
+        <div><strong>Sin tiempo real</strong><small>Datos de referencia</small></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="brand brand--mobile">
+          <img src="icons/icon-192.png" alt="" class="brand__icon" />
+          <div><strong>TRB</strong><span>Movilidad Barranquilla</span></div>
+        </div>
+        <nav class="home-top-links top-primary-nav" data-nav aria-label="Navegación principal superior"></nav>
+        <div class="topbar__actions">
+          <button id="installButton" class="icon-button hidden" type="button" aria-label="Instalar aplicación" title="Instalar aplicación">↓</button>
+          <button id="themeButton" class="icon-button" type="button" aria-label="Cambiar tema" title="Cambiar tema">◐</button>
+        </div>
+      </header>
+
+      <div id="offlineBanner" class="offline-banner hidden" role="status">Estás sin conexión. Algunas funciones del mapa no estarán disponibles.</div>
+
+      <section id="view-home" class="view is-active" data-view="home">
+        <div class="home-hsl-layout">
+          <section class="home-trip-panel" aria-labelledby="homeTripTitle">
+            <div class="home-trip-heading">
+              <span class="eyebrow">Planificador TRB</span>
+              <h1 id="homeTripTitle">¿A dónde vas?</h1>
+              <p>Busca direcciones, barrios, universidades, hospitales, centros comerciales y otros lugares del área metropolitana.</p>
+            </div>
+            <form id="homeJourneyForm" class="home-journey-form">
+              <label class="home-journey-field home-journey-field--origin">
+                <span class="home-field-dot"></span>
+                <span class="home-field-copy"><small>Origen</small><span class="search-input-wrap"><input id="homeJourneyOrigin" type="search" placeholder="Usar mi ubicación o escribir un lugar" autocomplete="off" role="combobox" aria-controls="homeJourneyOriginSuggestions" required /><button class="input-clear-button" type="button" data-clear-input="homeJourneyOrigin" aria-label="Borrar origen">×</button></span><div id="homeJourneyOriginSuggestions" class="location-suggestions hidden" role="listbox"></div></span>
+                <button id="homeJourneyLocate" class="home-field-action" type="button" aria-label="Usar mi ubicación" title="Usar mi ubicación">⌖</button>
+              </label>
+              <button id="homeJourneySwap" class="home-swap-button" type="button" title="Intercambiar origen y destino" aria-label="Intercambiar origen y destino">⇅</button>
+              <label class="home-journey-field home-journey-field--destination">
+                <span class="home-field-dot"></span>
+                <span class="home-field-copy"><small>Destino</small><span class="search-input-wrap"><input id="homeJourneyDestination" type="search" placeholder="¿A dónde quieres ir?" autocomplete="off" role="combobox" aria-controls="homeJourneyDestinationSuggestions" required /><button class="input-clear-button" type="button" data-clear-input="homeJourneyDestination" aria-label="Borrar destino">×</button></span><div id="homeJourneyDestinationSuggestions" class="location-suggestions hidden" role="listbox"></div></span>
+                <button class="home-field-action" type="submit" aria-label="Buscar viaje" title="Buscar viaje">›</button>
+              </label>
+              <div class="home-departure-row"><span>◷</span><b>Salir ahora</b><span>⌄</span></div>
+              <div class="home-saved-places">
+                <div class="home-saved-place">
+                  <button type="button" data-use-favorite-place="home"><span>⌂</span><b id="homePlaceLabel">Agregar casa</b></button>
+                  <button type="button" data-edit-favorite-place="home" aria-label="Editar casa">＋</button>
+                </div>
+                <div class="home-saved-place">
+                  <button type="button" data-use-favorite-place="work"><span>▣</span><b id="workPlaceLabel">Agregar trabajo</b></button>
+                  <button type="button" data-edit-favorite-place="work" aria-label="Editar trabajo">＋</button>
+                </div>
+              </div>
+            </form>
+
+            <section class="home-nearby" aria-labelledby="homeNearbyTitle">
+              <h2 id="homeNearbyTitle">Cerca de ti</h2>
+              <div class="home-nearby-modes">
+                <button class="home-mode-button is-bus" type="button" data-open-network="sibus" aria-label="Ver todas las rutas de buses">
+                  <span class="home-mode-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="8" y="5" width="32" height="34" rx="8"/><path d="M13 11h22v13H13z"/><circle cx="16" cy="34" r="3"/><circle cx="32" cy="34" r="3"/></svg></span><b>Buses</b><small>23 empresas</small>
+                </button>
+                <button class="home-mode-button is-transmetro" type="button" data-open-network="transmetro" aria-label="Ver todas las rutas de Transmetro">
+                  <span class="home-mode-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="6" y="8" width="36" height="30" rx="6"/><path d="M11 13h11v13H11zM26 13h11v13H26zM12 30h24"/><circle cx="15" cy="36" r="3"/><circle cx="33" cy="36" r="3"/></svg></span><b>Transmetro</b><small>34 rutas</small>
+                </button>
+                <button class="home-mode-button" type="button" data-go="map"><span class="home-mode-symbol">⌕</span><b>Planificar</b><small>Mejor viaje</small></button>
+                <button class="home-mode-button" type="button" data-go="favorites"><span class="home-mode-symbol">★</span><b>Favoritos</b><small>Guardados</small></button>
+              </div>
+              <button class="home-route-search" type="button" data-open-network="sibus"><span>⌕</span><span><b>Buscar buses y rutas</b><small>Explora la red por empresa y código</small></span><span>›</span></button>
+            </section>
+
+            <button class="home-service-row" type="button" data-go="more"><span>ⓘ</span><span><b>Estado del servicio</b><small>Datos, fuentes y disponibilidad</small></span><span>›</span></button>
+          </section>
+
+          <section class="home-feature-panel" aria-label="Muévete por Barranquilla con facilidad">
+            <img src="assets/trb-home-hero.jpg" alt="Mujer mostrando una tarjeta de transporte frente a un bus de Barranquilla, con el mensaje Muévete por Barranquilla con facilidad" loading="eager" fetchpriority="high" />
+          </section>
+        </div>
+        <div class="home-info-links">
+          <button type="button" data-open-network="sibus"><span>▰</span><b>Empresas y rutas</b><small>93 recorridos</small><i>›</i></button>
+          <button type="button" data-open-network="transmetro"><span>T</span><b>Red Transmetro</b><small>Troncales y alimentadoras</small><i>›</i></button>
+          <button type="button" data-go="more"><span>i</span><b>Más sobre TRB</b><small>Fuentes y límites</small><i>›</i></button>
+        </div>
+      </section>
+
+      <section id="view-routes" class="view" data-view="routes">
+        <div class="page-heading">
+          <div><span class="eyebrow">Planificador TRB</span><h1>¿A dónde vas?</h1><p>Escribe origen y destino para encontrar la mejor combinación disponible y cuánto debes caminar.</p></div>
+          <div class="counter-pill"><b id="routesCount">0</b><span>rutas SIBUS</span></div>
+        </div>
+
+        <article class="journey-planner panel" aria-labelledby="journeyPlannerTitle">
+          <div class="journey-planner__header">
+            <div><span class="eyebrow">Como un planificador de viaje</span><h2 id="journeyPlannerTitle">Busca la mejor ruta</h2><p>TRB analiza directamente los 93 recorridos KMZ para calcular dónde tomar el bus, dónde bajarse y cuánto caminar.</p></div>
+            <span class="planner-data-badge">Motor KMZ · 93 rutas</span>
+          </div>
+          <form id="journeyForm" class="journey-form">
+            <div class="journey-fields">
+              <label class="journey-field journey-field--origin">
+                <span class="journey-field__dot"></span>
+                <span class="journey-field__copy"><small>Origen</small><input id="journeyOrigin" type="search" placeholder="Dirección, barrio, universidad o lugar" autocomplete="off" role="combobox" aria-controls="journeyOriginSuggestions" required /><div id="journeyOriginSuggestions" class="location-suggestions hidden" role="listbox"></div></span>
+                <button id="journeyLocateButton" class="field-action" type="button" title="Usar mi ubicación" aria-label="Usar mi ubicación">⌖</button>
+              </label>
+              <button id="journeySwapButton" class="journey-swap" type="button" title="Intercambiar origen y destino" aria-label="Intercambiar origen y destino">⇅</button>
+              <label class="journey-field journey-field--destination">
+                <span class="journey-field__dot"></span>
+                <span class="journey-field__copy"><small>Destino</small><input id="journeyDestination" type="search" placeholder="Ej. Universidad del Atlántico, Buenavista…" autocomplete="off" role="combobox" aria-controls="journeyDestinationSuggestions" required /><div id="journeyDestinationSuggestions" class="location-suggestions hidden" role="listbox"></div></span>
+              </label>
+            </div>
+            <div class="journey-actions">
+              <p><strong>Incluye:</strong> empresa, código, caminata inicial, tramo en bus, caminata final, tarifa y recorrido en el mapa.</p>
+              <button id="journeySubmitButton" class="button button--primary journey-submit" type="submit">Buscar mejor ruta</button>
+            </div>
+          </form>
+          <div id="placeSearchStatus" class="place-search-status" role="status">Buscador inteligente: direcciones, barrios y lugares.</div><div id="journeyStatus" class="journey-status hidden" role="status" aria-live="polite"></div>
+          <div id="journeyResults" class="journey-results hidden" aria-live="polite"></div>
+          <div class="planner-limit"><span>i</span><p>El motor usa la geometría de los 93 KMZ. Como los buses pueden detenerse a lo largo del corredor, el punto de abordaje y descenso se proyecta directamente sobre la línea. Los tiempos no incluyen espera ni tráfico en vivo.</p></div>
+        </article>
+
+        <div class="catalog-heading">
+          <div><span class="eyebrow">Catálogo oficial AMB</span><h2>Empresas y rutas</h2><p>Explora las empresas y abre el trazado disponible de cada ruta.</p></div>
+        </div>
+        <div class="search-toolbar">
+          <label class="search-box"><span>⌕</span><input id="routeSearch" type="search" placeholder="Ej. SOBUSA, C11-4168, Miramar…" autocomplete="off" /></label>
+          <select id="routeTypeFilter" aria-label="Elegir catálogo">
+            <option value="sibus">SIBUS · 23 empresas</option>
+            <option value="transmetro">Transmetro · troncales y alimentadores</option>
+          </select>
+        </div>
+        <div id="routesGrid" class="operators-catalog"></div>
+        <div id="routesEmpty" class="empty-state hidden"><span>⌕</span><h3>No encontramos esa ruta</h3><p>Prueba con otro código o sector.</p></div>
+      </section>
+
+      <section id="view-map" class="view view--map" data-view="map">
+        <section id="mapRouteExplorer" class="map-route-explorer panel" aria-label="Selector de rutas de transporte">
+          <div class="map-route-explorer__heading">
+            <div>
+              <span class="eyebrow">Explora toda la red</span>
+              <h2>Selecciona el sistema y la ruta</h2>
+              <p>Elige entre Transmetro o cualquiera de las 23 empresas de transporte colectivo.</p>
+            </div>
+            <div class="map-route-explorer__counts" aria-label="Cantidad de rutas disponibles">
+              <span><b id="mapTransmetroCount">34</b> Transmetro</span>
+              <span><b id="mapSibusCount">93</b> empresas</span>
+            </div>
+          </div>
+          <div id="mapTransportTabs" class="map-transport-tabs" role="tablist" aria-label="Sistema de transporte">
+            <button class="map-transport-tab is-active" type="button" role="tab" aria-selected="true" data-map-system="sibus">
+              <span class="map-transport-tab__icon">▰</span><span><b>23 empresas</b><small>Rutas SIBUS / AMB</small></span>
+            </button>
+            <button class="map-transport-tab" type="button" role="tab" aria-selected="false" data-map-system="transmetro">
+              <span class="map-transport-tab__icon">T</span><span><b>Transmetro</b><small>Troncales y alimentadoras</small></span>
+            </button>
+          </div>
+          <div class="map-route-explorer__controls">
+            <label id="mapOperatorField" class="map-route-control">
+              <small>Empresa</small>
+              <select id="mapOperatorSelect" aria-label="Seleccionar empresa"></select>
+            </label>
+            <label class="map-route-control">
+              <small>Ruta</small>
+              <select id="mapRouteQuickSelect" aria-label="Seleccionar ruta"><option value="">Selecciona una ruta</option></select>
+            </label>
+            <label class="map-route-control map-route-control--search">
+              <small>Buscar</small>
+              <input id="mapRouteQuickSearch" type="search" placeholder="Código, nombre o empresa…" autocomplete="off" />
+            </label>
+          </div>
+          <div class="map-route-explorer__summary">
+            <span id="mapRouteSelectionStatus">Selecciona una empresa y toca una ruta para verla en el mapa.</span>
+            <button id="openRoutesCatalogButton" class="button button--ghost" type="button">Ver catálogo completo</button>
+          </div>
+          <div id="mapRouteQuickList" class="map-route-quick-list" aria-live="polite"></div>
+        </section>
+        <select id="mapRouteSelect" class="map-route-select-legacy" hidden aria-hidden="true" tabindex="-1"><option value="">Selecciona empresa y ruta</option></select>
+        <div class="map-workspace">
+          <aside class="route-operations panel" aria-label="Planificador e información de la ruta">
+            <section id="networkBrowsePanel" class="network-browse-panel hidden" aria-live="polite">
+              <header class="network-browse-header">
+                <button id="networkBrowseBack" type="button" aria-label="Volver al inicio">‹</button>
+                <div><span class="eyebrow">Cerca de ti</span><h2 id="networkBrowseTitle">Rutas de buses</h2><p id="networkBrowseSubtitle">Selecciona una empresa y una ruta para verla sola en el mapa.</p></div>
+              </header>
+              <div class="network-system-tabs" role="tablist" aria-label="Sistema de transporte">
+                <button type="button" data-network-system="sibus" role="tab"><span class="network-tab-bus">▰</span>Buses</button>
+                <button type="button" data-network-system="transmetro" role="tab"><span class="network-tab-transmetro">T</span>Transmetro</button>
+              </div>
+              <label class="network-route-search"><span>⌕</span><input id="networkRouteSearch" type="search" placeholder="Buscar empresa o ruta…" autocomplete="off" /></label>
+              <div id="networkBrowseStatus" class="network-browse-status">Preparando la red…</div>
+              <div id="networkBrowseList" class="network-browse-list"></div>
+            </section>
+            <form id="mapJourneyForm" class="map-planner-card" novalidate>
+              <div class="map-planner-heading">
+                <button id="routeFocusExit" class="route-focus-back" type="button" title="Volver a TRB" aria-label="Volver a TRB">‹</button>
+                <div><span class="eyebrow">Planificador multimodal</span><h2>Sugerencias de ruta</h2><p>Compara buses, viajes solo en Transmetro y conexiones combinadas entre las dos redes.</p></div>
+                <span class="map-planner-badge">127 rutas</span>
+              </div>
+              <div class="map-place-stack">
+                <label class="map-place-field map-place-field--origin">
+                  <span class="map-place-dot"></span>
+                  <span><small>Origen</small><span class="search-input-wrap"><input id="mapJourneyOrigin" type="search" placeholder="Dirección, barrio, estación o lugar" autocomplete="off" role="combobox" aria-controls="mapJourneyOriginSuggestions" required /><button class="input-clear-button" type="button" data-clear-input="mapJourneyOrigin" aria-label="Borrar origen">×</button></span><div id="mapJourneyOriginSuggestions" class="location-suggestions hidden" role="listbox"></div></span>
+                  <button id="mapJourneyPickOrigin" class="map-pick-button" type="button" title="Elegir origen tocando el mapa" aria-label="Elegir origen en el mapa">⌖</button>
+                </label>
+                <button id="mapJourneySwap" class="map-swap-button" type="button" title="Intercambiar origen y destino" aria-label="Intercambiar origen y destino">⇅</button>
+                <label class="map-place-field map-place-field--destination">
+                  <span class="map-place-dot"></span>
+                  <span><small>Destino</small><span class="search-input-wrap"><input id="mapJourneyDestination" type="search" placeholder="Ej. Calle 27C con Carrera 41" autocomplete="off" role="combobox" aria-controls="mapJourneyDestinationSuggestions" required /><button class="input-clear-button" type="button" data-clear-input="mapJourneyDestination" aria-label="Borrar destino">×</button></span><div id="mapJourneyDestinationSuggestions" class="location-suggestions hidden" role="listbox"></div></span>
+                  <button id="mapJourneyPickDestination" class="map-pick-button" type="button" title="Elegir destino tocando el mapa" aria-label="Elegir destino en el mapa">⌖</button>
+                </label>
+              </div>
+              <div class="map-planner-actions">
+                <button id="mapJourneyUseLocation" class="button button--secondary" type="button">◎ Mi ubicación</button>
+                <button id="mapSettingsButton" class="button button--secondary map-settings-trigger" type="button" aria-expanded="false" aria-controls="mapSettingsPanel">☰ Ajustes</button>
+                <button id="mapJourneySubmit" class="button button--primary" type="submit">Buscar ruta</button>
+              </div>
+              <div id="routeSuggestionModes" class="route-suggestion-modes" aria-label="Filtrar sugerencias por red de transporte">
+                <button class="route-mode-card is-active" type="button" data-plan-filter="all" aria-pressed="true"><span class="route-mode-icon">⇄</span><b>Todas</b><small id="routeModeAllTime">—</small></button>
+                <button class="route-mode-card" type="button" data-plan-filter="buses" aria-pressed="false"><span class="route-mode-icon">🚌</span><b>Buses</b><small id="routeModeBusTime">—</small></button>
+                <button class="route-mode-card" type="button" data-plan-filter="transmetro" aria-pressed="false"><span class="route-mode-icon route-mode-icon--transmetro">T</span><b>Transmetro</b><small id="routeModeTransmetroTime">—</small></button>
+                <button class="route-mode-card" type="button" data-plan-filter="combined" aria-pressed="false"><span class="route-mode-icon">⇄</span><b>Rutas combinadas</b><small id="routeModeCombinedTime">—</small></button>
+                <button class="route-mode-card" type="button" data-plan-filter="bike" aria-pressed="false"><span class="route-mode-icon">🚲</span><b>Bici</b><small id="routeModeBikeTime">—</small></button>
+              </div>
+              <aside id="mapSettingsPanel" class="map-settings-panel hidden" aria-label="Ajustes del planificador">
+                <header><div><span class="eyebrow">Preferencias</span><h3>Ajustes</h3></div><button id="mapSettingsClose" type="button" aria-label="Cerrar ajustes">×</button></header>
+                <button type="button" class="official-transfer-switch" data-transport-toggle="officialTransfers" aria-pressed="false"><i></i><span>Transbordos oficiales</span></button>
+                <p>Activa o desactiva los tipos de transporte que quieres mezclar en las sugerencias.</p>
+                <div class="map-transport-settings">
+                  <button type="button" class="transport-toggle" data-transport-toggle="buses" aria-pressed="true"><span class="transport-icon is-bus">🚌</span><span><b>Bus</b><small>Rutas de empresas AMB/SIBUS</small></span><i>✓</i></button>
+                  <button type="button" class="transport-toggle" data-transport-toggle="transmetro" aria-pressed="true"><span class="transport-icon is-transmetro">T</span><span><b>Transmetro</b><small>Troncales y alimentadoras</small></span><i>✓</i></button>
+                  <button type="button" class="transport-toggle" data-transport-toggle="walk" aria-pressed="true"><span class="transport-icon is-walk">🚶</span><span><b>Caminar</b><small>Mostrar viaje solo caminando</small></span><i>✓</i></button>
+                  <button type="button" class="transport-toggle" data-transport-toggle="bike" aria-pressed="true"><span class="transport-icon is-bike">🚲</span><span><b>Bicicleta</b><small>Mostrar alternativa en bici</small></span><i>✓</i></button>
+                </div>
+              </aside>
+              <div id="mapPlaceSearchStatus" class="place-search-status" role="status">Admite direcciones y cruces como Calle 27C con Carrera 41.</div><div id="mapJourneyStatus" class="map-planner-status" role="status" aria-live="polite">Escribe dos direcciones o elige puntos sobre el mapa.</div>
+              <div class="route-family-legend" aria-label="Colores de familias de rutas">
+                <span style="--family:#007ac3"><i></i>A</span><span style="--family:#009a63"><i></i>B</span><span style="--family:#f57c00"><i></i>C</span><span style="--family:#7246c7"><i></i>D</span><span style="--family:#00a6d6"><i></i>PT</span>
+              </div>
+              <div id="mapJourneyResults" class="map-planner-results hidden" aria-live="polite"></div>
+            </form>
+            <section id="mapJourneyInstructions" class="map-journey-instructions hidden" aria-live="polite"></section>
+            <div class="map-info-scroll">
+              <div id="mapInfoDefault">
+                <span class="eyebrow">Panel del viaje</span><h2>Mapa real con lectura tipo HSL</h2>
+                <p>Busca una dirección, usa tu ubicación o toca el mapa. TRB resaltará la caminata, el punto de subida, el trayecto del bus con su color y el punto de bajada.</p>
+                <div class="legend">
+                  <span><i class="legend__route"></i> Recorrido de bus</span>
+                  <span><i class="legend__number">A</i> Origen / destino</span>
+                  <span><i class="legend__bus">▣</i> Bus visible</span>
+                </div>
+                <div class="notice notice--warning"><div class="notice__icon">!</div><div><strong>Mapa geográfico, no una imagen estática</strong><p>La estética se inspira en el mapa esquemático, pero las direcciones y recorridos se dibujan sobre coordenadas reales de Barranquilla.</p></div></div>
+              </div>
+              <div id="mapInfoContent" class="hidden"></div>
+            </div>
+          </aside>
+          <div class="map-stage">
+            <div id="map" class="map-container" aria-label="Mapa con recorrido, direcciones, paraderos y buses">
+              <div id="mapBootPlaceholder" class="map-boot-placeholder" aria-live="polite">
+                <span class="map-boot-spinner"></span>
+                <strong>Preparando el mapa de Barranquilla…</strong>
+                <small>Cargando calles, rutas y controles.</small>
+              </div>
+            </div>
+            <div id="mapRuntimeStatus" class="map-runtime-status hidden" role="status" aria-live="polite"></div>
+            <div id="mapPickHint" class="map-pick-hint hidden">Toca el mapa para elegir el punto.</div>
+            <div id="mapJourneyOverlay" class="map-journey-overlay hidden" aria-live="polite"></div>
+            <div class="map-provider-badge">TRB Map · OpenStreetMap</div>
+            <div class="map-demo-label"><span></span> Buses simulados · Sin GPS oficial</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-assistant" class="view" data-view="assistant">
+        <div class="page-heading">
+          <div><span class="eyebrow">Modo local y privado</span><h1>Asistente TRB</h1><p>Pregunta por rutas, sectores, tarifas y disponibilidad de datos.</p></div>
+          <div class="assistant-badge">✦ Sin enviar datos</div>
+        </div>
+        <div class="assistant-layout">
+          <article class="chat-panel panel">
+            <div id="chatMessages" class="chat-messages" aria-live="polite"></div>
+            <div id="suggestionChips" class="suggestion-chips"></div>
+            <form id="assistantForm" class="chat-form">
+              <input id="assistantInput" type="text" maxlength="240" placeholder="Ej. ¿Qué ruta va a Miramar?" autocomplete="off" required />
+              <button class="button button--primary" type="submit">Enviar</button>
+            </form>
+          </article>
+          <aside class="panel assistant-help">
+            <span class="eyebrow">Alcance actual</span><h2>¿Qué puede responder?</h2>
+            <ul class="check-list">
+              <li>Buscar rutas por código y sector.</li>
+              <li>Consultar paraderos de una ruta.</li>
+              <li>Informar tarifas publicadas.</li>
+              <li>Explicar por qué no hay buses en vivo.</li>
+            </ul>
+            <div class="notice notice--info"><div class="notice__icon">i</div><div><strong>No es un modelo generativo externo</strong><p>Funciona con reglas y el catálogo local. Así no expone claves ni datos personales.</p></div></div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="view-favorites" class="view" data-view="favorites">
+        <div class="page-heading"><div><span class="eyebrow">Guardado en este dispositivo</span><h1>Favoritos</h1><p>Tus rutas frecuentes sin necesidad de crear una cuenta.</p></div></div>
+        <div id="favoritesGrid" class="routes-grid"></div>
+        <div id="favoritesEmpty" class="empty-state"><span>♡</span><h3>Aún no tienes favoritos</h3><p>Abre una ruta y toca el corazón para guardarla.</p><button class="button button--primary" data-go="routes">Explorar rutas</button></div>
+      </section>
+
+      <section id="view-more" class="view" data-view="more">
+        <div class="page-heading"><div><span class="eyebrow">Transparencia</span><h1>Datos y fuentes</h1><p>Conoce qué información usa este prototipo y cuáles son sus límites.</p></div></div>
+        <div class="content-grid">
+          <article class="panel">
+            <span class="eyebrow">Estado de datos</span><h2 id="dataStatusTitle"></h2><p id="dataStatusDetail"></p>
+            <div class="status-table">
+              <div><span>Rutas</span><b id="statusRoutes">—</b></div>
+              <div><span>Paraderos</span><b id="statusStops">—</b></div>
+              <div><span>Posición de buses</span><b class="warning-text">No disponible</b></div>
+              <div><span>Horarios vigentes</span><b class="warning-text">No verificados</b></div>
+              <div><span>Motor de rutas</span><b id="statusMotor">—</b></div>
+            </div>
+          </article>
+          <article class="panel">
+            <span class="eyebrow">Fuentes</span><h2>Referencias utilizadas</h2><div id="sourcesList" class="sources-list"></div>
+          </article>
+          <article class="panel">
+            <span class="eyebrow">Privacidad</span><h2>Diseñada sin rastreo</h2>
+            <p>TRB no tiene un servidor propio de rastreo. Cuando buscas una dirección o calculas una caminata, el navegador consulta directamente servicios públicos basados en OpenStreetMap; la ubicación solo se solicita cuando pulsas “Mi ubicación”.</p>
+            <p>Los favoritos y la caché básica de direcciones se guardan en <code>localStorage</code> dentro del dispositivo.</p>
+          </article>
+          <article class="panel">
+            <span class="eyebrow">Integración futura</span><h2>Lista para datos oficiales</h2>
+            <p>El planificador ya calcula opciones aproximadas con el catálogo disponible. Puede conectarse posteriormente a GTFS, GTFS-Realtime o una API oficial para añadir horarios, alertas, transbordos completos y vehículos en vivo.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" data-nav aria-label="Navegación móvil"></nav>
+  </div>
+
+  <div id="routeDrawerBackdrop" class="drawer-backdrop hidden"></div>
+  <aside id="routeDrawer" class="route-drawer" aria-hidden="true" aria-label="Detalle de ruta">
+    <button id="closeDrawer" class="drawer-close" type="button" aria-label="Cerrar">×</button>
+    <div id="routeDrawerContent"></div>
+  </aside>
+
+  <div id="favoritePlaceModal" class="favorite-place-modal hidden" role="dialog" aria-modal="true" aria-labelledby="favoritePlaceTitle">
+    <div class="favorite-place-dialog">
+      <button id="favoritePlaceClose" class="favorite-place-close" type="button" aria-label="Cerrar">×</button>
+      <span class="eyebrow">Lugar favorito</span><h2 id="favoritePlaceTitle">Agregar casa</h2>
+      <p>Busca una dirección, barrio o lugar y guárdalo para usarlo rápidamente como destino.</p>
+      <label class="favorite-place-field"><span>⌖</span><span><input id="favoritePlaceInput" type="search" placeholder="Escribe una dirección o lugar" autocomplete="off" role="combobox" aria-controls="favoritePlaceSuggestions" /><div id="favoritePlaceSuggestions" class="location-suggestions hidden" role="listbox"></div></span></label>
+      <div class="favorite-place-actions"><button id="favoritePlaceCancel" class="button button--ghost" type="button">Cancelar</button><button id="favoritePlaceSave" class="button button--primary" type="button">Guardar lugar</button></div>
+      <div id="favoritePlaceStatus" class="favorite-place-status"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <!-- Leaflet con tres proveedores alternativos. El resto de TRB está alojado localmente. -->
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>if(!window.L){document.write('<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>')}</script>
+  <script>if(!window.L){document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"><\/script>')}</script>
+  <script src="vendor/maplibre/maplibre-gl.js?v=33"></script>
+  <script src="vendor/maplibre/leaflet-maplibre-gl.js?v=33"></script>
+  <script src="vendor/jszip.min.js?v=33"></script>
+  <script src="trb_motor_rutas.js?v=50"></script>
+  <script src="app.js?v=50" defer></script>
+  <noscript><div class="noscript-warning">TRB necesita JavaScript para mostrar el mapa y calcular trayectos.</div></noscript>
+</body>
+</html>

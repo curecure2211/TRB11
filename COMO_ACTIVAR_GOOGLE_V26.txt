@@ -1,0 +1,56 @@
+TRB v26 — CÓMO ACTIVAR EL BUSCADOR AMPLIO DE GOOGLE
+=====================================================
+
+La aplicación funciona sin Google usando OpenStreetMap, Photon y Nominatim.
+Para obtener más direcciones exactas, establecimientos y sedes, puedes activar Google Places y Google Geocoding sin editar el código.
+
+1. CREAR LA CLAVE
+-----------------
+1. Entra en Google Cloud Console y crea o selecciona un proyecto.
+2. Vincula una cuenta de facturación al proyecto.
+3. Activa estas dos APIs:
+   - Places API (New)
+   - Geocoding API
+4. Crea una API key.
+5. Restringe la clave para que solo pueda usar esas dos APIs. Si publicas TRB en un servidor, aplica también una restricción por la IP del servidor cuando sea posible.
+
+2. PEGAR LA CLAVE EN TRB
+------------------------
+1. Descomprime el ZIP de TRB v26.
+2. Entra en la carpeta app.
+3. Haz doble clic en CONFIGURAR_BUSCADOR_GOOGLE.bat.
+4. Pega la clave y pulsa Enter.
+5. El configurador crea .env.local dentro de la carpeta. La clave no se coloca en el navegador ni en app.js.
+6. Abre INICIAR_TRB.bat.
+
+3. PROBAR UNA DIRECCIÓN
+-----------------------
+Prueba cualquiera de estas formas:
+- Carrera 53 No. 64 - 28
+- Carrera 53 # 64-28
+- Cra 53 64-28
+- carreara 53 No. 64 - 28
+
+TRB normaliza el texto y busca primero el número exacto. Si ninguna fuente conoce ese portal, prueba la intersección Carrera 53 con Calle 64 y la muestra como “aproximada”, para no fingir que encontró una puerta exacta.
+
+4. AL ACTUALIZAR LA VERSIÓN
+---------------------------
+Haz Ctrl + Shift + R en el navegador. Si sigue apareciendo una versión antigua, borra los datos del sitio localhost/127.0.0.1 y vuelve a abrir TRB.
+
+5. PUBLICACIÓN EN RENDER
+------------------------
+En las variables de entorno del servicio agrega:
+TRB_GOOGLE_PLACES_API_KEY=TU_CLAVE
+TRB_GOOGLE_GEOCODING_API_KEY=TU_CLAVE
+
+No subas .env.local a GitHub ni compartas la clave públicamente.
+
+6. COMPORTAMIENTO DEL BOTÓN ATRÁS
+---------------------------------
+Al volver de “Información de la línea” o “Instrucciones” a “Sugerencias de ruta”, la versión v26 elimina del mapa:
+- la ruta resaltada;
+- los buses y marcadores temporales;
+- la ficha de la línea;
+- la selección activa.
+
+Así puedes comparar otra alternativa con el mapa limpio.
