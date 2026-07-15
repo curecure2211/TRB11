@@ -1,0 +1,6627 @@
+{
+  "generatedAt": "2026-07-03",
+  "dataStatus": {
+    "title": "Catálogo SIBUS organizado por empresas",
+    "detail": "TRB incluye 23 empresas y 93 rutas del catálogo público del AMB. Los trazados se consultan desde archivos KMZ oficiales; las posiciones de buses siguen siendo simuladas.",
+    "realtimeAvailable": false
+  },
+  "agency": {
+    "name": "Movilidad de Barranquilla y su área metropolitana",
+    "shortName": "TRB",
+    "city": "Barranquilla",
+    "country": "Colombia"
+  },
+  "routes": [
+    {
+      "id": "3101",
+      "shortName": "A0-1",
+      "longName": "Centro",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a0-1-centro",
+      "stopIds": [
+        "20675",
+        "20050",
+        "20051",
+        "20561",
+        "20562",
+        "20563",
+        "20564",
+        "20565",
+        "10108",
+        "10109",
+        "20675"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "3112",
+      "shortName": "A1-2",
+      "longName": "Las Palmas",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a1-2-las-palmas",
+      "stopIds": [
+        "20527",
+        "20528",
+        "20529",
+        "11208",
+        "20530",
+        "20531",
+        "11211",
+        "11212",
+        "11213",
+        "11214",
+        "20676",
+        "11202",
+        "11203",
+        "11204",
+        "11205",
+        "20525",
+        "20526",
+        "20527"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "3113",
+      "shortName": "A1-3",
+      "longName": "Galán",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a1-3-galan",
+      "stopIds": [
+        "11319",
+        "11301",
+        "11302",
+        "11303",
+        "11304",
+        "11315",
+        "11306",
+        "20572",
+        "11307",
+        "11308",
+        "11320",
+        "11310",
+        "11311",
+        "11312",
+        "11313",
+        "11314",
+        "11305",
+        "11316",
+        "20573",
+        "11317",
+        "11318",
+        "11319"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "921",
+      "shortName": "A2-1",
+      "longName": "Hipódromo",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a2-1-hipodromo",
+      "stopIds": [
+        "16616",
+        "16601",
+        "2102",
+        "2103",
+        "2104",
+        "2107",
+        "2105",
+        "2106",
+        "2108",
+        "2109",
+        "2110",
+        "20577",
+        "20578",
+        "20579",
+        "20580",
+        "20581",
+        "20582",
+        "20583",
+        "20584",
+        "2115",
+        "2116",
+        "20456",
+        "20389",
+        "20390",
+        "20391",
+        "20392",
+        "20586",
+        "20393",
+        "20394",
+        "20395",
+        "20457",
+        "2119",
+        "2120",
+        "2121",
+        "2122",
+        "2123",
+        "2124",
+        "2125",
+        "2126",
+        "2127",
+        "2145",
+        "2128",
+        "2129",
+        "2130",
+        "2131",
+        "2132",
+        "20585",
+        "2133",
+        "2134",
+        "2135",
+        "2136",
+        "2137",
+        "2138",
+        "2139",
+        "16602",
+        "2141",
+        "16616"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "3130",
+      "shortName": "A3-1",
+      "longName": "Villa Katanga",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a3-1-villa-katanga",
+      "stopIds": [
+        "17516",
+        "20650",
+        "20651",
+        "20652",
+        "20653",
+        "20654",
+        "20655",
+        "20680",
+        "20681",
+        "20682",
+        "20683",
+        "20684",
+        "20685",
+        "20656",
+        "20666",
+        "20657",
+        "20658",
+        "20659",
+        "20660",
+        "20464",
+        "20661",
+        "20662",
+        "20663",
+        "20664",
+        "20665",
+        "17516"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "3320",
+      "shortName": "A3-2",
+      "longName": "Soledad 2000",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a3-2-soledad-2000",
+      "stopIds": [
+        "A3-2-EP-5-A32",
+        "20002",
+        "20003",
+        "20387",
+        "20005",
+        "20006",
+        "20007",
+        "20008",
+        "20643",
+        "20200",
+        "20020",
+        "20540",
+        "20541",
+        "20542",
+        "20543",
+        "20544",
+        "20021",
+        "11118",
+        "20644",
+        "20645",
+        "20646",
+        "20700",
+        "20026",
+        "20027",
+        "20028",
+        "20029",
+        "A3-2-EP-5-A32"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "3330",
+      "shortName": "A3-3",
+      "longName": "Manuela Beltrán",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a3-3-manuela-beltran",
+      "stopIds": [
+        "EP-3-A33-A35",
+        "20002",
+        "20003",
+        "20387",
+        "20005",
+        "20006",
+        "20545",
+        "20546",
+        "20547",
+        "20554",
+        "20549",
+        "20550",
+        "20205",
+        "20486",
+        "20551",
+        "20552",
+        "20553",
+        "20554",
+        "20555",
+        "20556",
+        "20557",
+        "20558",
+        "20700",
+        "20026",
+        "20027",
+        "20028",
+        "20029",
+        "EP-3-A33-A35"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "3334",
+      "shortName": "A3-4",
+      "longName": "Villa Sol",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a3-4-villa-sol",
+      "stopIds": [
+        "A3-4-EP-6-A34",
+        "20100",
+        "20101",
+        "20102",
+        "20103",
+        "20104",
+        "20522",
+        "20475",
+        "20476",
+        "20477",
+        "20478",
+        "20533",
+        "20534",
+        "20535",
+        "20536",
+        "20537",
+        "20538",
+        "20539",
+        "20479",
+        "20490",
+        "20491",
+        "20492",
+        "20493",
+        "20494",
+        "20114",
+        "20115",
+        "20103",
+        "20117",
+        "20118",
+        "20119",
+        "A3-4-EP-6-A34"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "3335",
+      "shortName": "A3-5",
+      "longName": "Ciudadela Metropolitana",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a3-5-ciudadela-metropolitana",
+      "stopIds": [
+        "EP-3-A33-A35",
+        "20002",
+        "20003",
+        "20387",
+        "20005",
+        "20006",
+        "20695",
+        "20556",
+        "20557",
+        "20558",
+        "20700",
+        "20026",
+        "20028",
+        "20029",
+        "EP-3-A33-A35"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "3351",
+      "shortName": "A5-1",
+      "longName": "Los Robles",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a5-1-los-robles",
+      "stopIds": [
+        "17516",
+        "20177",
+        "20178",
+        "20179",
+        "17516"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "3353",
+      "shortName": "A5-3",
+      "longName": "La Central",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a5-3-la-central",
+      "stopIds": [
+        "A5-3-EP-4-A53",
+        "20100",
+        "20101",
+        "20102",
+        "20103",
+        "20104",
+        "20415",
+        "20416",
+        "20417",
+        "20418",
+        "20670",
+        "20671",
+        "20672",
+        "20673",
+        "20674",
+        "20639",
+        "20420",
+        "20421",
+        "20422",
+        "20522",
+        "20114",
+        "20115",
+        "20103",
+        "20117",
+        "20118",
+        "20119",
+        "A5-3-EP-4-A53"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "3606",
+      "shortName": "A6-6",
+      "longName": "Ciudadela",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a6-6-ciudadela",
+      "stopIds": [
+        "E03-E-A66-S10-S20",
+        "16601",
+        "16602",
+        "16603",
+        "16604",
+        "16605",
+        "16606",
+        "11350",
+        "11351",
+        "11352",
+        "11353",
+        "11354",
+        "11355",
+        "16607",
+        "16608",
+        "16609",
+        "16610",
+        "16611",
+        "2140",
+        "16613",
+        "16614",
+        "20453",
+        "20454",
+        "E03-E-A66-S10-S20"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "7710",
+      "shortName": "A7-1",
+      "longName": "Miramar",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a7-1-miramar",
+      "stopIds": [
+        "ER-71-74",
+        "20251",
+        "20511",
+        "20400",
+        "20513",
+        "20518",
+        "20402",
+        "20515",
+        "20516",
+        "17123",
+        "17124",
+        "17125",
+        "17126",
+        "17127",
+        "17109",
+        "20640",
+        "20641",
+        "17128",
+        "17129",
+        "20397",
+        "17105",
+        "17117",
+        "17118",
+        "17119",
+        "17120",
+        "17121",
+        "ER-71-74"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "7410",
+      "shortName": "A7-4",
+      "longName": "Los Andes",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a7-4-los-andes",
+      "stopIds": [
+        "ER-71-74",
+        "20251",
+        "20252",
+        "20253",
+        "20254",
+        "20255",
+        "20256",
+        "20257",
+        "20258",
+        "20259",
+        "20260",
+        "20261",
+        "20262",
+        "20263",
+        "20264",
+        "20265",
+        "20266",
+        "20267",
+        "20268",
+        "20269",
+        "20270",
+        "20271",
+        "20458",
+        "20459",
+        "20222",
+        "20223",
+        "20224",
+        "20225",
+        "20226",
+        "20227",
+        "20228",
+        "20229",
+        "20230",
+        "20231",
+        "20232",
+        "20240",
+        "20241",
+        "20242",
+        "20243",
+        "20244",
+        "20245",
+        "20246",
+        "20247",
+        "20248",
+        "20249",
+        "20250",
+        "17121",
+        "ER-71-74"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "8180",
+      "shortName": "A8-1",
+      "longName": "Paraíso",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a8-1-paraiso",
+      "stopIds": [
+        "ER-A82-A81",
+        "17101",
+        "17102",
+        "17103",
+        "8447",
+        "20380",
+        "8452",
+        "8455",
+        "8459",
+        "6584",
+        "6585",
+        "20381",
+        "20568",
+        "8673",
+        "8675",
+        "20382",
+        "8579",
+        "20569",
+        "4080",
+        "20383",
+        "8078",
+        "8075",
+        "8072",
+        "20384",
+        "20570",
+        "6480",
+        "8259",
+        "20385",
+        "8252",
+        "8251",
+        "8246",
+        "4680",
+        "17120",
+        "4676",
+        "ER-A82-A81"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "8201",
+      "shortName": "A8-2",
+      "longName": "Vía 40",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a8-2-40",
+      "stopIds": [
+        "ER-A82-A81",
+        "17101",
+        "18202",
+        "7951",
+        "7953",
+        "18205",
+        "18206",
+        "18207",
+        "18208",
+        "18209",
+        "18210",
+        "18211",
+        "18212",
+        "18213",
+        "7668",
+        "18215",
+        "18216",
+        "18311",
+        "18217",
+        "18218",
+        "19166",
+        "18219",
+        "ER-A82-A81"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "38831",
+      "shortName": "A8-3",
+      "longName": "Prado",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a8-3-prado",
+      "stopIds": [
+        "E11-F-A83-S20",
+        "A8-3-E12-F",
+        "E14-F-A83-R10",
+        "18303",
+        "18304",
+        "18305",
+        "18306",
+        "18307",
+        "18308",
+        "18309",
+        "18216",
+        "18311",
+        "18312",
+        "18313",
+        "18314",
+        "18315",
+        "18316",
+        "18317",
+        "E14-E-A83-S10",
+        "A8-3-E12-E",
+        "E11-E-A83-B10"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "9301",
+      "shortName": "A9-3",
+      "longName": "Buenavista",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a9-3-buenavista",
+      "stopIds": [
+        "ER-91-92-93",
+        "19101",
+        "9157",
+        "9156",
+        "19104",
+        "19105",
+        "19106",
+        "19107",
+        "19108",
+        "19109",
+        "19110",
+        "19111",
+        "18400",
+        "19158",
+        "19159",
+        "19160",
+        "19161",
+        "19162",
+        "19163",
+        "19164",
+        "19165",
+        "18218",
+        "19166",
+        "18219",
+        "ER-91-92-93"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "9401",
+      "shortName": "A9-4",
+      "longName": "Villa Santos",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/a9-4-villa-santos",
+      "stopIds": [
+        "ER-94-U30",
+        "17101",
+        "17102",
+        "17103",
+        "17104",
+        "17105",
+        "17106",
+        "20473",
+        "20474",
+        "19158",
+        "19159",
+        "17131",
+        "17132",
+        "20397",
+        "20566",
+        "17117",
+        "17118",
+        "4680",
+        "17120",
+        "4676",
+        "ER-94-U30"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "1901",
+      "shortName": "B1",
+      "longName": "Barranquillita",
+      "colorHex": "FCF800",
+      "textColorHex": "44AA06",
+      "url": "https://transmetro.gov.co/ruta/b1",
+      "stopIds": [
+        "EP-2-B1S2-B10S20",
+        "B1-E01-D",
+        "B1-E02-D",
+        "B1-E03-D",
+        "B1-E04-D",
+        "B1-E05-D",
+        "B1-E06-D",
+        "B1-E07-D",
+        "B1-E08-D",
+        "B1-E09-D",
+        "B1-E10-D",
+        "B1-E12-C",
+        "B1-E11-C"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "100",
+      "shortName": "B2",
+      "longName": "Barranquillita",
+      "colorHex": "FCF800",
+      "textColorHex": "44AA06",
+      "url": "https://transmetro.gov.co/ruta/b2",
+      "stopIds": [
+        "ER-B2-R2",
+        "B2-E16-A",
+        "B2-E15-A",
+        "B2-E14-A",
+        "B2-E12-A",
+        "B2-E11-A"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "2101",
+      "shortName": "R1",
+      "longName": "Joe Arroyo",
+      "colorHex": "44AA06",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/r1",
+      "stopIds": [
+        "EP-1-R1S1-R50S50-R10S10",
+        "R1-E01-B",
+        "R1-E02-B",
+        "R1-E03-B",
+        "R1-E04-B",
+        "R1-E05-B",
+        "R1-E06-B",
+        "R1-E07-B",
+        "R1-E08-B",
+        "R1-E09-B",
+        "R1-E10-B",
+        "R1-E14-D",
+        "R1-E15-D",
+        "R1-E16-D",
+        "ER-R1S1-R10S10-R50S50"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "101",
+      "shortName": "R2",
+      "longName": "Joe Arroyo",
+      "colorHex": "44AA06",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/r2",
+      "stopIds": [
+        "R2-E11-B",
+        "R2-E12-B",
+        "R2-E14-B",
+        "R2-E15-B",
+        "R2-E16-B",
+        "ER-B2-R2"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "2110",
+      "shortName": "R10",
+      "longName": "Joe Arroyo",
+      "colorHex": "44AA06",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/r10",
+      "stopIds": [
+        "EP-1-R1S1-R50S50-R10S10",
+        "E03-F-B10-R10",
+        "E05-F-B10-R10",
+        "E14-F-A83-R10",
+        "R10-E15-F",
+        "ER-R1S1-R10S10-R50S50"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "1101",
+      "shortName": "S1",
+      "longName": "Portal de Soledad",
+      "colorHex": "D60000",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/s1",
+      "stopIds": [
+        "ER-R1S1-R10S10-R50S50",
+        "S1-E16-C",
+        "S1-E15-C",
+        "S1-E14-C",
+        "S1-E10-A",
+        "S1-E09-A",
+        "S1-E08-A",
+        "S1-E07-A",
+        "S1-E06-A",
+        "S1-E05-A",
+        "S1-E04-A",
+        "S1-E03-A",
+        "S1-E02-A",
+        "S1-E01-A",
+        "EP-1-R1S1-R50S50-R10S10"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "2201",
+      "shortName": "S2",
+      "longName": "Portal de Soledad",
+      "colorHex": "D60000",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/s2",
+      "stopIds": [
+        "S2-E11-D",
+        "S2-E12-D",
+        "S2-E10-C",
+        "S2-E09-C",
+        "S2-E08-C",
+        "S2-E07-C",
+        "S2-E06-C",
+        "S2-E05-C",
+        "S2-E04-C",
+        "S2-E03-C",
+        "S2-E02-C",
+        "S2-E01-C",
+        "EP-2-B1S2-B10S20"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "3110",
+      "shortName": "S10",
+      "longName": "Portal de Soledad",
+      "colorHex": "D60000",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/s10",
+      "stopIds": [
+        "ER-R1S1-R10S10-R50S50",
+        "S10-E15-E",
+        "E14-E-A83-S10",
+        "E05-E-S10-S20",
+        "E03-E-A66-S10-S20",
+        "EP-1-R1S1-R50S50-R10S10"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "3030",
+      "shortName": "U30",
+      "longName": "Corredor Universitario",
+      "colorHex": "102D6C",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/u30-corredor-universitario",
+      "stopIds": [
+        "ER-94-U30",
+        "17101",
+        "17102",
+        "17103",
+        "17104",
+        "17105",
+        "17106",
+        "20692",
+        "20693",
+        "18402",
+        "19117",
+        "19118",
+        "19119",
+        "19151",
+        "20567",
+        "19150",
+        "18404",
+        "19122",
+        "20598",
+        "19147",
+        "19124",
+        "19125",
+        "20576",
+        "19146",
+        "19123",
+        "19148",
+        "19149",
+        "19121",
+        "19120",
+        "19152",
+        "19153",
+        "19154",
+        "17129",
+        "20397",
+        "20566",
+        "17117",
+        "17118",
+        "4680",
+        "17120",
+        "4676",
+        "ER-94-U30"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "4110",
+      "shortName": "B10",
+      "longName": "Barranquillita",
+      "colorHex": "FCF800",
+      "textColorHex": "44AA06",
+      "url": "https://transmetro.gov.co/ruta/b10",
+      "stopIds": [
+        "EP-2-B1S2-B10S20",
+        "E03-F-B10-R10",
+        "E05-F-B10-R10",
+        "B10-E08-F",
+        "B10-E10-F",
+        "E11-E-A83-B10"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "5120",
+      "shortName": "S20",
+      "longName": "Portal de Soledad",
+      "colorHex": "D60000",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/s20",
+      "stopIds": [
+        "E11-F-A83-S20",
+        "S20-E10-E",
+        "S20-E08-E",
+        "E05-E-S10-S20",
+        "E03-E-A66-S10-S20",
+        "EP-2-B1S2-B10S20"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "5050",
+      "shortName": "R50",
+      "longName": "Joe Arroyo",
+      "colorHex": "44AA06",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/r50",
+      "stopIds": [
+        "EP-1-R1S1-R50S50-R10S10",
+        "ER-R1S1-R10S10-R50S50"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "5052",
+      "shortName": "S50",
+      "longName": "Joe Arroyo",
+      "colorHex": "D60000",
+      "textColorHex": "FFFFFF",
+      "url": "https://transmetro.gov.co/ruta/s50",
+      "stopIds": [
+        "ER-R1S1-R10S10-R50S50",
+        "EP-1-R1S1-R50S50-R10S10"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "2102",
+      "shortName": "R-1",
+      "longName": "Buenos A.-Joe Arroyo",
+      "colorHex": "44AA06",
+      "textColorHex": "FFFFFF",
+      "url": "",
+      "stopIds": [
+        "R1-E04-B",
+        "R1-E05-B",
+        "R1-E06-B",
+        "R1-E07-B",
+        "R1-E08-B",
+        "R1-E09-B",
+        "R1-E10-B",
+        "R1-E14-D",
+        "R1-E15-D",
+        "R1-E16-D",
+        "ER-R1S1-R10S10-R50S50"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    },
+    {
+      "id": "1102",
+      "shortName": "S-1",
+      "longName": "Esthercita F.-Portal de Soledad",
+      "colorHex": "D60000",
+      "textColorHex": "FFFFFF",
+      "url": "",
+      "stopIds": [
+        "S1-E16-C",
+        "S1-E15-C",
+        "S1-E14-C",
+        "S1-E10-A",
+        "S1-E09-A",
+        "S1-E08-A",
+        "S1-E07-A",
+        "S1-E06-A",
+        "S1-E05-A",
+        "S1-E04-A",
+        "S1-E03-A",
+        "S1-E02-A",
+        "S1-E01-A",
+        "EP-1-R1S1-R50S50-R10S10"
+      ],
+      "dataNote": "Recorrido de referencia derivado de un feed GTFS comunitario histórico de Transmetro. No representa posiciones en tiempo real."
+    }
+  ],
+  "stops": [
+    {
+      "id": "20675",
+      "name": "Carrera 41 No. 44 - 60",
+      "latitude": 10.981342,
+      "longitude": -74.786233,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20050",
+      "name": "Carrera 40 No. 43 - 07",
+      "latitude": 10.980727,
+      "longitude": -74.784815,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20051",
+      "name": "Carrera 40 No. 40 - 37",
+      "latitude": 10.980393,
+      "longitude": -74.78266,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20561",
+      "name": "Carrera 40 No. 38 - 25",
+      "latitude": 10.980025,
+      "longitude": -74.781447,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20562",
+      "name": "Carrera 40 No. 36 - 25",
+      "latitude": 10.97969,
+      "longitude": -74.780415,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20563",
+      "name": "Carrera 40 No. 35 - 25",
+      "latitude": 10.979358,
+      "longitude": -74.779583,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20564",
+      "name": "Carrera 43 No. 35 - 38",
+      "latitude": 10.981448,
+      "longitude": -74.779293,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20565",
+      "name": "Carrera 43 No. 36 - 30",
+      "latitude": 10.98163,
+      "longitude": -74.78013,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "10108",
+      "name": "Carrera 43 No. 39 - 26",
+      "latitude": 10.98196,
+      "longitude": -74.781695,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "10109",
+      "name": "Carrera 43 No. 43 - 16",
+      "latitude": 10.982552,
+      "longitude": -74.784433,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20527",
+      "name": "Centro Comercial Panorama",
+      "latitude": 10.944842,
+      "longitude": -74.784343,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20528",
+      "name": "Carrera 6B con Calle 31 Nacional de Chocolate",
+      "latitude": 10.94294,
+      "longitude": -74.785247,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20529",
+      "name": "Carrera 6B No. 33 - 76",
+      "latitude": 10.942972,
+      "longitude": -74.786828,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11208",
+      "name": "Carrera 6B Con Calle 34C Esq",
+      "latitude": 10.942427,
+      "longitude": -74.788677,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20530",
+      "name": "Carrera 6B Con Calle 36B",
+      "latitude": 10.942057,
+      "longitude": -74.791518,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20531",
+      "name": "Carrera 6B No. 38B - 02",
+      "latitude": 10.941757,
+      "longitude": -74.793893,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11211",
+      "name": "Calle 41 No. 6B - 32",
+      "latitude": 10.94187,
+      "longitude": -74.795853,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11212",
+      "name": "Calle 41 No. 7D - 04",
+      "latitude": 10.943802,
+      "longitude": -74.79617,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11213",
+      "name": "Carrera 8 No. 40 - 32",
+      "latitude": 10.946245,
+      "longitude": -74.795742,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11214",
+      "name": "Carrera 8 con Calle 42B Esq",
+      "latitude": 10.946242,
+      "longitude": -74.797833,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20676",
+      "name": "Carrera 8 No. 44 - 34",
+      "latitude": 10.94623,
+      "longitude": -74.799237,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11202",
+      "name": "Carrera 8 No. 42 - 127",
+      "latitude": 10.946107,
+      "longitude": -74.798475,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11203",
+      "name": "Carrera 8 Con Calle 41 Esq",
+      "latitude": 10.946113,
+      "longitude": -74.795858,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11204",
+      "name": "Carrera 8 No. 36B - 125",
+      "latitude": 10.945887,
+      "longitude": -74.793093,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11205",
+      "name": "Carrera 8 Con Calle 35A Esq",
+      "latitude": 10.94619,
+      "longitude": -74.790928,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20525",
+      "name": "Carrera 8 Con Calle 34",
+      "latitude": 10.946428,
+      "longitude": -74.788717,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20526",
+      "name": "Carrera 8 Con Calle 31",
+      "latitude": 10.94677,
+      "longitude": -74.785825,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11319",
+      "name": "Carrera 1H Con Calle 45 Esq",
+      "latitude": 10.932732,
+      "longitude": -74.798927,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11301",
+      "name": "Carrera 2E No. 44B - 13",
+      "latitude": 10.934835,
+      "longitude": -74.798927,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11302",
+      "name": "Carrera 2B No. 42A - 05",
+      "latitude": 10.934503,
+      "longitude": -74.797133,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11303",
+      "name": "Carrera 2 Con Calle 39 Esq",
+      "latitude": 10.934873,
+      "longitude": -74.794397,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11304",
+      "name": "Carrera 2 Calle 37E - 23",
+      "latitude": 10.934828,
+      "longitude": -74.792567,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11315",
+      "name": "Calle 37C Carrera 2",
+      "latitude": 10.93562,
+      "longitude": -74.790987,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11306",
+      "name": "Calle 37C Con Carrera 3A",
+      "latitude": 10.937258,
+      "longitude": -74.791567,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20572",
+      "name": "Calle 37C No. 3D - 04",
+      "latitude": 10.938568,
+      "longitude": -74.791708,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11307",
+      "name": "Carrera 4 Con Calle 36 Esq",
+      "latitude": 10.938947,
+      "longitude": -74.790488,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11308",
+      "name": "Carrera 4 Con Calle 34B Esq",
+      "latitude": 10.939295,
+      "longitude": -74.788622,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11320",
+      "name": "Carrera 4 Con Calle 31-88",
+      "latitude": 10.939613,
+      "longitude": -74.786048,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11310",
+      "name": "Carrera 4 Con Calle 30",
+      "latitude": 10.939838,
+      "longitude": -74.783297,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11311",
+      "name": "Carrera 2 Con Calle 30",
+      "latitude": 10.937722,
+      "longitude": -74.782895,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11312",
+      "name": "Carrera 2 Con Calle 33A Esq",
+      "latitude": 10.936585,
+      "longitude": -74.78478,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11313",
+      "name": "Carrera 2 Con Calle 34 Esq",
+      "latitude": 10.935955,
+      "longitude": -74.786967,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11314",
+      "name": "Carrera 2 Con Calle 35A Esq",
+      "latitude": 10.935437,
+      "longitude": -74.789325,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11305",
+      "name": "Calle 37C Con Carrera 2 Esq",
+      "latitude": 10.934685,
+      "longitude": -74.791298,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11316",
+      "name": "Calle 37C Con Carrera 1H Esq",
+      "latitude": 10.932828,
+      "longitude": -74.791708,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20573",
+      "name": "Carrera 1H Con Calle 37F Esq",
+      "latitude": 10.933207,
+      "longitude": -74.793172,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11317",
+      "name": "Carrera 1H Con Calle 41B Esq",
+      "latitude": 10.933708,
+      "longitude": -74.79478,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11318",
+      "name": "Carrera 1H No. 41B - 236",
+      "latitude": 10.933242,
+      "longitude": -74.796837,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "16616",
+      "name": "Carrera 1E Con Calle 45 Metrocentro",
+      "latitude": 10.931807,
+      "longitude": -74.799743,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "16601",
+      "name": "Tv 14 sur Con Calle 45",
+      "latitude": 10.93025,
+      "longitude": -74.799877,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2102",
+      "name": "Calle 45D Frente Nom 1 - 101",
+      "latitude": 10.931347,
+      "longitude": -74.800533,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2103",
+      "name": "Carrera 1E Frente Bloque 159",
+      "latitude": 10.931865,
+      "longitude": -74.802072,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2104",
+      "name": "Avenida las Torres Frente Nom. 45H - 42",
+      "latitude": 10.930277,
+      "longitude": -74.802065,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2107",
+      "name": "Avenida las Torres Calle 44B",
+      "latitude": 10.929922,
+      "longitude": -74.798772,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2105",
+      "name": "Avenida las Torres Nom. 41C - 93",
+      "latitude": 10.929695,
+      "longitude": -74.796522,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2106",
+      "name": "Avenida las Torres Nom. 56A - 93",
+      "latitude": 10.929483,
+      "longitude": -74.79439,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2108",
+      "name": "Avenida las Torres con Calle 54 D",
+      "latitude": 10.929482,
+      "longitude": -74.791593,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2109",
+      "name": "Avenida las Torres Nom. 48 - 25",
+      "latitude": 10.930147,
+      "longitude": -74.78906,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2110",
+      "name": "Avenida las Torres Nom 44 - 33",
+      "latitude": 10.930925,
+      "longitude": -74.78645,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20577",
+      "name": "Avenida Circunvalar oreja del puente",
+      "latitude": 10.932307,
+      "longitude": -74.782143,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20578",
+      "name": "Carrera 39 C No. 18H - 17",
+      "latitude": 10.937393,
+      "longitude": -74.779025,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20579",
+      "name": "Carrera 39C  Con Calle 32",
+      "latitude": 10.936543,
+      "longitude": -74.77692,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20580",
+      "name": "Carrera 39C No. 28 - 109",
+      "latitude": 10.9359,
+      "longitude": -74.775368,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20581",
+      "name": "Carrera 39C No. 27C - 13",
+      "latitude": 10.935152,
+      "longitude": -74.773565,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20582",
+      "name": "Calle 27C Con Carrera 39",
+      "latitude": 10.933992,
+      "longitude": -74.772872,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20583",
+      "name": "Calle 27C Con Carrera 25",
+      "latitude": 10.931608,
+      "longitude": -74.773322,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20584",
+      "name": "Calle 27C Con Carrera 23 Esq.",
+      "latitude": 10.929158,
+      "longitude": -74.773778,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2115",
+      "name": "Carrera 30 Con Calle 27",
+      "latitude": 10.927622,
+      "longitude": -74.772903,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2116",
+      "name": "Carrera 30 Nom 24 - 151",
+      "latitude": 10.926817,
+      "longitude": -74.76981,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20456",
+      "name": "Calle 24 con Carrera 31",
+      "latitude": 10.926987,
+      "longitude": -74.768267,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20389",
+      "name": "Calle 24 Con Carrera 33A Esq",
+      "latitude": 10.928907,
+      "longitude": -74.767977,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20390",
+      "name": "Carrera 35 Con Calle 25B Esq",
+      "latitude": 10.92987,
+      "longitude": -74.770465,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20391",
+      "name": "Calle 26 Con Carrera 38 Esq",
+      "latitude": 10.93266,
+      "longitude": -74.770463,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20392",
+      "name": "Carrera 39 Con Calle 24A Esq Col. Sagrado Corazon",
+      "latitude": 10.934168,
+      "longitude": -74.768603,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20586",
+      "name": "Carrera 39 Con Calle 21B",
+      "latitude": 10.934385,
+      "longitude": -74.766965,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20393",
+      "name": "Entrada conjunto residencial los Mangos",
+      "latitude": 10.934167,
+      "longitude": -74.765282,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20394",
+      "name": "Calle 18 Con Carrera 36 A Esq",
+      "latitude": 10.931152,
+      "longitude": -74.764512,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20395",
+      "name": "Calle 18 No. 32 - 59",
+      "latitude": 10.92868,
+      "longitude": -74.76435,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20457",
+      "name": "Calle 18 Con Carrera 30",
+      "latitude": 10.926713,
+      "longitude": -74.764153,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2119",
+      "name": "Calle 18 Con Carrera 27",
+      "latitude": 10.924445,
+      "longitude": -74.763768,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2120",
+      "name": "Calle 18 No. 25A - 16",
+      "latitude": 10.92153,
+      "longitude": -74.763537,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2121",
+      "name": "Calle 18 No. 23 - 37",
+      "latitude": 10.919673,
+      "longitude": -74.764115,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2122",
+      "name": "Calle 18 No. 21 - 37",
+      "latitude": 10.917542,
+      "longitude": -74.765113,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2123",
+      "name": "Carrera 19 Frente Nom. 20 - 19",
+      "latitude": 10.916582,
+      "longitude": -74.7671,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2124",
+      "name": "Calle 23 Con Carrera 19A Esq.",
+      "latitude": 10.917762,
+      "longitude": -74.768873,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2125",
+      "name": "Calle 23 No. 22 - 36",
+      "latitude": 10.920545,
+      "longitude": -74.768107,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2126",
+      "name": "Calle 23 No. 25 - 40",
+      "latitude": 10.922783,
+      "longitude": -74.767398,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2127",
+      "name": "Carrera 26 No. 24A - 32",
+      "latitude": 10.923965,
+      "longitude": -74.768765,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2145",
+      "name": "Carrera 30 Con Calle 25",
+      "latitude": 10.926667,
+      "longitude": -74.768853,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2128",
+      "name": "Carrera 30 Con Calle 27 Esq.",
+      "latitude": 10.927552,
+      "longitude": -74.772697,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2129",
+      "name": "Carrera 30 Con 29C  Esq.",
+      "latitude": 10.927883,
+      "longitude": -74.775767,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2130",
+      "name": "Carrera 30 Con Calle 30",
+      "latitude": 10.92744,
+      "longitude": -74.77775,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2131",
+      "name": "Calle 30 Entrada al Tucan",
+      "latitude": 10.930023,
+      "longitude": -74.779742,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2132",
+      "name": "Calle 30 INEM",
+      "latitude": 10.93168,
+      "longitude": -74.78023,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20585",
+      "name": "Calle 19 Con Carrera 1E",
+      "latitude": 10.936397,
+      "longitude": -74.780392,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2133",
+      "name": "Avenida las Torres Circunvalar Iglesia",
+      "latitude": 10.931798,
+      "longitude": -74.784507,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2134",
+      "name": "Av. Las Torres  Colegio Olga Castellano de Levolo",
+      "latitude": 10.930985,
+      "longitude": -74.787303,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2135",
+      "name": "Avenida las Torres Calle 54",
+      "latitude": 10.929845,
+      "longitude": -74.790683,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2136",
+      "name": "Avenida las Torres  56A - 12",
+      "latitude": 10.929528,
+      "longitude": -74.793657,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2137",
+      "name": "Avenida las Torres 41C - 92",
+      "latitude": 10.929863,
+      "longitude": -74.796545,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2138",
+      "name": "Avenida las Torres 43 - 76",
+      "latitude": 10.930047,
+      "longitude": -74.798235,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2139",
+      "name": "Avenida Las Torres Calle 45",
+      "latitude": 10.930197,
+      "longitude": -74.799847,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "16602",
+      "name": "Tv 14 sur Con Calle 45H",
+      "latitude": 10.93041,
+      "longitude": -74.801802,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2141",
+      "name": "Carrera 1E No. 45H - 41",
+      "latitude": 10.93184,
+      "longitude": -74.801897,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17516",
+      "name": "Carrera 24 Con Calle 63",
+      "latitude": 10.921272,
+      "longitude": -74.798632,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20650",
+      "name": "Carrera 24 Con Calle 59",
+      "latitude": 10.92152,
+      "longitude": -74.796022,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20651",
+      "name": "Carrera 24 Con Calle 57D",
+      "latitude": 10.921237,
+      "longitude": -74.794565,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20652",
+      "name": "Carrera 24 Con Calle 55B",
+      "latitude": 10.920945,
+      "longitude": -74.793112,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20653",
+      "name": "Carrera 24 Con Calle 54 Soledad",
+      "latitude": 10.921297,
+      "longitude": -74.791322,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20654",
+      "name": "Carrera 24 Con Calle 48",
+      "latitude": 10.92143,
+      "longitude": -74.789708,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20655",
+      "name": "Carrera 24 Con Calle 45A1 - 03",
+      "latitude": 10.921263,
+      "longitude": -74.788557,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20680",
+      "name": "Calle 45 Con Carrera 25 Esq.",
+      "latitude": 10.922547,
+      "longitude": -74.787095,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20681",
+      "name": "Calle 45 Con Carrera 26A",
+      "latitude": 10.923683,
+      "longitude": -74.7863,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20682",
+      "name": "Calle 43 Con Carrera 31",
+      "latitude": 10.925265,
+      "longitude": -74.784267,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20683",
+      "name": "Calle 43 Con Carrera 37 lado oriental",
+      "latitude": 10.927214,
+      "longitude": -74.784229,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20684",
+      "name": "Calle 43 Con Carrera 37 lado occidental",
+      "latitude": 10.927029,
+      "longitude": -74.784264,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20685",
+      "name": "Calle 43 Con Carrera 32",
+      "latitude": 10.925545,
+      "longitude": -74.784264,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20656",
+      "name": "Calle 45 Carrera 25B - 70",
+      "latitude": 10.922297,
+      "longitude": -74.787265,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20666",
+      "name": "Calle 45 con Carrera 24B Esq",
+      "latitude": 10.921752,
+      "longitude": -74.78763,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20657",
+      "name": "Carrera 24 Calle 45A - 20",
+      "latitude": 10.921298,
+      "longitude": -74.78853,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20658",
+      "name": "Carrera 24 Calle 44 Norte",
+      "latitude": 10.921452,
+      "longitude": -74.789715,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20659",
+      "name": "Carrera 24 Calle 53 Esq Soledad",
+      "latitude": 10.92151,
+      "longitude": -74.790858,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20660",
+      "name": "Carrera 24 Calle 54C",
+      "latitude": 10.921133,
+      "longitude": -74.79225,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20464",
+      "name": "Carrera 24 Con Calle 56",
+      "latitude": 10.920841,
+      "longitude": -74.793446,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20661",
+      "name": "Calle 56 Carrera 22C",
+      "latitude": 10.919863,
+      "longitude": -74.793343,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20662",
+      "name": "Calle 56 Carrera 20 Soledad",
+      "latitude": 10.918265,
+      "longitude": -74.793335,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20663",
+      "name": "Carrera 18 Calle 56 - 46",
+      "latitude": 10.917155,
+      "longitude": -74.79393,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20664",
+      "name": "Carrera 18 No 59 - 18",
+      "latitude": 10.917143,
+      "longitude": -74.796177,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20665",
+      "name": "Carrera 18 No. 62 - 10",
+      "latitude": 10.917132,
+      "longitude": -74.798233,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20300",
+      "name": "Portal de Soledad",
+      "latitude": 10.907516,
+      "longitude": -74.800479,
+      "locationType": 1,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "20002",
+      "name": "Carrera 14 Con Calle 63 Olimpica",
+      "latitude": 10.909228,
+      "longitude": -74.798492,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20003",
+      "name": "Carrera 14 Con Calle 59 Entrada Barrio Nuevo Milen",
+      "latitude": 10.908877,
+      "longitude": -74.795947,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20387",
+      "name": "Terminal de Transportes",
+      "latitude": 10.908912,
+      "longitude": -74.793808,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20005",
+      "name": "Calle 54 Con Carrera 13B El Gran Percal",
+      "latitude": 10.906455,
+      "longitude": -74.791893,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20006",
+      "name": "Calle 54 Con Carrera 11B",
+      "latitude": 10.905077,
+      "longitude": -74.791623,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20007",
+      "name": "Carrera 11 Con Calle 52 Siete Bocas",
+      "latitude": 10.905058,
+      "longitude": -74.789035,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20008",
+      "name": "Carrera 11 Con Calle 49 Iglesia Testigos de Jehova",
+      "latitude": 10.905652,
+      "longitude": -74.78593,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20643",
+      "name": "Carrera 11 Con Calle 46",
+      "latitude": 10.906155,
+      "longitude": -74.783343,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20200",
+      "name": "Carrera 11 Calle 44A Esq. Col. Club de Leones",
+      "latitude": 10.906417,
+      "longitude": -74.781622,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20020",
+      "name": "Calle 43 Con Carrera 13",
+      "latitude": 10.908305,
+      "longitude": -74.780645,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20540",
+      "name": "Calle 40 No 14 - 68",
+      "latitude": 10.910237,
+      "longitude": -74.779402,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20541",
+      "name": "Carrera 15B Con Calle 43C Esq",
+      "latitude": 10.911695,
+      "longitude": -74.780897,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20542",
+      "name": "Carrera 15B Con Cale 44D Esq",
+      "latitude": 10.912152,
+      "longitude": -74.782268,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20543",
+      "name": "Diagonal 43 Frente Nom. 14 - 122",
+      "latitude": 10.910502,
+      "longitude": -74.781493,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20544",
+      "name": "Diagonal 43 no. 14 -29",
+      "latitude": 10.909697,
+      "longitude": -74.780937,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20021",
+      "name": "Carrera 14 Con Calle 43B",
+      "latitude": 10.909352,
+      "longitude": -74.781268,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11118",
+      "name": "Carrera 14 Con Calle 47",
+      "latitude": 10.908438,
+      "longitude": -74.784507,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20644",
+      "name": "Carrera 14 No. 47A - 100 Doña Soledad",
+      "latitude": 10.908482,
+      "longitude": -74.78601,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20645",
+      "name": "Carrera 14 Con Calle 50 Esq",
+      "latitude": 10.908898,
+      "longitude": -74.787952,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20646",
+      "name": "Carrera 14 Con Calle 52 Esq",
+      "latitude": 10.908058,
+      "longitude": -74.789332,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20700",
+      "name": "Calle 54 Con Carrera 14 Frente Gimnasio",
+      "latitude": 10.906856,
+      "longitude": -74.791828,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20026",
+      "name": "Calle 54 No. 14 - 110",
+      "latitude": 10.910017,
+      "longitude": -74.792017,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20027",
+      "name": "Carrera 15 Con Calle 54 Sisben Soledad",
+      "latitude": 10.910387,
+      "longitude": -74.792935,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20028",
+      "name": "Carrera 15 Con Calle 59 Entrada Barrio Pta De Oro",
+      "latitude": 10.910698,
+      "longitude": -74.79516,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20029",
+      "name": "Carrera 15 Con Calle 63 Villa Linda",
+      "latitude": 10.911055,
+      "longitude": -74.797862,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20545",
+      "name": "Calle 54 No. 8A - 03",
+      "latitude": 10.901935,
+      "longitude": -74.790852,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20546",
+      "name": "Carrera 8 No. 52A - 15",
+      "latitude": 10.901947,
+      "longitude": -74.789347,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20547",
+      "name": "Carrera 7A No. 50C - 21",
+      "latitude": 10.901785,
+      "longitude": -74.787425,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20554",
+      "name": "Calle 48 No. 6E - 22",
+      "latitude": 10.9017,
+      "longitude": -74.785527,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20549",
+      "name": "Carrera 6C No. 47 - 51",
+      "latitude": 10.90106,
+      "longitude": -74.783673,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20550",
+      "name": "Calle 47 No. 5B - 69",
+      "latitude": 10.899877,
+      "longitude": -74.782968,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20205",
+      "name": "Calle 37 Con Carrera 5B Esq.",
+      "latitude": 10.899127,
+      "longitude": -74.781407,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20486",
+      "name": "Calle 37 Con Carrera 5B Norte",
+      "latitude": 10.899122,
+      "longitude": -74.781707,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20551",
+      "name": "Calle 47 No. 5B - 16",
+      "latitude": 10.899358,
+      "longitude": -74.782847,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20552",
+      "name": "Calle 47 No. 6A - 22",
+      "latitude": 10.900828,
+      "longitude": -74.783167,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20553",
+      "name": "Carrera 5 No. 47C - 08",
+      "latitude": 10.90098,
+      "longitude": -74.784192,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20555",
+      "name": "Carrera 7A No. 50 B 11",
+      "latitude": 10.901863,
+      "longitude": -74.787075,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20556",
+      "name": "Carrera 8 No. 53 A Esq. Hospital Materno Infantil",
+      "latitude": 10.90196,
+      "longitude": -74.789625,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20557",
+      "name": "Calle 54 No. 8B - 16",
+      "latitude": 10.902397,
+      "longitude": -74.79088,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20558",
+      "name": "Calle 54 No. 11 - 18",
+      "latitude": 10.904798,
+      "longitude": -74.791417,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20100",
+      "name": "Calle 65 Con Carrera 12 Ciudad Transmetro",
+      "latitude": 10.904125,
+      "longitude": -74.802113,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20101",
+      "name": "Calle 65 Con Carrera 8 Esq. Los Loteros",
+      "latitude": 10.901335,
+      "longitude": -74.802702,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20102",
+      "name": "Entrada Ciudad Camelot",
+      "latitude": 10.899415,
+      "longitude": -74.803115,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20103",
+      "name": "Entrada Barrio Candelaria",
+      "latitude": 10.895393,
+      "longitude": -74.803785,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20104",
+      "name": "Calle 63 Con Carrera 5 Ent. 1 La Central",
+      "latitude": 10.891485,
+      "longitude": -74.80419,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20522",
+      "name": "Entrada Granabastos",
+      "latitude": 10.887832,
+      "longitude": -74.803852,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20475",
+      "name": "Las Cometas Sur",
+      "latitude": 10.890973,
+      "longitude": -74.799828,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20476",
+      "name": "Entrada Nuevo Colegio Granabastos",
+      "latitude": 10.892458,
+      "longitude": -74.797293,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20477",
+      "name": "Villa Maria 1ra Etapa Sur",
+      "latitude": 10.89324,
+      "longitude": -74.795803,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20478",
+      "name": "Villa Maria 2da Etapa Sur",
+      "latitude": 10.894047,
+      "longitude": -74.794525,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20533",
+      "name": "Calle 57 Con Carrera 3 Las Cuatro Villas",
+      "latitude": 10.89342,
+      "longitude": -74.793272,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20534",
+      "name": "Carrera 3 No. 56C - 21",
+      "latitude": 10.892867,
+      "longitude": -74.792117,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20535",
+      "name": "Carrera 3 No. 54C - 03",
+      "latitude": 10.892803,
+      "longitude": -74.790272,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20536",
+      "name": "Calle 54B Trv 2D10 - 19",
+      "latitude": 10.891348,
+      "longitude": -74.789497,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20537",
+      "name": "Calle 54B Con Carrera 2F",
+      "latitude": 10.891917,
+      "longitude": -74.7896,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20538",
+      "name": "Carrera 3 No. 55 - 16",
+      "latitude": 10.892782,
+      "longitude": -74.79065,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20539",
+      "name": "Carrera 3 No. 56 - 142",
+      "latitude": 10.892948,
+      "longitude": -74.792595,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20479",
+      "name": "Villa Carla Sur",
+      "latitude": 10.895408,
+      "longitude": -74.792565,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20490",
+      "name": "Villa Carla Norte",
+      "latitude": 10.895937,
+      "longitude": -74.791992,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20491",
+      "name": "Villa Maria 2da Etapa Norte",
+      "latitude": 10.894315,
+      "longitude": -74.794233,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20492",
+      "name": "Villa Maria 1ra Etapa Norte",
+      "latitude": 10.893168,
+      "longitude": -74.79599,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20493",
+      "name": "Nuevo Colegio Granabastos Norte",
+      "latitude": 10.89253,
+      "longitude": -74.797202,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20494",
+      "name": "Las Comentas Norte",
+      "latitude": 10.890955,
+      "longitude": -74.799928,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20114",
+      "name": "Entrada Villa Sol",
+      "latitude": 10.889405,
+      "longitude": -74.803507,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20115",
+      "name": "Entrada Las Cometas",
+      "latitude": 10.891925,
+      "longitude": -74.804013,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20117",
+      "name": "Entrada Barrio Villa Carmen",
+      "latitude": 10.8988,
+      "longitude": -74.803067,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20118",
+      "name": "Calle 65 Con Carrera 8 Esq. Los Loteros 2",
+      "latitude": 10.900938,
+      "longitude": -74.802592,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20119",
+      "name": "Entrada Barrio Manantial",
+      "latitude": 10.904042,
+      "longitude": -74.801957,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20695",
+      "name": "Calle 52 con Carrera 10C1 Esq.",
+      "latitude": 10.904732,
+      "longitude": -74.78935,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20177",
+      "name": "Carrera 15 Sur No. 47C - 39",
+      "latitude": 10.922763,
+      "longitude": -74.806577,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20178",
+      "name": "Carrera 15 Sur Con Calle 46H",
+      "latitude": 10.922855,
+      "longitude": -74.804867,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20179",
+      "name": "Av. Circunvalar 67B Puente Peat. Velodromo",
+      "latitude": 10.923185,
+      "longitude": -74.801615,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20415",
+      "name": "Carrera 5 No. 66 - 78",
+      "latitude": 10.891428,
+      "longitude": -74.806073,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20416",
+      "name": "Carrera 5 No. 68 B Esq",
+      "latitude": 10.891388,
+      "longitude": -74.808235,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20417",
+      "name": "Calle 69 Con Carrera 4",
+      "latitude": 10.889648,
+      "longitude": -74.808703,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20418",
+      "name": "Carrera 4 Con Calle 71A",
+      "latitude": 10.88937,
+      "longitude": -74.810643,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20670",
+      "name": "Diagonal 71 Sur Con Transversal 1A4 Occid",
+      "latitude": 10.888093,
+      "longitude": -74.812008,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20671",
+      "name": "Diagonal 71 Sur Con Transversal 1B Sur Occid",
+      "latitude": 10.886892,
+      "longitude": -74.81279,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20672",
+      "name": "Transversal 2 Sur Con Diagonal 72 Esq",
+      "latitude": 10.886447,
+      "longitude": -74.814633,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20673",
+      "name": "Diagonal 71 Sur Con Transversal 1 B Sur Orient",
+      "latitude": 10.88687,
+      "longitude": -74.812773,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20674",
+      "name": "Diagonal 71 Sur Con Transversal 1A4 Oriental",
+      "latitude": 10.888243,
+      "longitude": -74.81185,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20639",
+      "name": "Carrera 4 Con Calle 71",
+      "latitude": 10.889353,
+      "longitude": -74.810478,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20420",
+      "name": "Carrera 4 Con Calle 69A",
+      "latitude": 10.889343,
+      "longitude": -74.808878,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20421",
+      "name": "Carrera 5 Con Calle 69 Esq",
+      "latitude": 10.891352,
+      "longitude": -74.808445,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20422",
+      "name": "Carrera 5 Con Calle 66A",
+      "latitude": 10.891378,
+      "longitude": -74.806367,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "103",
+      "name": "Joaquín Barrios Polo",
+      "latitude": 10.932747,
+      "longitude": -74.799234,
+      "locationType": 1,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "16603",
+      "name": "Carrera 6 Sur Con Calle 46F Esq",
+      "latitude": 10.93014,
+      "longitude": -74.803898,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "16604",
+      "name": "Carrera 6 Sur Con Calle 47 Esq",
+      "latitude": 10.929058,
+      "longitude": -74.805548,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "16605",
+      "name": "Carrera 6 Sur Con Cll47B",
+      "latitude": 10.927633,
+      "longitude": -74.807463,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "16606",
+      "name": "Carrera 6 Sur con Calle 48F",
+      "latitude": 10.926347,
+      "longitude": -74.810113,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11350",
+      "name": "Calle 49 Con Carrera 8B Sur Cayenas",
+      "latitude": 10.924822,
+      "longitude": -74.811538,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11351",
+      "name": "Calle 49 Con Carrera 12 Sur",
+      "latitude": 10.923305,
+      "longitude": -74.812088,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11352",
+      "name": "Av.Circunvalar Con Calle 51B",
+      "latitude": 10.922777,
+      "longitude": -74.814132,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11353",
+      "name": "Calle 51B Con Carrera 10 Sur",
+      "latitude": 10.925147,
+      "longitude": -74.81477,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11354",
+      "name": "Carrera 10 Sur Con Calle 50A",
+      "latitude": 10.924185,
+      "longitude": -74.812707,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "11355",
+      "name": "PASO Cayenas frente Nom. 8B Sur - 24",
+      "latitude": 10.924512,
+      "longitude": -74.811633,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "16607",
+      "name": "Calle 49 Con Carrera 5B Sur",
+      "latitude": 10.927535,
+      "longitude": -74.810925,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "16608",
+      "name": "Calle 49 Con Carrera 3 Sur",
+      "latitude": 10.929263,
+      "longitude": -74.810445,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "16609",
+      "name": "Carrera 1 Con Calle 48C",
+      "latitude": 10.93091,
+      "longitude": -74.809012,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "16610",
+      "name": "Carrera 1 No. 47B - 03",
+      "latitude": 10.930875,
+      "longitude": -74.807262,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "16611",
+      "name": "Calle 47 No. 3A Sur - 18",
+      "latitude": 10.929378,
+      "longitude": -74.805965,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "2140",
+      "name": "Calle 47 Con Carrera 6D Sur",
+      "latitude": 10.928177,
+      "longitude": -74.805123,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "16613",
+      "name": "Carrera 7 Sur No. 46 - 29",
+      "latitude": 10.927993,
+      "longitude": -74.803052,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "16614",
+      "name": "Calle 46 Con Carrera 1 Sur Esq",
+      "latitude": 10.930078,
+      "longitude": -74.802598,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20453",
+      "name": "Carrera 2D Con Calle 47",
+      "latitude": 10.93293,
+      "longitude": -74.803165,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20454",
+      "name": "Calle 47 Con Carrera 2G",
+      "latitude": 10.93446,
+      "longitude": -74.80134,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "206",
+      "name": "Joe Arroyo",
+      "latitude": 10.995042,
+      "longitude": -74.807589,
+      "locationType": 1,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "20251",
+      "name": "Calle 76 No. 43B - 05",
+      "latitude": 10.994847,
+      "longitude": -74.811178,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20511",
+      "name": "Carrera 43 Con Calle 76 Seminario",
+      "latitude": 10.994982,
+      "longitude": -74.812923,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20400",
+      "name": "Carrera 43 No. 79 - 212 Ferreteria Sander",
+      "latitude": 10.996353,
+      "longitude": -74.815472,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20513",
+      "name": "Carrera 43 No. 80 - 182 Home Club",
+      "latitude": 10.997342,
+      "longitude": -74.817303,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20518",
+      "name": "Carrera 43 No. 82 - 178 Ferreteria Don Kike",
+      "latitude": 10.998343,
+      "longitude": -74.819477,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20402",
+      "name": "Carrera 43 No. 84 - 154 Narcobollo",
+      "latitude": 10.998865,
+      "longitude": -74.821442,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20515",
+      "name": "Carrera 43 No. 87 - 40",
+      "latitude": 11.000108,
+      "longitude": -74.824375,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20516",
+      "name": "Carrera 43 No. 90 - 128",
+      "latitude": 11.001153,
+      "longitude": -74.826645,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17123",
+      "name": "Calle 93 Con Carrera 42F",
+      "latitude": 11.000185,
+      "longitude": -74.829543,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17124",
+      "name": "Calle 93 Con Carrera 42C",
+      "latitude": 10.997755,
+      "longitude": -74.830443,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17125",
+      "name": "Calle 96 Con Calle 96A",
+      "latitude": 10.999927,
+      "longitude": -74.83129,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17126",
+      "name": "Calle 97 Con Carrera 42G1",
+      "latitude": 11.001248,
+      "longitude": -74.832198,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17127",
+      "name": "Calle 98 Con Carrera 42G2",
+      "latitude": 11.002163,
+      "longitude": -74.833437,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17109",
+      "name": "Carrera 43 No. 98-86",
+      "latitude": 11.003392,
+      "longitude": -74.833915,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20640",
+      "name": "Conjunto Residencial Parque 100",
+      "latitude": 11.000593,
+      "longitude": -74.837017,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20641",
+      "name": "Calle 99C No. 43 - 150 Tarragona",
+      "latitude": 11.003703,
+      "longitude": -74.836297,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17128",
+      "name": "Carrera 42G1 Con Calle 100",
+      "latitude": 11.005243,
+      "longitude": -74.835023,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17129",
+      "name": "Calle 100 Con Carrera 44",
+      "latitude": 11.006995,
+      "longitude": -74.834242,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20397",
+      "name": "Carrera 46 No 94 - 11",
+      "latitude": 11.005008,
+      "longitude": -74.82777,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17105",
+      "name": "Carrera 46 Con Calle 90 Uniautonoma",
+      "latitude": 11.00344,
+      "longitude": -74.824065,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17117",
+      "name": "Carrera 46 No. 85-163",
+      "latitude": 11.002598,
+      "longitude": -74.822492,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17118",
+      "name": "Carrera 46 No. 82-205",
+      "latitude": 11.001358,
+      "longitude": -74.818477,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17119",
+      "name": "Carrera 46 No. 80-211",
+      "latitude": 11.00018,
+      "longitude": -74.816023,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17120",
+      "name": "Carrera 46 No. 79-175",
+      "latitude": 10.998798,
+      "longitude": -74.8136,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17121",
+      "name": "Carrera 46 No. 76-109",
+      "latitude": 10.997237,
+      "longitude": -74.810953,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20252",
+      "name": "Calle 76 No. 42B Esq Uni. Metropolitana",
+      "latitude": 10.993117,
+      "longitude": -74.813703,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20253",
+      "name": "Calle 76 No. 38D - 63 Acolsure",
+      "latitude": 10.989677,
+      "longitude": -74.814318,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20254",
+      "name": "Calle 76 No. 38A - 53 Diag. Col. Betania Norte",
+      "latitude": 10.987803,
+      "longitude": -74.815632,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20255",
+      "name": "Carrera 38 No. 76 - 106",
+      "latitude": 10.9869,
+      "longitude": -74.81724,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20256",
+      "name": "Calle 79A No. 35C - 43",
+      "latitude": 10.985725,
+      "longitude": -74.818157,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20257",
+      "name": "Calle 79A Con Cra 33 Fren. Nom. 33 - 30",
+      "latitude": 10.983492,
+      "longitude": -74.817963,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20258",
+      "name": "Calle 79A No. 27 Esq",
+      "latitude": 10.981268,
+      "longitude": -74.818585,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20259",
+      "name": "Carrea 26C7 No. 75 - 77",
+      "latitude": 10.979563,
+      "longitude": -74.816695,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20260",
+      "name": "Calle 74B No. 26C Frente Nom. 26C7 - 47",
+      "latitude": 10.978732,
+      "longitude": -74.814478,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20261",
+      "name": "Carrera 27 No. 72 Frente Nom 72 - 04",
+      "latitude": 10.977868,
+      "longitude": -74.811927,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20262",
+      "name": "Carrera 27 No 68 - 149 Fren. Colegio Olaya",
+      "latitude": 10.976935,
+      "longitude": -74.808147,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20263",
+      "name": "Carrera 27 No. 64 Esq",
+      "latitude": 10.975983,
+      "longitude": -74.805577,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20264",
+      "name": "Carrera 27 Con Calle 63 Esq",
+      "latitude": 10.975587,
+      "longitude": -74.803722,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20265",
+      "name": "Calle 61 No. 25 - 113",
+      "latitude": 10.973987,
+      "longitude": -74.803347,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20266",
+      "name": "Carrera 24 No. 59 - 45",
+      "latitude": 10.971383,
+      "longitude": -74.802755,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20267",
+      "name": "Carrera 24 No. 54 Esq Seguro de los Andes",
+      "latitude": 10.971312,
+      "longitude": -74.800838,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20268",
+      "name": "Carrera 24 No. 53D-29",
+      "latitude": 10.971158,
+      "longitude": -74.798937,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20269",
+      "name": "Carrera 24 Con Calle 53 Esq",
+      "latitude": 10.969612,
+      "longitude": -74.797022,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20270",
+      "name": "Carrera 24 No. 48-03",
+      "latitude": 10.968147,
+      "longitude": -74.794592,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20271",
+      "name": "Carrera 26 No. 47C-01",
+      "latitude": 10.968725,
+      "longitude": -74.793432,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20458",
+      "name": "Carrera 27 Con Calle 45 Exito",
+      "latitude": 10.96973,
+      "longitude": -74.790445,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20459",
+      "name": "Carrera 26 Con Calle 47C",
+      "latitude": 10.968803,
+      "longitude": -74.793522,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20222",
+      "name": "Calle 48 No. 23 - 29",
+      "latitude": 10.967455,
+      "longitude": -74.794725,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20223",
+      "name": "Carrera 23 No. 52 - 32",
+      "latitude": 10.968305,
+      "longitude": -74.796838,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20224",
+      "name": "Carrera 23 Con Calle 53D Esq",
+      "latitude": 10.969852,
+      "longitude": -74.79902,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20225",
+      "name": "Carrera 21B Con Calle 53D Esq",
+      "latitude": 10.96836,
+      "longitude": -74.800675,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20226",
+      "name": "Carrera 21B No. 60 - 28",
+      "latitude": 10.968588,
+      "longitude": -74.803558,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20227",
+      "name": "Carrera 21B No. 64 - 26",
+      "latitude": 10.968683,
+      "longitude": -74.806353,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20228",
+      "name": "Carrera 21B Con Calle 65B Esq",
+      "latitude": 10.968805,
+      "longitude": -74.808722,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20229",
+      "name": "Carrera 21B No. 68C - 14",
+      "latitude": 10.968897,
+      "longitude": -74.811058,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20230",
+      "name": "Calle 70C Con Carrera 22D Esq",
+      "latitude": 10.97084,
+      "longitude": -74.810918,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20231",
+      "name": "Calle 70C Con Carrera 24C Esq",
+      "latitude": 10.97373,
+      "longitude": -74.81023,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20232",
+      "name": "Calle 70C No. 26B - 44",
+      "latitude": 10.976285,
+      "longitude": -74.80979,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20240",
+      "name": "Carrera 27 No. 72 - 10",
+      "latitude": 10.97793,
+      "longitude": -74.811912,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20241",
+      "name": "Calle 74B No. 26C7 - 29",
+      "latitude": 10.978673,
+      "longitude": -74.814658,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20242",
+      "name": "Carrera 26C7 No. 75B - 68",
+      "latitude": 10.979957,
+      "longitude": -74.817132,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20243",
+      "name": "Calle 79A Con Carrera 28 Esq",
+      "latitude": 10.981678,
+      "longitude": -74.818478,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20244",
+      "name": "Calle 79A No. 34 - 22",
+      "latitude": 10.983975,
+      "longitude": -74.817752,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20245",
+      "name": "Calle 79A No. 35D - 50",
+      "latitude": 10.986227,
+      "longitude": -74.818177,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20246",
+      "name": "Calle 76 Con Carrera 38A Esq",
+      "latitude": 10.98725,
+      "longitude": -74.815938,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20247",
+      "name": "Calle 76 Con Carrera 39 Acolsure",
+      "latitude": 10.990147,
+      "longitude": -74.814012,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20248",
+      "name": "Calle 76 No. 42 - 78 Uni. Metropolitana",
+      "latitude": 10.993075,
+      "longitude": -74.813575,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20249",
+      "name": "Calle 79 No. 42F - 94",
+      "latitude": 10.994873,
+      "longitude": -74.813843,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20250",
+      "name": "Calle 79 Con Carrera 45 Esq",
+      "latitude": 10.997167,
+      "longitude": -74.81255,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17101",
+      "name": "Carrera 46 No. 76 - 68",
+      "latitude": 10.99712,
+      "longitude": -74.81069,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17102",
+      "name": "Carrera 46 No. 79 - 204",
+      "latitude": 10.998975,
+      "longitude": -74.813827,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17103",
+      "name": "Carrera 46 No. 81 - 102",
+      "latitude": 11.000343,
+      "longitude": -74.816172,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "8447",
+      "name": "Calle 84 No. 47 - 54",
+      "latitude": 11.00277,
+      "longitude": -74.818557,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20380",
+      "name": "Calle 84 No. 51 - 32 Macmondongo",
+      "latitude": 11.005383,
+      "longitude": -74.817308,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "8452",
+      "name": "Calle 84  No. 52 - 76",
+      "latitude": 11.00711,
+      "longitude": -74.816629,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "8455",
+      "name": "Calle 84 No. 55 - 82",
+      "latitude": 11.00856,
+      "longitude": -74.814133,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "8459",
+      "name": "Calle 84 No. 59 - 40",
+      "latitude": 11.011007,
+      "longitude": -74.81163,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "6584",
+      "name": "Carrera 65 No 84 - 52",
+      "latitude": 11.013717,
+      "longitude": -74.810343,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "6585",
+      "name": "Carrera 65 Calle 85 Conj. Villa Andalucia",
+      "latitude": 11.015947,
+      "longitude": -74.811937,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20381",
+      "name": "Calle 86 Con Carrera 70 Villa Andalucia Ent. 2",
+      "latitude": 11.017378,
+      "longitude": -74.812315,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20568",
+      "name": "Calle 86 Con Carrera 73 Esq",
+      "latitude": 11.018875,
+      "longitude": -74.810955,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "8673",
+      "name": "Calle 86 No. 73 - 218",
+      "latitude": 11.020403,
+      "longitude": -74.809663,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "8675",
+      "name": "Calle 86 No. 75C - 146",
+      "latitude": 11.021702,
+      "longitude": -74.807692,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20382",
+      "name": "Calle 85 Con Carrera 78A Esq.",
+      "latitude": 11.023615,
+      "longitude": -74.806923,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "8579",
+      "name": "Calle 85 No. 78D - 26",
+      "latitude": 11.024627,
+      "longitude": -74.805728,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20569",
+      "name": "Calle 85 No. 81 - 32",
+      "latitude": 11.026025,
+      "longitude": -74.804157,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "4080",
+      "name": "Via 40 No. 83 - 53",
+      "latitude": 11.025298,
+      "longitude": -74.802958,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20383",
+      "name": "Via 40 Con Calle 80",
+      "latitude": 11.023185,
+      "longitude": -74.800988,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "8078",
+      "name": "Calle 80 No. 78 - 19",
+      "latitude": 11.02025,
+      "longitude": -74.803633,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "8075",
+      "name": "Calle 80 No. 75 - 25",
+      "latitude": 11.01863,
+      "longitude": -74.804693,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "8072",
+      "name": "Calle 80 No. 72 - 43 Esq.",
+      "latitude": 11.016795,
+      "longitude": -74.805148,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20384",
+      "name": "Calle 80  Con Carrear 69 Esq.",
+      "latitude": 11.014148,
+      "longitude": -74.80583,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20570",
+      "name": "Calle 80 No. 65 - 45",
+      "latitude": 11.01224,
+      "longitude": -74.806352,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "6480",
+      "name": "Carrera 64 No. 80 - 90",
+      "latitude": 11.01145,
+      "longitude": -74.807532,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "8259",
+      "name": "Calle 82 Con Carrera 59B Esq.",
+      "latitude": 11.011138,
+      "longitude": -74.810875,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20385",
+      "name": "Calle 82 Con Carrera 56 Esq.",
+      "latitude": 11.00812,
+      "longitude": -74.811997,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "8252",
+      "name": "Calle 82 No. 52 - 61",
+      "latitude": 11.005705,
+      "longitude": -74.813603,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "8251",
+      "name": "Calle 82 Con Carrera 51 Esq.",
+      "latitude": 11.004838,
+      "longitude": -74.814117,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "8246",
+      "name": "Calle 82 Con Carrera 47 Esq.",
+      "latitude": 11.00098,
+      "longitude": -74.816577,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "4680",
+      "name": "Carrera 46 No 80 - 211",
+      "latitude": 11.000155,
+      "longitude": -74.816007,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "4676",
+      "name": "Carrera 46 No 76 - 109",
+      "latitude": 10.997287,
+      "longitude": -74.810998,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18202",
+      "name": "Calle 79 No. 47 - 10",
+      "latitude": 10.99878,
+      "longitude": -74.811612,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "7951",
+      "name": "Calle 79 No. 51 - 62",
+      "latitude": 11.002337,
+      "longitude": -74.809367,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "7953",
+      "name": "Calle 79 No. 53 - 54",
+      "latitude": 11.004785,
+      "longitude": -74.807912,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18205",
+      "name": "Calle 79 No. 55 - 154",
+      "latitude": 11.006527,
+      "longitude": -74.80679,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18206",
+      "name": "Calle 79 No. 57 - 190",
+      "latitude": 11.008503,
+      "longitude": -74.805203,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18207",
+      "name": "Carrera 60 Con Calle 77B",
+      "latitude": 11.008373,
+      "longitude": -74.80206,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18208",
+      "name": "Calle 77 No. 62 - 40",
+      "latitude": 11.008762,
+      "longitude": -74.800668,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18209",
+      "name": "Calle 77 Con Carrera 68",
+      "latitude": 11.011585,
+      "longitude": -74.798637,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18210",
+      "name": "Calle 77 Con Carrera 71",
+      "latitude": 11.012723,
+      "longitude": -74.797825,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18211",
+      "name": "Calle 77 Con Vía 40",
+      "latitude": 11.015658,
+      "longitude": -74.79568,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18212",
+      "name": "Calle 76 Con Vía 40",
+      "latitude": 11.014287,
+      "longitude": -74.794432,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18213",
+      "name": "Calle 76 Con Carrera 72",
+      "latitude": 11.012275,
+      "longitude": -74.795943,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "7668",
+      "name": "Calle 76 Con Carrera 68 Zoologico",
+      "latitude": 11.010262,
+      "longitude": -74.797417,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18215",
+      "name": "Calle 76 Con Carrera 60",
+      "latitude": 11.007005,
+      "longitude": -74.799925,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18216",
+      "name": "Calle 76 Con Carrera 57",
+      "latitude": 11.005315,
+      "longitude": -74.80228,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18311",
+      "name": "Calle 76 Con Carrera 55",
+      "latitude": 11.004092,
+      "longitude": -74.803937,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18217",
+      "name": "Calle 76 Con Carrera 53",
+      "latitude": 11.002982,
+      "longitude": -74.805475,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18218",
+      "name": "Calle 76 No. 50 - 13",
+      "latitude": 11.000677,
+      "longitude": -74.808055,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19166",
+      "name": "Calle 76 Con Carrera 49B",
+      "latitude": 10.999515,
+      "longitude": -74.808557,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18219",
+      "name": "Calle 76 No. 47 - 57",
+      "latitude": 10.997883,
+      "longitude": -74.809325,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "201",
+      "name": "Parque Cultural del Caribe",
+      "latitude": 10.985848,
+      "longitude": -74.777867,
+      "locationType": 1,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "202",
+      "name": "Barrio Abajo",
+      "latitude": 10.986909,
+      "longitude": -74.78352,
+      "locationType": 1,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "203",
+      "name": "La Catedral",
+      "latitude": 10.988532,
+      "longitude": -74.789154,
+      "locationType": 1,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "18303",
+      "name": "Calle 53 Con Carrera 52",
+      "latitude": 10.991605,
+      "longitude": -74.789192,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18304",
+      "name": "Carrera 54 Con Calle 54",
+      "latitude": 10.992878,
+      "longitude": -74.790672,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18305",
+      "name": "Carrera 54 No. 58 -78",
+      "latitude": 10.993478,
+      "longitude": -74.79223,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18306",
+      "name": "Carrera 54 No. 59 - 144",
+      "latitude": 10.995495,
+      "longitude": -74.79417,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18307",
+      "name": "Carrera 58 No. 64 - 162",
+      "latitude": 10.997355,
+      "longitude": -74.795488,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18308",
+      "name": "Carrera 58 No. 70 - 66",
+      "latitude": 11.000753,
+      "longitude": -74.798018,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18309",
+      "name": "Carrera 58 No. 74 - 138",
+      "latitude": 11.003948,
+      "longitude": -74.800405,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18312",
+      "name": "Carrera 54 No. 75 - 119",
+      "latitude": 11.002838,
+      "longitude": -74.804682,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18313",
+      "name": "Carrera 54 No. 72 - 73",
+      "latitude": 10.999658,
+      "longitude": -74.802185,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18314",
+      "name": "Carrera 54 No. 68 - 189",
+      "latitude": 10.997763,
+      "longitude": -74.799103,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18315",
+      "name": "Carrera 54 Con Calle 64",
+      "latitude": 10.995947,
+      "longitude": -74.795302,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18316",
+      "name": "Carrera 54 No. 55 - 147",
+      "latitude": 10.99349,
+      "longitude": -74.792297,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18317",
+      "name": "Calle 54 Con Carrera 53",
+      "latitude": 10.992122,
+      "longitude": -74.790332,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19101",
+      "name": "Calle 74 No. 49B - 40",
+      "latitude": 10.99855,
+      "longitude": -74.805238,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "9157",
+      "name": "Carrera 54 Con Calle 74",
+      "latitude": 11.000818,
+      "longitude": -74.803025,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "9156",
+      "name": "Carrera 54 No. 75 - 56",
+      "latitude": 11.002463,
+      "longitude": -74.80423,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19104",
+      "name": "Carrera 53 Con Calle 78 Villa Country",
+      "latitude": 11.003743,
+      "longitude": -74.806597,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19105",
+      "name": "Carrera 53 Con Calle 80",
+      "latitude": 11.005328,
+      "longitude": -74.810978,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19106",
+      "name": "Carrera 53 Con Calle 82",
+      "latitude": 11.006475,
+      "longitude": -74.814095,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19107",
+      "name": "Carrera 53 No. 82 - 268",
+      "latitude": 11.00714,
+      "longitude": -74.815575,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19108",
+      "name": "Carrera 53 Con Calle 85",
+      "latitude": 11.008348,
+      "longitude": -74.817602,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19109",
+      "name": "Carrera 53 Con Calle 89",
+      "latitude": 11.010818,
+      "longitude": -74.819605,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19110",
+      "name": "Carrera 53 No. 91 - 60",
+      "latitude": 11.012323,
+      "longitude": -74.822093,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19111",
+      "name": "Carrera 53 Con Calle 94",
+      "latitude": 11.013023,
+      "longitude": -74.823975,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18400",
+      "name": "Calle 98 Con Carrera 52B Buenavista",
+      "latitude": 11.012738,
+      "longitude": -74.827418,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19158",
+      "name": "Carrera 51B No. 96A - 73",
+      "latitude": 11.01076,
+      "longitude": -74.8279,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19159",
+      "name": "Carrera 51B No. 93 - 63",
+      "latitude": 11.009725,
+      "longitude": -74.825715,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19160",
+      "name": "Carrera 51B Con Calle 90",
+      "latitude": 11.008237,
+      "longitude": -74.822572,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19161",
+      "name": "Carrera 51B Con Calle 86",
+      "latitude": 11.006927,
+      "longitude": -74.819753,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19162",
+      "name": "Carrera 51B Con Calle 84",
+      "latitude": 11.005948,
+      "longitude": -74.81763,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19163",
+      "name": "Carrera 51B No. 80 - 35",
+      "latitude": 11.004015,
+      "longitude": -74.813225,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19164",
+      "name": "Carrera 51B No. 79 - 105",
+      "latitude": 11.003023,
+      "longitude": -74.810265,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19165",
+      "name": "Carrera 51B No. 76 - 85",
+      "latitude": 11.002193,
+      "longitude": -74.80799,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17104",
+      "name": "Carrera 46 No. 84 - 126",
+      "latitude": 11.002042,
+      "longitude": -74.820122,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17106",
+      "name": "Carrera 46 No. 93 - 44 El Corral",
+      "latitude": 11.005222,
+      "longitude": -74.827978,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20473",
+      "name": "Calle 98 Con Carrera 47",
+      "latitude": 11.007857,
+      "longitude": -74.830443,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20474",
+      "name": "Calle 98 Con Carrera 51",
+      "latitude": 11.0096,
+      "longitude": -74.829573,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17131",
+      "name": "Calle 93 Con Carrera 49C",
+      "latitude": 11.00661,
+      "longitude": -74.826237,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "17132",
+      "name": "Calle 93 Con Carrera 45B",
+      "latitude": 11.004145,
+      "longitude": -74.827102,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20566",
+      "name": "Carrera 46 Con Calle 90 Uniautonoma Sur",
+      "latitude": 11.003378,
+      "longitude": -74.824262,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "101",
+      "name": "Pacho Galán",
+      "latitude": 10.915372,
+      "longitude": -74.799099,
+      "locationType": 1,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "102",
+      "name": "Pedro Ramayá",
+      "latitude": 10.921246,
+      "longitude": -74.799248,
+      "locationType": 1,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "104",
+      "name": "Buenos Aires",
+      "latitude": 10.941506,
+      "longitude": -74.799586,
+      "locationType": 1,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "105",
+      "name": "La Ocho",
+      "latitude": 10.946762,
+      "longitude": -74.799751,
+      "locationType": 1,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "106",
+      "name": "La Catorce",
+      "latitude": 10.954878,
+      "longitude": -74.796465,
+      "locationType": 1,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "107",
+      "name": "La Veintiuna",
+      "latitude": 10.96027,
+      "longitude": -74.793845,
+      "locationType": 1,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "108",
+      "name": "Atlántico",
+      "latitude": 10.96881,
+      "longitude": -74.790278,
+      "locationType": 1,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "109",
+      "name": "Chiquinquirá",
+      "latitude": 10.977192,
+      "longitude": -74.787841,
+      "locationType": 1,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "110",
+      "name": "La Arenosa",
+      "latitude": 10.982126,
+      "longitude": -74.786456,
+      "locationType": 1,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "205",
+      "name": "Esthercita Forero",
+      "latitude": 10.992552,
+      "longitude": -74.802488,
+      "locationType": 1,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "204",
+      "name": "Alfredo Correa de Andreis",
+      "latitude": 10.990443,
+      "longitude": -74.795986,
+      "locationType": 1,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "20692",
+      "name": "Carrera 47 No. 100 - 137",
+      "latitude": 11.008963,
+      "longitude": -74.83502,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20693",
+      "name": "Carrera 47 Con Calle 102 Esq.",
+      "latitude": 11.009536,
+      "longitude": -74.836161,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18402",
+      "name": "Carrera 51B Con Calle 106 Makro",
+      "latitude": 11.014585,
+      "longitude": -74.836222,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19117",
+      "name": "Colegio Karl C. Parrish Antigua Via Puerto Colombia",
+      "latitude": 11.016592,
+      "longitude": -74.842927,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19118",
+      "name": "Colegio Sagrado Corazon Antigua Via Puerto Colombia",
+      "latitude": 11.016593,
+      "longitude": -74.844647,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19119",
+      "name": "Cementerio Jardines del Recuerdo Antigua Via Puerto Colombia",
+      "latitude": 11.016558,
+      "longitude": -74.846957,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19151",
+      "name": "Universidad del Norte Antigua Via Puerto Colombia Sur",
+      "latitude": 11.017333,
+      "longitude": -74.85048,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20567",
+      "name": "Club Campestre",
+      "latitude": 11.017588,
+      "longitude": -74.852857,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19150",
+      "name": "Colegio Internacional Britanico - Sur Oriente",
+      "latitude": 11.017101,
+      "longitude": -74.858004,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "18404",
+      "name": "Colegio Aleman Norte",
+      "latitude": 11.017895,
+      "longitude": -74.860823,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19122",
+      "name": "Entrada Av. Las Dunas-Villa Campestre Antigua Via",
+      "latitude": 11.018218,
+      "longitude": -74.861758,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20598",
+      "name": "Carulla Las Dunas",
+      "latitude": 11.019047,
+      "longitude": -74.864892,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19147",
+      "name": "Universidad San Martin Antigua Via Puerto Colombia Sur",
+      "latitude": 11.019388,
+      "longitude": -74.866568,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19124",
+      "name": "Conj. Residencial Ciudad del Mar Antigua Via Puerto Colombia",
+      "latitude": 11.019798,
+      "longitude": -74.868677,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19125",
+      "name": "Frente Univ. Antonio Narino Antigua Via Puerto Colombia",
+      "latitude": 11.020212,
+      "longitude": -74.870723,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "20576",
+      "name": "Universidad Antonio Nariño",
+      "latitude": 11.019987,
+      "longitude": -74.870365,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19146",
+      "name": "Ciudad del MarAntigua Via Puerto Colombia",
+      "latitude": 11.019658,
+      "longitude": -74.868687,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19123",
+      "name": "Universidad San Martin Antigua Via Puerto Colombia Norte",
+      "latitude": 11.019137,
+      "longitude": -74.866495,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19148",
+      "name": "Villa Campestre Antigua Via Puerto Colombia",
+      "latitude": 11.018168,
+      "longitude": -74.861993,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19149",
+      "name": "Colegio Aleman Antigua Via Puerto Colombia",
+      "latitude": 11.017167,
+      "longitude": -74.85997,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19121",
+      "name": "Colegio Internacional Britanico - Norte Occidente",
+      "latitude": 11.016952,
+      "longitude": -74.858197,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19120",
+      "name": "Universidad del Norte Antigua Via Puerto Colombia Norte",
+      "latitude": 11.017378,
+      "longitude": -74.85142,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19152",
+      "name": "Muebles Picapiedras Antigua Via Puerto Colombia",
+      "latitude": 11.016517,
+      "longitude": -74.848205,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19153",
+      "name": "Zona franca en Salud Antigua Via Puerto Colombia",
+      "latitude": 11.016475,
+      "longitude": -74.844917,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "19154",
+      "name": "Urvisa Antigua Via Puerto Colombia",
+      "latitude": 11.016433,
+      "longitude": -74.842783,
+      "locationType": 0,
+      "wheelchairBoarding": 0
+    },
+    {
+      "id": "B2-E15-A",
+      "name": "Alfredo Correa de Andreis",
+      "latitude": 10.990375,
+      "longitude": -74.795923,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R1-E15-D",
+      "name": "Alfredo Correa de Andreis",
+      "latitude": 10.990747,
+      "longitude": -74.796058,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R10-E15-F",
+      "name": "Alfredo Correa de Andreis",
+      "latitude": 10.990747,
+      "longitude": -74.796527,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R2-E15-B",
+      "name": "Alfredo Correa de Andreis",
+      "latitude": 10.990495,
+      "longitude": -74.795908,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S1-E15-C",
+      "name": "Alfredo Correa de Andreis",
+      "latitude": 10.990423,
+      "longitude": -74.796118,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S10-E15-E",
+      "name": "Alfredo Correa de Andreis",
+      "latitude": 10.99058,
+      "longitude": -74.796665,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B1-E08-D",
+      "name": "Atlántico",
+      "latitude": 10.96872,
+      "longitude": -74.790163,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B10-E08-F",
+      "name": "Atlántico",
+      "latitude": 10.969155,
+      "longitude": -74.79004,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R1-E08-B",
+      "name": "Atlántico",
+      "latitude": 10.968515,
+      "longitude": -74.790222,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S1-E08-A",
+      "name": "Atlántico",
+      "latitude": 10.968535,
+      "longitude": -74.790495,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S2-E08-C",
+      "name": "Atlántico",
+      "latitude": 10.968715,
+      "longitude": -74.790393,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S20-E08-E",
+      "name": "Atlántico",
+      "latitude": 10.969145,
+      "longitude": -74.79028,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "A8-3-E12-F",
+      "name": "Barrio Abajo",
+      "latitude": 10.987297,
+      "longitude": -74.78431,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "A8-3-E12-E",
+      "name": "Barrio Abajo",
+      "latitude": 10.987065,
+      "longitude": -74.784275,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B1-E12-C",
+      "name": "Barrio Abajo",
+      "latitude": 10.986953,
+      "longitude": -74.783863,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B2-E12-A",
+      "name": "Barrio Abajo",
+      "latitude": 10.98691,
+      "longitude": -74.783718,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R2-E12-B",
+      "name": "Barrio Abajo",
+      "latitude": 10.987045,
+      "longitude": -74.78369,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S2-E12-D",
+      "name": "Barrio Abajo",
+      "latitude": 10.987137,
+      "longitude": -74.783875,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B1-E04-D",
+      "name": "Buenos Aires",
+      "latitude": 10.941818,
+      "longitude": -74.799458,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R1-E04-B",
+      "name": "Buenos Aires",
+      "latitude": 10.941627,
+      "longitude": -74.799488,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S1-E04-A",
+      "name": "Buenos Aires",
+      "latitude": 10.941537,
+      "longitude": -74.79964,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S2-E04-C",
+      "name": "Buenos Aires",
+      "latitude": 10.941725,
+      "longitude": -74.799682,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B1-E09-D",
+      "name": "Chiquinquirá",
+      "latitude": 10.977185,
+      "longitude": -74.787662,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R1-E09-B",
+      "name": "Chiquinquirá",
+      "latitude": 10.977003,
+      "longitude": -74.787722,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S1-E09-A",
+      "name": "Chiquinquirá",
+      "latitude": 10.976947,
+      "longitude": -74.787958,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S2-E09-C",
+      "name": "Chiquinquirá",
+      "latitude": 10.97718,
+      "longitude": -74.787893,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B2-E16-A",
+      "name": "Esthercita Forero",
+      "latitude": 10.992468,
+      "longitude": -74.802465,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R1-E16-D",
+      "name": "Esthercita Forero",
+      "latitude": 10.992705,
+      "longitude": -74.802543,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R2-E16-B",
+      "name": "Esthercita Forero",
+      "latitude": 10.99259,
+      "longitude": -74.802318,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S1-E16-C",
+      "name": "Esthercita Forero",
+      "latitude": 10.992575,
+      "longitude": -74.802642,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "E03-E-A66-S10-S20",
+      "name": "Joaquín Barrios Polo",
+      "latitude": 10.933248,
+      "longitude": -74.799342,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B1-E03-D",
+      "name": "Joaquín Barrios Polo",
+      "latitude": 10.932948,
+      "longitude": -74.79903,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "E03-F-B10-R10",
+      "name": "Joaquín Barrios Polo",
+      "latitude": 10.933358,
+      "longitude": -74.799152,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R1-E03-B",
+      "name": "Joaquín Barrios Polo",
+      "latitude": 10.93274,
+      "longitude": -74.79906,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S1-E03-A",
+      "name": "Joaquín Barrios Polo",
+      "latitude": 10.932678,
+      "longitude": -74.799372,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S2-E03-C",
+      "name": "Joaquín Barrios Polo",
+      "latitude": 10.932857,
+      "longitude": -74.79929,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "ER-71-74",
+      "name": "Joe Arroyo",
+      "latitude": 10.995152,
+      "longitude": -74.807747,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "ER-A82-A81",
+      "name": "Joe Arroyo",
+      "latitude": 10.995047,
+      "longitude": -74.807837,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "ER-91-92-93",
+      "name": "Joe Arroyo",
+      "latitude": 10.99475,
+      "longitude": -74.808118,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "ER-94-U30",
+      "name": "Joe Arroyo",
+      "latitude": 10.994897,
+      "longitude": -74.80803,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "ER-B2-R2",
+      "name": "Joe Arroyo",
+      "latitude": 10.994355,
+      "longitude": -74.807899,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "ER-R1S1-R10S10-R50S50",
+      "name": "Joe Arroyo",
+      "latitude": 10.994863,
+      "longitude": -74.807593,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B1-E10-D",
+      "name": "La Arenosa",
+      "latitude": 10.982117,
+      "longitude": -74.786393,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B10-E10-F",
+      "name": "La Arenosa",
+      "latitude": 10.982567,
+      "longitude": -74.786267,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R1-E10-B",
+      "name": "La Arenosa",
+      "latitude": 10.981927,
+      "longitude": -74.786448,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S1-E10-A",
+      "name": "La Arenosa",
+      "latitude": 10.981884,
+      "longitude": -74.786564,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S2-E10-C",
+      "name": "La Arenosa",
+      "latitude": 10.982099,
+      "longitude": -74.786522,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S20-E10-E",
+      "name": "La Arenosa",
+      "latitude": 10.982467,
+      "longitude": -74.786422,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "E14-F-A83-R10",
+      "name": "La Catedral",
+      "latitude": 10.988595,
+      "longitude": -74.78895,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "E14-E-A83-S10",
+      "name": "La Catedral",
+      "latitude": 10.988453,
+      "longitude": -74.788928,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B2-E14-A",
+      "name": "La Catedral",
+      "latitude": 10.988238,
+      "longitude": -74.788445,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R1-E14-D",
+      "name": "La Catedral",
+      "latitude": 10.988467,
+      "longitude": -74.78851,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R2-E14-B",
+      "name": "La Catedral",
+      "latitude": 10.988385,
+      "longitude": -74.788347,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S1-E14-C",
+      "name": "La Catedral",
+      "latitude": 10.988318,
+      "longitude": -74.78853,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B1-E06-D",
+      "name": "La Catorce",
+      "latitude": 10.95489,
+      "longitude": -74.796328,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R1-E06-B",
+      "name": "La Catorce",
+      "latitude": 10.954748,
+      "longitude": -74.796438,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S1-E06-A",
+      "name": "La Catorce",
+      "latitude": 10.954782,
+      "longitude": -74.796685,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S2-E06-C",
+      "name": "La Catorce",
+      "latitude": 10.954933,
+      "longitude": -74.796583,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B1-E05-D",
+      "name": "La Ocho",
+      "latitude": 10.946887,
+      "longitude": -74.799652,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "E05-F-B10-R10",
+      "name": "La Ocho",
+      "latitude": 10.947358,
+      "longitude": -74.799708,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R1-E05-B",
+      "name": "La Ocho",
+      "latitude": 10.94671,
+      "longitude": -74.799648,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S1-E05-A",
+      "name": "La Ocho",
+      "latitude": 10.946562,
+      "longitude": -74.799847,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "E05-E-S10-S20",
+      "name": "La Ocho",
+      "latitude": 10.947255,
+      "longitude": -74.799832,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S2-E05-C",
+      "name": "La Ocho",
+      "latitude": 10.946817,
+      "longitude": -74.7998,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B1-E07-D",
+      "name": "La Veintiuna",
+      "latitude": 10.960433,
+      "longitude": -74.793557,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R1-E07-B",
+      "name": "La Veintiuna",
+      "latitude": 10.960262,
+      "longitude": -74.793648,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S1-E07-A",
+      "name": "La Veintiuna",
+      "latitude": 10.960322,
+      "longitude": -74.793867,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S2-E07-C",
+      "name": "La Veintiuna",
+      "latitude": 10.96048,
+      "longitude": -74.793827,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B1-E01-D",
+      "name": "Pacho Galán",
+      "latitude": 10.915542,
+      "longitude": -74.799025,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R1-E01-B",
+      "name": "Pacho Galán",
+      "latitude": 10.915362,
+      "longitude": -74.79902,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S1-E01-A",
+      "name": "Pacho Galán",
+      "latitude": 10.915247,
+      "longitude": -74.79922,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S2-E01-C",
+      "name": "Pacho Galán",
+      "latitude": 10.915438,
+      "longitude": -74.799145,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "E11-F-A83-S20",
+      "name": "Parque Cultural del Caribe",
+      "latitude": 10.986095,
+      "longitude": -74.778673,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "E11-E-A83-B10",
+      "name": "Parque Cultural del Caribe",
+      "latitude": 10.985902,
+      "longitude": -74.778635,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B1-E11-C",
+      "name": "Parque Cultural del Caribe",
+      "latitude": 10.985827,
+      "longitude": -74.778182,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B2-E11-A",
+      "name": "Parque Cultural del Caribe",
+      "latitude": 10.985792,
+      "longitude": -74.777985,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R2-E11-B",
+      "name": "Parque Cultural del Caribe",
+      "latitude": 10.98595,
+      "longitude": -74.778028,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S2-E11-D",
+      "name": "Parque Cultural del Caribe",
+      "latitude": 10.985995,
+      "longitude": -74.778213,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "B1-E02-D",
+      "name": "Pedro Ramayá",
+      "latitude": 10.921488,
+      "longitude": -74.79913,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "R1-E02-B",
+      "name": "Pedro Ramayá",
+      "latitude": 10.921293,
+      "longitude": -74.799132,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S1-E02-A",
+      "name": "Pedro Ramayá",
+      "latitude": 10.921185,
+      "longitude": -74.799265,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "S2-E02-C",
+      "name": "Pedro Ramayá",
+      "latitude": 10.921355,
+      "longitude": -74.799247,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "A3-2-EP-5-A32",
+      "name": "Portal de Soledad",
+      "latitude": 10.907368,
+      "longitude": -74.80046,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "EP-3-A33-A35",
+      "name": "Portal de Soledad",
+      "latitude": 10.907398,
+      "longitude": -74.80033,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "A3-4-EP-6-A34",
+      "name": "Portal de Soledad",
+      "latitude": 10.907412,
+      "longitude": -74.800364,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "A5-3-EP-4-A53",
+      "name": "Portal de Soledad",
+      "latitude": 10.907203,
+      "longitude": -74.800583,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "EP-2-B1S2-B10S20",
+      "name": "Portal de Soledad",
+      "latitude": 10.907432,
+      "longitude": -74.800168,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    },
+    {
+      "id": "EP-1-R1S1-R50S50-R10S10",
+      "name": "Portal de Soledad",
+      "latitude": 10.90715,
+      "longitude": -74.800348,
+      "locationType": 0,
+      "wheelchairBoarding": 1
+    }
+  ],
+  "facts": [
+    {
+      "id": "fare-weekday",
+      "title": "Tarifa ordinaria",
+      "value": "$3.700",
+      "detail": "Tarifa informada por el AMB desde el 19 de enero de 2026.",
+      "systemImage": "creditcard.fill",
+      "sourceURL": "https://www.ambq.gov.co/desde-el-19-de-enero-de-2026-regira-nuevo-valor-del-pasaje-de-bus-en-barranquilla/"
+    },
+    {
+      "id": "fare-holiday",
+      "title": "Domingos y festivos",
+      "value": "$3.800",
+      "detail": "Valor publicado por el AMB para domingos y días festivos.",
+      "systemImage": "calendar",
+      "sourceURL": "https://www.ambq.gov.co/desde-el-19-de-enero-de-2026-regira-nuevo-valor-del-pasaje-de-bus-en-barranquilla/"
+    },
+    {
+      "id": "companies",
+      "title": "Empresas SIBUS",
+      "value": "23",
+      "detail": "23 empresas/cooperativas organizadas con sus 93 rutas asociadas.",
+      "systemImage": "building.2.fill",
+      "sourceURL": "https://sibusoficial.ambq.gov.co/"
+    },
+    {
+      "id": "realtime",
+      "title": "Buses en vivo",
+      "value": "Solo simulación",
+      "detail": "TRB incluye buses de demostración en el mapa, claramente diferenciados de posiciones GPS reales.",
+      "systemImage": "location.slash.fill",
+      "sourceURL": "https://www.ambq.gov.co/transporte/"
+    }
+  ],
+  "sources": [
+    {
+      "id": "amb-route-kmz",
+      "name": "Directorio oficial de rutas KMZ del AMB",
+      "kind": "Fuente oficial",
+      "url": "https://www.ambq.gov.co/ruta-de-buses/",
+      "note": "Trazados publicados por empresa operadora. TRB organiza 23 empresas y 93 rutas."
+    },
+    {
+      "id": "amb-transport",
+      "name": "Portal de Transporte del AMB",
+      "kind": "Fuente oficial",
+      "url": "https://www.ambq.gov.co/transporte/",
+      "note": "Resoluciones, información institucional y publicaciones de transporte."
+    },
+    {
+      "id": "sibus-official",
+      "name": "Sitio oficial de SIBUS",
+      "kind": "Fuente oficial",
+      "url": "https://sibusoficial.ambq.gov.co/",
+      "note": "Información pública general sobre SIBUS y sus beneficios."
+    },
+    {
+      "id": "amb-fare-2026",
+      "name": "Tarifas 2026 del AMB",
+      "kind": "Fuente oficial",
+      "url": "https://www.ambq.gov.co/desde-el-19-de-enero-de-2026-regira-nuevo-valor-del-pasaje-de-bus-en-barranquilla/",
+      "note": "Tarifas ordinarias, dominicales y festivas vigentes desde el 19 de enero de 2026."
+    },
+    {
+      "id": "community-gtfs",
+      "name": "ColombiaGTFS — Barranquilla/Transmetro",
+      "kind": "Fuente comunitaria histórica",
+      "url": "https://github.com/ColombiaInfo/ColombiaGTFS/tree/master/Barranquilla%20-%20Transmetro",
+      "note": "Feed CC BY-SA 4.0 usado únicamente para el prototipo de rutas y paraderos. Puede estar desactualizado."
+    },
+    {
+      "id": "open-data-stops",
+      "name": "Paraderos de Transmetro — Datos Abiertos Colombia",
+      "kind": "Fuente oficial abierta",
+      "url": "https://www.datos.gov.co/Transporte/Paraderos-del-Sistema/hxy3-94yh",
+      "note": "Conjunto oficial de referencia para paraderos del sistema masivo."
+    },
+    {
+      "id": "osm-nominatim",
+      "name": "Nominatim · búsqueda de direcciones",
+      "kind": "Servicio OpenStreetMap",
+      "url": "https://nominatim.org/",
+      "note": "Geocodificación puntual para el planificador. En producción se recomienda una instancia propia o proveedor con SLA."
+    },
+    {
+      "id": "osm-foot-routing",
+      "name": "OSRM peatonal · routing.openstreetmap.de",
+      "kind": "Servicio OpenStreetMap",
+      "url": "https://routing.openstreetmap.de/",
+      "note": "Refina la distancia caminando cuando el servicio está disponible; el prototipo conserva una estimación local como respaldo."
+    }
+  ],
+  "operators": [
+    {
+      "id": "cooasoatlan",
+      "name": "COOASOATLAN",
+      "routes": [
+        {
+          "id": "COOASOATLAN::C1-4132",
+          "code": "C1-4132",
+          "name": "Ruta C1-4132",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOASOATLAN/C1-4132.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "3923A0",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "3923A0",
+            "FBF010",
+            "E1370D"
+          ]
+        },
+        {
+          "id": "COOASOATLAN::C1-B-4186",
+          "code": "C1-B-4186",
+          "name": "Ruta C1-B-4186",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOASOATLAN/C1-B-4186.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "FBF010",
+          "textColorHex": "102033",
+          "companyPalette": [
+            "3923A0",
+            "FBF010",
+            "E1370D"
+          ]
+        },
+        {
+          "id": "COOASOATLAN::C20-4181",
+          "code": "C20-4181",
+          "name": "Ruta C20-4181",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOASOATLAN/C20-4181.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "E1370D",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "3923A0",
+            "FBF010",
+            "E1370D"
+          ]
+        },
+        {
+          "id": "COOASOATLAN::C20-B-4187",
+          "code": "C20-B-4187",
+          "name": "Ruta C20-B-4187",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOASOATLAN/C20-B-4187.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "3923A0",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "3923A0",
+            "FBF010",
+            "E1370D"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "coochofal",
+      "name": "COOCHOFAL",
+      "routes": [
+        {
+          "id": "COOCHOFAL::A15-4159",
+          "code": "A15-4159",
+          "name": "Ruta A15-4159",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOCHOFAL/A15-4159.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "C60A10",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "C60A10"
+          ]
+        },
+        {
+          "id": "COOCHOFAL::C2-4133",
+          "code": "C2-4133",
+          "name": "Ruta C2-4133",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOCHOFAL/C2-4133.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "C60A10",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "C60A10"
+          ]
+        },
+        {
+          "id": "COOCHOFAL::C2-B-4187",
+          "code": "C2-B-4187",
+          "name": "Ruta C2-B-4187",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOCHOFAL/C2-B-4187.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "C60A10",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "C60A10"
+          ]
+        },
+        {
+          "id": "COOCHOFAL::C3-4134",
+          "code": "C3-4134",
+          "name": "Ruta C3-4134",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOCHOFAL/C3-4134.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "C60A10",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "C60A10"
+          ]
+        },
+        {
+          "id": "COOCHOFAL::C4-4135",
+          "code": "C4-4135",
+          "name": "Los Robles – Calle 72",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOCHOFAL/C4-4135.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "C60A10",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "C60A10"
+          ]
+        },
+        {
+          "id": "COOCHOFAL::C9-4140",
+          "code": "C9-4140",
+          "name": "Los Andes – Prado",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOCHOFAL/C9-4140.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "C60A10",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "C60A10"
+          ]
+        },
+        {
+          "id": "COOCHOFAL::C18-4141",
+          "code": "C18-4141",
+          "name": "Prado – Los Andes",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOCHOFAL/C18-4141.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "C60A10",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "C60A10"
+          ]
+        },
+        {
+          "id": "COOCHOFAL::D20-4185",
+          "code": "D20-4185",
+          "name": "Ruta D20-4185",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOCHOFAL/D20-4185.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "C60A10",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "C60A10"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "coolitoral",
+      "name": "COOLITORAL",
+      "routes": [
+        {
+          "id": "COOLITORAL::A1-4106 A",
+          "code": "A1-4106 A",
+          "name": "Ruta A1-4106 A",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOLITORAL/A1-4106%20A.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "007700",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "007700"
+          ]
+        },
+        {
+          "id": "COOLITORAL::A1-4106 B",
+          "code": "A1-4106 B",
+          "name": "Ruta A1-4106 B",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOLITORAL/A1-4106%20B.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "007700",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "007700"
+          ]
+        },
+        {
+          "id": "COOLITORAL::A2-4107",
+          "code": "A2-4107",
+          "name": "Ruta A2-4107",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOLITORAL/A2-4107.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "007700",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "007700"
+          ]
+        },
+        {
+          "id": "COOLITORAL::A3-4108",
+          "code": "A3-4108",
+          "name": "Ruta A3-4108",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOLITORAL/A3-4108.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "007700",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "007700"
+          ]
+        },
+        {
+          "id": "COOLITORAL::A4-4109",
+          "code": "A4-4109",
+          "name": "Ruta A4-4109",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOLITORAL/A4-4109.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "007700",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "007700"
+          ]
+        },
+        {
+          "id": "COOLITORAL::B1-4117",
+          "code": "B1-4117",
+          "name": "Ruta B1-4117",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOLITORAL/B1-4117.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "007700",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "007700"
+          ]
+        },
+        {
+          "id": "COOLITORAL::B2A-4177",
+          "code": "B2A-4177",
+          "name": "Ruta B2A-4177",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOLITORAL/B2A-4177.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "007700",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "007700"
+          ]
+        },
+        {
+          "id": "COOLITORAL::B3-4119",
+          "code": "B3-4119",
+          "name": "Centro – Pueblo",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOLITORAL/B3-4119.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "007700",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "007700"
+          ]
+        },
+        {
+          "id": "COOLITORAL::B17-4163",
+          "code": "B17-4163",
+          "name": "Makro – Buenavista",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOLITORAL/B17-4163.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "007700",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "007700"
+          ]
+        },
+        {
+          "id": "COOLITORAL::C19-4178",
+          "code": "C19-4178",
+          "name": "Pueblo – Centro",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOLITORAL/C19-4178.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "007700",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "007700"
+          ]
+        },
+        {
+          "id": "COOLITORAL::PT1-4101",
+          "code": "PT1-4101",
+          "name": "Juan Mina – Villa San Pablo",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOLITORAL/PT1-4101.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "007700",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "007700"
+          ]
+        },
+        {
+          "id": "COOLITORAL::PT2-4102",
+          "code": "PT2-4102",
+          "name": "Calle 30 – Circunvalar",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOLITORAL/PT2-4102.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "007700",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "007700"
+          ]
+        },
+        {
+          "id": "COOLITORAL::PT3-4103",
+          "code": "PT3-4103",
+          "name": "Circunvalar – Calle 30",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOLITORAL/PT3-4103.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "007700",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "007700"
+          ]
+        },
+        {
+          "id": "COOLITORAL::PT4-4104",
+          "code": "PT4-4104",
+          "name": "Circunvalar – Vía 40",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOLITORAL/PT4-4104.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "007700",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "007700"
+          ]
+        },
+        {
+          "id": "COOLITORAL::PT5-4105",
+          "code": "PT5-4105",
+          "name": "Vía 40 – Circunvalar",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOLITORAL/PT5-4105.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "007700",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "007700"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cootrab",
+      "name": "COOTRAB",
+      "routes": [
+        {
+          "id": "COOTRAB::C5-4135",
+          "code": "C5-4135",
+          "name": "Ruta C5-4135",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOTRAB/C5-4135.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "3CFF3C",
+          "textColorHex": "102033",
+          "companyPalette": [
+            "3CFF3C"
+          ]
+        },
+        {
+          "id": "COOTRAB::C6-4137",
+          "code": "C6-4137",
+          "name": "Ruta C6-4137",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOTRAB/C6-4137.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "3CFF3C",
+          "textColorHex": "102033",
+          "companyPalette": [
+            "3CFF3C"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cootransco",
+      "name": "COOTRANSCO",
+      "routes": [
+        {
+          "id": "COOTRANSCO::C7-4138",
+          "code": "C7-4138",
+          "name": "Ruta C7-4138",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOTRANSCO/C7-4138.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "800000",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "800000"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cootransnorte",
+      "name": "COOTRANSNORTE",
+      "routes": [
+        {
+          "id": "COOTRANSNORTE::A6-4111",
+          "code": "A6-4111",
+          "name": "Ruta A6-4111",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOTRANSNORTE/A6-4111.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "03A29E",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "03A29E"
+          ]
+        },
+        {
+          "id": "COOTRANSNORTE::A5-4110",
+          "code": "A5-4110",
+          "name": "Ruta A5-4110",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOTRANSNORTE/A5-4110.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "03A29E",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "03A29E"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cootransporcar",
+      "name": "COOTRANSPORCAR",
+      "routes": [
+        {
+          "id": "COOTRANSPORCAR::C8-4139",
+          "code": "C8-4139",
+          "name": "Ruta C8-4139",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOTRANSPORCAR/C8-4139.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "02629F",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "02629F"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cootrantico",
+      "name": "COOTRANTICO",
+      "routes": [
+        {
+          "id": "COOTRANTICO::A18-4183",
+          "code": "A18-4183",
+          "name": "Calle 30 – Universidades",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOTRANTICO/A18-4183.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "E15A00",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "E15A00"
+          ]
+        },
+        {
+          "id": "COOTRANTICO::B4-4120",
+          "code": "B4-4120",
+          "name": "Galapa – Centro",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOTRANTICO/B4-4120.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "E15A00",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "E15A00"
+          ]
+        },
+        {
+          "id": "COOTRANTICO::B5-4121",
+          "code": "B5-4121",
+          "name": "Ruta B5-4121",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOTRANTICO/B5-4121.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "E15A00",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "E15A00"
+          ]
+        },
+        {
+          "id": "COOTRANTICO::B5-B-4190",
+          "code": "B5-B-4190",
+          "name": "Ruta B5-B-4190",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOTRANTICO/B5-B-4190.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "E15A00",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "E15A00"
+          ]
+        },
+        {
+          "id": "COOTRANTICO::B6-4122",
+          "code": "B6-4122",
+          "name": "Ruta B6-4122",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOTRANTICO/B6-4122.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "E15A00",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "E15A00"
+          ]
+        },
+        {
+          "id": "COOTRANTICO::B7-4123",
+          "code": "B7-4123",
+          "name": "Concordia – Buenavista",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOTRANTICO/B7-4123.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "E15A00",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "E15A00"
+          ]
+        },
+        {
+          "id": "COOTRANTICO::B20-4180",
+          "code": "B20-4180",
+          "name": "Ruta B20-4180",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOTRANTICO/B20-4180.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "E15A00",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "E15A00"
+          ]
+        },
+        {
+          "id": "COOTRANTICO::B20-B-4191",
+          "code": "B20-B-4191",
+          "name": "Ruta B20-B-4191",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOTRANTICO/B20-B-4191.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "E15A00",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "E15A00"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cootrasol",
+      "name": "COOTRASOL",
+      "routes": [
+        {
+          "id": "COOTRASOL::D3-4147",
+          "code": "D3-4147",
+          "name": "Ruta D3-4147",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOTRASOL/D3-4147.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "E15A00",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "E15A00"
+          ]
+        },
+        {
+          "id": "COOTRASOL::D4-4148",
+          "code": "D4-4148",
+          "name": "Ruta D4-4148",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOTRASOL/D4-4148.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "E15A00",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "E15A00"
+          ]
+        },
+        {
+          "id": "COOTRASOL::D5-4149",
+          "code": "D5-4149",
+          "name": "Ruta D5-4149",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/COOTRASOL/D5-4149.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "E15A00",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "E15A00"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embusa",
+      "name": "EMBUSA",
+      "routes": [
+        {
+          "id": "EMBUSA::B9-4125",
+          "code": "B9-4125",
+          "name": "Centro – Santuario – Prado",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/EMBUSA/B9-4125.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "162053",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "162053"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flota_angulo",
+      "name": "FLOTA-ANGULO",
+      "routes": [
+        {
+          "id": "FLOTA-ANGULO::A7-4112",
+          "code": "A7-4112",
+          "name": "Barranquillita – Alameda del Río – Pradera",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/FLOTA-ANGULO/A7-4112.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "ED1C24",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "ED1C24"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flota_roja",
+      "name": "FLOTA-ROJA",
+      "routes": [
+        {
+          "id": "FLOTA-ROJA::A8-4113",
+          "code": "A8-4113",
+          "name": "Ruta A8-4113",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/FLOTA-ROJA/A8-4113.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "FF0606",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "FF0606"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "la_carolina",
+      "name": "LA-CAROLINA",
+      "routes": [
+        {
+          "id": "LA-CAROLINA::A16-4161 A",
+          "code": "A16-4161 A",
+          "name": "Carrera 38 – Miramar – Alameda del Río",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/LA-CAROLINA/A16-4161%20A.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "955C3E",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "955C3E"
+          ]
+        },
+        {
+          "id": "LA-CAROLINA::A16-4161 B",
+          "code": "A16-4161 B",
+          "name": "Las Gaviotas – Calle 76",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/LA-CAROLINA/A16-4161%20B.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "955C3E",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "955C3E"
+          ]
+        },
+        {
+          "id": "LA-CAROLINA::D6-4150",
+          "code": "D6-4150",
+          "name": "Ruta D6-4150",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/LA-CAROLINA/D6-4150.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "955C3E",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "955C3E"
+          ]
+        },
+        {
+          "id": "LA-CAROLINA::D7-4151",
+          "code": "D7-4151",
+          "name": "Ruta D7-4151",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/LA-CAROLINA/D7-4151.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "955C3E",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "955C3E"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lolaya",
+      "name": "LOLAYA",
+      "routes": [
+        {
+          "id": "LOLAYA::B10-4126",
+          "code": "B10-4126",
+          "name": "Ruta B10-4126",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/LOLAYA/B10-4126.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "00AEAE",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "00AEAE"
+          ]
+        },
+        {
+          "id": "LOLAYA::B10-B-4193",
+          "code": "B10-B-4193",
+          "name": "Ruta B10-B-4193",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/LOLAYA/B10-B-4193.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "00AEAE",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "00AEAE"
+          ]
+        },
+        {
+          "id": "LOLAYA::D8-4165",
+          "code": "D8-4165",
+          "name": "Ruta D8-4165",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/LOLAYA/D8-4165.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "00AEAE",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "00AEAE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monterrey",
+      "name": "MONTERREY",
+      "routes": [
+        {
+          "id": "MONTERREY::B11-4166",
+          "code": "B11-4166",
+          "name": "Villa Carolina – Zoológico",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/MONTERREY/B11-4166.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "0ABDE6",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "0ABDE6"
+          ]
+        },
+        {
+          "id": "MONTERREY::B12-4127",
+          "code": "B12-4127",
+          "name": "Las Flores – Cordialidad",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/MONTERREY/B12-4127.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "0ABDE6",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "0ABDE6"
+          ]
+        },
+        {
+          "id": "MONTERREY::B8-4124",
+          "code": "B8-4124",
+          "name": "El Bosque – Campo Alegre",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/MONTERREY/B8-4124.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "0ABDE6",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "0ABDE6"
+          ]
+        },
+        {
+          "id": "MONTERREY::B11-B-4192",
+          "code": "B11-B-4192",
+          "name": "Ruta B11-B-4192",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/MONTERREY/B11-B-4192.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "0ABDE6",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "0ABDE6"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sobusa",
+      "name": "SOBUSA",
+      "routes": [
+        {
+          "id": "SOBUSA::B18-4175 A",
+          "code": "B18-4175 A",
+          "name": "Ruta B18-4175 A",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/SOBUSA/B18-4175%20A.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "25BC53",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "25BC53"
+          ]
+        },
+        {
+          "id": "SOBUSA::B18-4175 B",
+          "code": "B18-4175 B",
+          "name": "Ruta B18-4175 B",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/SOBUSA/B18-4175%20B.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "25BC53",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "25BC53"
+          ]
+        },
+        {
+          "id": "SOBUSA::C11-4168",
+          "code": "C11-4168",
+          "name": "Ruta C11-4168",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/SOBUSA/C11-4168.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "25BC53",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "25BC53"
+          ]
+        },
+        {
+          "id": "SOBUSA::C12-4169 A",
+          "code": "C12-4169 A",
+          "name": "Ruta C12-4169 A",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/SOBUSA/C12-4169%20A.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "25BC53",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "25BC53"
+          ]
+        },
+        {
+          "id": "SOBUSA::C12-4169 B",
+          "code": "C12-4169 B",
+          "name": "Ruta C12-4169 B",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/SOBUSA/C12-4169%20B.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "25BC53",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "25BC53"
+          ]
+        },
+        {
+          "id": "SOBUSA::C13-4143",
+          "code": "C13-4143",
+          "name": "Ruta C13-4143",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/SOBUSA/C13-4143.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "25BC53",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "25BC53"
+          ]
+        },
+        {
+          "id": "SOBUSA::C14-4170",
+          "code": "C14-4170",
+          "name": "Ruta C14-4170",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/SOBUSA/C14-4170.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "25BC53",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "25BC53"
+          ]
+        },
+        {
+          "id": "SOBUSA::C16-4167 A",
+          "code": "C16-4167 A",
+          "name": "Ruta C16-4167 A",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/SOBUSA/C16-4167%20A.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "25BC53",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "25BC53"
+          ]
+        },
+        {
+          "id": "SOBUSA::C16-4167 B",
+          "code": "C16-4167 B",
+          "name": "Ruta C16-4167 B",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/SOBUSA/C16-4167%20B.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "25BC53",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "25BC53"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sodetrans",
+      "name": "SODETRANS",
+      "routes": [
+        {
+          "id": "SODETRANS::B13-4128",
+          "code": "B13-4128",
+          "name": "Ruta B13-4128",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/SODETRANS/B13-4128.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "3039AF",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "3039AF"
+          ]
+        },
+        {
+          "id": "SODETRANS::B13-B-4189",
+          "code": "B13-B-4189",
+          "name": "Ruta B13-B-4189",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/SODETRANS/B13-B-4189.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "3039AF",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "3039AF"
+          ]
+        },
+        {
+          "id": "SODETRANS::B14-4174",
+          "code": "B14-4174",
+          "name": "Ruta B14-4174",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/SODETRANS/B14-4174.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "3039AF",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "3039AF"
+          ]
+        },
+        {
+          "id": "SODETRANS::B15-4129 A",
+          "code": "B15-4129 A",
+          "name": "Ruta B15-4129 A",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/SODETRANS/B15-4129%20A.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "3039AF",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "3039AF"
+          ]
+        },
+        {
+          "id": "SODETRANS::B15-4129 B",
+          "code": "B15-4129 B",
+          "name": "Ruta B15-4129 B",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/SODETRANS/B15-4129%20B.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "3039AF",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "3039AF"
+          ]
+        },
+        {
+          "id": "SODETRANS::C21-4182 A",
+          "code": "C21-4182 A",
+          "name": "Ruta C21-4182 A",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/SODETRANS/C21-4182%20A.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "3039AF",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "3039AF"
+          ]
+        },
+        {
+          "id": "SODETRANS::C21-4182 B",
+          "code": "C21-4182 B",
+          "name": "Ruta C21-4182 B",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/SODETRANS/C21-4182%20B.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "3039AF",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "3039AF"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transdiaz",
+      "name": "TRANSDIAZ",
+      "routes": [
+        {
+          "id": "TRANSDIAZ::A10-4114 A",
+          "code": "A10-4114 A",
+          "name": "Ruta A10-4114 A",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRANSDIAZ/A10-4114%20A.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "3039AF",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "3039AF"
+          ]
+        },
+        {
+          "id": "TRANSDIAZ::A10-4114 B",
+          "code": "A10-4114 B",
+          "name": "Circunvalar – Malvinas – Vía 40",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRANSDIAZ/A10-4114%20B.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "3039AF",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "3039AF"
+          ]
+        },
+        {
+          "id": "TRANSDIAZ::A11-4115",
+          "code": "A11-4115",
+          "name": "Ruta A11-4115",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRANSDIAZ/A11-4115.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "3039AF",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "3039AF"
+          ]
+        },
+        {
+          "id": "TRANSDIAZ::B16-4130",
+          "code": "B16-4130",
+          "name": "Ruta B16-4130",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRANSDIAZ/B16-4130.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "3039AF",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "3039AF"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transmecar",
+      "name": "TRANSMECAR",
+      "routes": [
+        {
+          "id": "TRANSMECAR::C17-4160",
+          "code": "C17-4160",
+          "name": "Ruta C17-4160",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRANSMECAR/C17-4160.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "FFC90E",
+          "textColorHex": "102033",
+          "companyPalette": [
+            "FFC90E"
+          ]
+        },
+        {
+          "id": "TRANSMECAR::D10-4172",
+          "code": "D10-4172",
+          "name": "Ruta D10-4172",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRANSMECAR/D10-4172.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "FFC90E",
+          "textColorHex": "102033",
+          "companyPalette": [
+            "FFC90E"
+          ]
+        },
+        {
+          "id": "TRANSMECAR::D11-4153",
+          "code": "D11-4153",
+          "name": "Ruta D11-4153",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRANSMECAR/D11-4153.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "FFC90E",
+          "textColorHex": "102033",
+          "companyPalette": [
+            "FFC90E"
+          ]
+        },
+        {
+          "id": "TRANSMECAR::D9-4152",
+          "code": "D9-4152",
+          "name": "Ruta D9-4152",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRANSMECAR/D9-4152.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "FFC90E",
+          "textColorHex": "102033",
+          "companyPalette": [
+            "FFC90E"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transoledad",
+      "name": "TRANSOLEDAD",
+      "routes": [
+        {
+          "id": "TRANSOLEDAD::D13-4155",
+          "code": "D13-4155",
+          "name": "Ruta D13-4155",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRANSOLEDAD/D13-4155.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "FF0606",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "00A2E8",
+            "FF0606"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transurbar",
+      "name": "TRANSURBAR",
+      "routes": [
+        {
+          "id": "TRANSURBAR::A14-4116",
+          "code": "A14-4116",
+          "name": "Ruta A14-4116",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRANSURBAR/A14-4116.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "009F8D",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "009F8D",
+            "0B6E69",
+            "1DAE9E"
+          ]
+        },
+        {
+          "id": "TRANSURBAR::D19-4184",
+          "code": "D19-4184",
+          "name": "Ruta D19-4184",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRANSURBAR/D19-4184.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "0B6E69",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "009F8D",
+            "0B6E69",
+            "1DAE9E"
+          ]
+        },
+        {
+          "id": "TRANSURBAR::D16-4173",
+          "code": "D16-4173",
+          "name": "Ruta D16-4173",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRANSURBAR/D16-4173.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "1DAE9E",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "009F8D",
+            "0B6E69",
+            "1DAE9E"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trasalfa",
+      "name": "TRASALFA",
+      "routes": [
+        {
+          "id": "TRASALFA::D15-4157",
+          "code": "D15-4157",
+          "name": "Malambo – Calle 79",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRASALFA/D15-4157.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "6E3AD5",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "6E3AD5",
+            "EF8A00",
+            "D1495B"
+          ]
+        },
+        {
+          "id": "TRASALFA::D14-4156",
+          "code": "D14-4156",
+          "name": "Malambo – Calle 76",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRASALFA/D14-4156.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "EF8A00",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "6E3AD5",
+            "EF8A00",
+            "D1495B"
+          ]
+        },
+        {
+          "id": "TRASALFA::B2-B-4118",
+          "code": "B2-B-4118",
+          "name": "Ruta B2-B-4118",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRASALFA/B2-B-4118.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "D1495B",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "6E3AD5",
+            "EF8A00",
+            "D1495B"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trasalianco",
+      "name": "TRASALIANCO",
+      "routes": [
+        {
+          "id": "TRASALIANCO::B19-4176",
+          "code": "B19-4176",
+          "name": "Ruta B19-4176",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRASALIANCO/B19-4176.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "0072B2",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "0072B2",
+            "D55E00",
+            "009E73",
+            "CC79A7"
+          ]
+        },
+        {
+          "id": "TRASALIANCO::D18-4179",
+          "code": "D18-4179",
+          "name": "Ruta D18-4179",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRASALIANCO/D18-4179.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "D55E00",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "0072B2",
+            "D55E00",
+            "009E73",
+            "CC79A7"
+          ]
+        },
+        {
+          "id": "TRASALIANCO::D12-4154",
+          "code": "D12-4154",
+          "name": "Ruta D12-4154",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRASALIANCO/D12-4154.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "009E73",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "0072B2",
+            "D55E00",
+            "009E73",
+            "CC79A7"
+          ]
+        },
+        {
+          "id": "TRASALIANCO::D17-4158",
+          "code": "D17-4158",
+          "name": "Ruta D17-4158",
+          "kmzUrl": "https://www.ambq.gov.co/ruta-de-buses/TRASALIANCO/D17-4158.kmz",
+          "source": "AMB – trazado KMZ oficial",
+          "colorHex": "CC79A7",
+          "textColorHex": "FFFFFF",
+          "companyPalette": [
+            "0072B2",
+            "D55E00",
+            "009E73",
+            "CC79A7"
+          ]
+        }
+      ]
+    }
+  ],
+  "officialRouteCount": 93
+}

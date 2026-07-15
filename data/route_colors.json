@@ -1,0 +1,650 @@
+{
+  "version": "v37",
+  "description": "Paleta de colores de rutas SIBUS extraída de las imágenes enviadas por el usuario. Las empresas faltantes usan color de respaldo.",
+  "companyPalettes": {
+    "COOASOATLAN": [
+      "3923A0",
+      "FBF010",
+      "E1370D"
+    ],
+    "COOCHOFAL": [
+      "C60A10"
+    ],
+    "COOLITORAL": [
+      "007700"
+    ],
+    "COOTRAB": [
+      "3CFF3C"
+    ],
+    "COOTRANSPORCAR": [
+      "02629F"
+    ],
+    "COOTRANTICO": [
+      "E15A00"
+    ],
+    "COOTRANSCO": [
+      "800000"
+    ],
+    "COOTRANSNORTE": [
+      "03A29E"
+    ],
+    "COOTRASOL": [
+      "E15A00"
+    ],
+    "EMBUSA": [
+      "162053"
+    ],
+    "FLOTA-ANGULO": [
+      "ED1C24"
+    ],
+    "FLOTA-ROJA": [
+      "FF0606"
+    ],
+    "LA-CAROLINA": [
+      "955C3E"
+    ],
+    "LOLAYA": [
+      "00AEAE"
+    ],
+    "MONTERREY": [
+      "0ABDE6"
+    ],
+    "SOBUSA": [
+      "25BC53"
+    ],
+    "SODETRANS": [
+      "3039AF"
+    ],
+    "TRANSDIAZ": [
+      "3039AF"
+    ],
+    "TRANSMECAR": [
+      "FFC90E"
+    ],
+    "TRANSOLEDAD": [
+      "00A2E8",
+      "FF0606"
+    ],
+    "TRANSURBAR": [
+      "009F8D",
+      "0B6E69",
+      "1DAE9E"
+    ],
+    "TRASALFA": [
+      "6E3AD5",
+      "EF8A00",
+      "D1495B"
+    ],
+    "TRASALIANCO": [
+      "0072B2",
+      "D55E00",
+      "009E73",
+      "CC79A7"
+    ]
+  },
+  "missingUploadedImages": [
+    "TRANSURBAR",
+    "TRASALFA",
+    "TRASALIANCO"
+  ],
+  "routeColors": [
+    {
+      "empresa": "COOASOATLAN",
+      "ruta": "C1-4132",
+      "colorHex": "3923A0",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOASOATLAN",
+      "ruta": "C1-B-4186",
+      "colorHex": "FBF010",
+      "textColorHex": "102033"
+    },
+    {
+      "empresa": "COOASOATLAN",
+      "ruta": "C20-4181",
+      "colorHex": "E1370D",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOASOATLAN",
+      "ruta": "C20-B-4187",
+      "colorHex": "3923A0",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOCHOFAL",
+      "ruta": "A15-4159",
+      "colorHex": "C60A10",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOCHOFAL",
+      "ruta": "C2-4133",
+      "colorHex": "C60A10",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOCHOFAL",
+      "ruta": "C2-B-4187",
+      "colorHex": "C60A10",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOCHOFAL",
+      "ruta": "C3-4134",
+      "colorHex": "C60A10",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOCHOFAL",
+      "ruta": "C4-4135",
+      "colorHex": "C60A10",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOCHOFAL",
+      "ruta": "C9-4140",
+      "colorHex": "C60A10",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOCHOFAL",
+      "ruta": "C18-4141",
+      "colorHex": "C60A10",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOCHOFAL",
+      "ruta": "D20-4185",
+      "colorHex": "C60A10",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOLITORAL",
+      "ruta": "A1-4106 A",
+      "colorHex": "007700",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOLITORAL",
+      "ruta": "A1-4106 B",
+      "colorHex": "007700",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOLITORAL",
+      "ruta": "A2-4107",
+      "colorHex": "007700",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOLITORAL",
+      "ruta": "A3-4108",
+      "colorHex": "007700",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOLITORAL",
+      "ruta": "A4-4109",
+      "colorHex": "007700",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOLITORAL",
+      "ruta": "B1-4117",
+      "colorHex": "007700",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOLITORAL",
+      "ruta": "B2A-4177",
+      "colorHex": "007700",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOLITORAL",
+      "ruta": "B3-4119",
+      "colorHex": "007700",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOLITORAL",
+      "ruta": "B17-4163",
+      "colorHex": "007700",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOLITORAL",
+      "ruta": "C19-4178",
+      "colorHex": "007700",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOLITORAL",
+      "ruta": "PT1-4101",
+      "colorHex": "007700",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOLITORAL",
+      "ruta": "PT2-4102",
+      "colorHex": "007700",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOLITORAL",
+      "ruta": "PT3-4103",
+      "colorHex": "007700",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOLITORAL",
+      "ruta": "PT4-4104",
+      "colorHex": "007700",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOLITORAL",
+      "ruta": "PT5-4105",
+      "colorHex": "007700",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOTRAB",
+      "ruta": "C5-4135",
+      "colorHex": "3CFF3C",
+      "textColorHex": "102033"
+    },
+    {
+      "empresa": "COOTRAB",
+      "ruta": "C6-4137",
+      "colorHex": "3CFF3C",
+      "textColorHex": "102033"
+    },
+    {
+      "empresa": "COOTRANSCO",
+      "ruta": "C7-4138",
+      "colorHex": "800000",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOTRANSNORTE",
+      "ruta": "A6-4111",
+      "colorHex": "03A29E",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOTRANSNORTE",
+      "ruta": "A5-4110",
+      "colorHex": "03A29E",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOTRANSPORCAR",
+      "ruta": "C8-4139",
+      "colorHex": "02629F",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOTRANTICO",
+      "ruta": "A18-4183",
+      "colorHex": "E15A00",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOTRANTICO",
+      "ruta": "B4-4120",
+      "colorHex": "E15A00",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOTRANTICO",
+      "ruta": "B5-4121",
+      "colorHex": "E15A00",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOTRANTICO",
+      "ruta": "B5-B-4190",
+      "colorHex": "E15A00",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOTRANTICO",
+      "ruta": "B6-4122",
+      "colorHex": "E15A00",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOTRANTICO",
+      "ruta": "B7-4123",
+      "colorHex": "E15A00",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOTRANTICO",
+      "ruta": "B20-4180",
+      "colorHex": "E15A00",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOTRANTICO",
+      "ruta": "B20-B-4191",
+      "colorHex": "E15A00",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOTRASOL",
+      "ruta": "D3-4147",
+      "colorHex": "E15A00",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOTRASOL",
+      "ruta": "D4-4148",
+      "colorHex": "E15A00",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "COOTRASOL",
+      "ruta": "D5-4149",
+      "colorHex": "E15A00",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "EMBUSA",
+      "ruta": "B9-4125",
+      "colorHex": "162053",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "FLOTA-ANGULO",
+      "ruta": "A7-4112",
+      "colorHex": "ED1C24",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "FLOTA-ROJA",
+      "ruta": "A8-4113",
+      "colorHex": "FF0606",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "LA-CAROLINA",
+      "ruta": "A16-4161 A",
+      "colorHex": "955C3E",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "LA-CAROLINA",
+      "ruta": "A16-4161 B",
+      "colorHex": "955C3E",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "LA-CAROLINA",
+      "ruta": "D6-4150",
+      "colorHex": "955C3E",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "LA-CAROLINA",
+      "ruta": "D7-4151",
+      "colorHex": "955C3E",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "LOLAYA",
+      "ruta": "B10-4126",
+      "colorHex": "00AEAE",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "LOLAYA",
+      "ruta": "B10-B-4193",
+      "colorHex": "00AEAE",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "LOLAYA",
+      "ruta": "D8-4165",
+      "colorHex": "00AEAE",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "MONTERREY",
+      "ruta": "B11-4166",
+      "colorHex": "0ABDE6",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "MONTERREY",
+      "ruta": "B12-4127",
+      "colorHex": "0ABDE6",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "MONTERREY",
+      "ruta": "B8-4124",
+      "colorHex": "0ABDE6",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "MONTERREY",
+      "ruta": "B11-B-4192",
+      "colorHex": "0ABDE6",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "SOBUSA",
+      "ruta": "B18-4175 A",
+      "colorHex": "25BC53",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "SOBUSA",
+      "ruta": "B18-4175 B",
+      "colorHex": "25BC53",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "SOBUSA",
+      "ruta": "C11-4168",
+      "colorHex": "25BC53",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "SOBUSA",
+      "ruta": "C12-4169 A",
+      "colorHex": "25BC53",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "SOBUSA",
+      "ruta": "C12-4169 B",
+      "colorHex": "25BC53",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "SOBUSA",
+      "ruta": "C13-4143",
+      "colorHex": "25BC53",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "SOBUSA",
+      "ruta": "C14-4170",
+      "colorHex": "25BC53",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "SOBUSA",
+      "ruta": "C16-4167 A",
+      "colorHex": "25BC53",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "SOBUSA",
+      "ruta": "C16-4167 B",
+      "colorHex": "25BC53",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "SODETRANS",
+      "ruta": "B13-4128",
+      "colorHex": "3039AF",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "SODETRANS",
+      "ruta": "B13-B-4189",
+      "colorHex": "3039AF",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "SODETRANS",
+      "ruta": "B14-4174",
+      "colorHex": "3039AF",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "SODETRANS",
+      "ruta": "B15-4129 A",
+      "colorHex": "3039AF",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "SODETRANS",
+      "ruta": "B15-4129 B",
+      "colorHex": "3039AF",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "SODETRANS",
+      "ruta": "C21-4182 A",
+      "colorHex": "3039AF",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "SODETRANS",
+      "ruta": "C21-4182 B",
+      "colorHex": "3039AF",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "TRANSDIAZ",
+      "ruta": "A10-4114 A",
+      "colorHex": "3039AF",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "TRANSDIAZ",
+      "ruta": "A10-4114 B",
+      "colorHex": "3039AF",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "TRANSDIAZ",
+      "ruta": "A11-4115",
+      "colorHex": "3039AF",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "TRANSDIAZ",
+      "ruta": "B16-4130",
+      "colorHex": "3039AF",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "TRANSMECAR",
+      "ruta": "C17-4160",
+      "colorHex": "FFC90E",
+      "textColorHex": "102033"
+    },
+    {
+      "empresa": "TRANSMECAR",
+      "ruta": "D10-4172",
+      "colorHex": "FFC90E",
+      "textColorHex": "102033"
+    },
+    {
+      "empresa": "TRANSMECAR",
+      "ruta": "D11-4153",
+      "colorHex": "FFC90E",
+      "textColorHex": "102033"
+    },
+    {
+      "empresa": "TRANSMECAR",
+      "ruta": "D9-4152",
+      "colorHex": "FFC90E",
+      "textColorHex": "102033"
+    },
+    {
+      "empresa": "TRANSOLEDAD",
+      "ruta": "D13-4155",
+      "colorHex": "FF0606",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "TRANSURBAR",
+      "ruta": "A14-4116",
+      "colorHex": "009F8D",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "TRANSURBAR",
+      "ruta": "D19-4184",
+      "colorHex": "0B6E69",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "TRANSURBAR",
+      "ruta": "D16-4173",
+      "colorHex": "1DAE9E",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "TRASALFA",
+      "ruta": "D15-4157",
+      "colorHex": "6E3AD5",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "TRASALFA",
+      "ruta": "D14-4156",
+      "colorHex": "EF8A00",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "TRASALFA",
+      "ruta": "B2-B-4118",
+      "colorHex": "D1495B",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "TRASALIANCO",
+      "ruta": "B19-4176",
+      "colorHex": "0072B2",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "TRASALIANCO",
+      "ruta": "D18-4179",
+      "colorHex": "D55E00",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "TRASALIANCO",
+      "ruta": "D12-4154",
+      "colorHex": "009E73",
+      "textColorHex": "FFFFFF"
+    },
+    {
+      "empresa": "TRASALIANCO",
+      "ruta": "D17-4158",
+      "colorHex": "CC79A7",
+      "textColorHex": "FFFFFF"
+    }
+  ]
+}
