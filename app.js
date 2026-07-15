@@ -2115,6 +2115,7 @@ async function calculateMultimodalPlans(origin, destination, onProgress) {
     });
     state.plannerDiagnostics = { engine: 'multimodal', loadedCount: detailed.loadedCount, totalCount: detailed.totalCount, errorCount: detailed.errors.length, errors: detailed.errors };
     exact = detailed.options.map(option => engineResultToPlan(option, origin, destination));
+    await refineFlexibleBusAccessPlans(exact, origin, destination);
     unified = await findUnifiedJourneyPlans(origin, destination, config);
   } else {
     state.plannerDiagnostics = { engine: 'fallback', loadedCount: state.routes.length, totalCount: state.routes.length, errorCount: 0, errors: [] };
@@ -2313,6 +2314,241 @@ async function networkRoute(mode, points) {
 
 async function footRouteBetween(from, to) {
   return networkRoute('walk', [from, to]);
+}
+
+
+function projectLatLngToLngLatSegment(anchor, a, b) {
+  const pointLng = Number(anchor.lng), pointLat = Number(anchor.lat);
+  const aLng = Number(a?.[0]), aLat = Number(a?.[1]);
+  const bLng = Number(b?.[0]), bLat = Number(b?.[1]);
+  if (![pointLng, pointLat, aLng, aLat, bLng, bLat].every(Number.isFinite)) return null;
+  const R = 6371000;
+  const lat0 = pointLat * Math.PI / 180;
+  const scaleX = Math.max(1e-9, Math.cos(lat0) * Math.PI / 180 * R);
+  const scaleY = Math.PI / 180 * R;
+  const ax = (aLng - pointLng) * scaleX;
+  const ay = (aLat - pointLat) * scaleY;
+  const bx = (bLng - pointLng) * scaleX;
+  const by = (bLat - pointLat) * scaleY;
+  const dx = bx - ax;
+  const dy = by - ay;
+  const lengthSq = dx * dx + dy * dy;
+  const t = lengthSq > 0 ? Math.max(0, Math.min(1, -(ax * dx + ay * dy) / lengthSq)) : 0;
+  const x = ax + t * dx;
+  const y = ay + t * dy;
+  const lng = pointLng + x / scaleX;
+  const lat = pointLat + y / scaleY;
+  return {
+    t,
+    lat,
+    lng,
+    coordinates: [lng, lat],
+    distanceMeters: Math.hypot(x, y),
+    segmentLengthMeters: Math.sqrt(lengthSq)
+  };
+}
+
+function lngLatPathDistanceMeters(coords) {
+  if (!Array.isArray(coords) || coords.length < 2) return 0;
+  let total = 0;
+  for (let index = 0; index < coords.length - 1; index++) {
+    const a = coords[index], b = coords[index + 1];
+    total += haversine(Number(a?.[1]), Number(a?.[0]), Number(b?.[1]), Number(b?.[0]));
+  }
+  return total;
+}
+
+function flexibleAccessCandidatesOnPath(anchor, coords, options = {}) {
+  if (!Array.isArray(coords) || coords.length < 2) return [];
+  const maxStraightMeters = options.maxStraightMeters ?? 1100;
+  const minAlongMeters = options.minAlongMeters ?? 0;
+  const maxAlongMeters = options.maxAlongMeters ?? Infinity;
+  const hardLimit = options.limit ?? 9;
+  const candidates = [];
+  let distanceBefore = 0;
+  for (let index = 0; index < coords.length - 1; index++) {
+    const projected = projectLatLngToLngLatSegment(anchor, coords[index], coords[index + 1]);
+    const segmentLength = haversine(Number(coords[index]?.[1]), Number(coords[index]?.[0]), Number(coords[index + 1]?.[1]), Number(coords[index + 1]?.[0]));
+    if (projected) {
+      const distanceAlongMeters = distanceBefore + segmentLength * projected.t;
+      if (distanceAlongMeters >= minAlongMeters && distanceAlongMeters <= maxAlongMeters) {
+        const straightWalk = projected.distanceMeters * 1.18;
+        if (straightWalk <= maxStraightMeters) {
+          candidates.push({
+            ...projected,
+            segmentIndex: index,
+            distanceAlongMeters,
+            straightWalk,
+            point: { lat: projected.lat, lng: projected.lng, label: 'Punto flexible sobre el recorrido' }
+          });
+        }
+      }
+    }
+    distanceBefore += segmentLength;
+  }
+  const unique = new Map();
+  candidates
+    .sort((a, b) => a.straightWalk - b.straightWalk || a.distanceAlongMeters - b.distanceAlongMeters)
+    .forEach(candidate => {
+      const key = `${candidate.segmentIndex}:${candidate.t.toFixed(2)}`;
+      if (!unique.has(key)) unique.set(key, candidate);
+    });
+  return [...unique.values()].slice(0, hardLimit);
+}
+
+async function scoreFlexibleWalkCandidate(anchor, candidate, reverse = false) {
+  const to = { lat: candidate.lat, lng: candidate.lng, label: candidate.point.label };
+  try {
+    const routed = reverse ? await footRouteBetween(to, anchor) : await footRouteBetween(anchor, to);
+    return {
+      ...candidate,
+      walkDistance: routed.distance,
+      walkDuration: routed.duration,
+      walkGeometry: routed.geometry,
+      score: routed.distance + candidate.straightWalk * 0.08,
+      source: routed.source || 'network'
+    };
+  } catch {
+    const fallback = candidate.straightWalk;
+    return {
+      ...candidate,
+      walkDistance: fallback,
+      walkDuration: fallback / WALK_SPEED_MPS,
+      walkGeometry: null,
+      score: fallback + 120,
+      source: 'straight-fallback'
+    };
+  }
+}
+
+async function chooseFlexibleAccessPoint(anchor, coords, options = {}) {
+  const candidates = flexibleAccessCandidatesOnPath(anchor, coords, options);
+  if (!candidates.length) return null;
+  const scored = [];
+  for (const candidate of candidates) scored.push(await scoreFlexibleWalkCandidate(anchor, candidate, Boolean(options.reverseWalk)));
+  return scored.sort((a, b) => a.score - b.score || a.straightWalk - b.straightWalk)[0] || null;
+}
+
+function sliceLngLatPathBetween(coords, start, end) {
+  if (!Array.isArray(coords) || coords.length < 2 || !start || !end) return null;
+  const totalDistance = lngLatPathDistanceMeters(coords);
+  const closed = haversine(Number(coords[0]?.[1]), Number(coords[0]?.[0]), Number(coords[coords.length - 1]?.[1]), Number(coords[coords.length - 1]?.[0])) <= 1000;
+  const wraps = end.distanceAlongMeters <= start.distanceAlongMeters;
+  if (wraps && !closed) return null;
+  const result = [start.coordinates];
+  if (wraps) {
+    for (let index = start.segmentIndex + 1; index < coords.length; index++) result.push(coords[index]);
+    for (let index = 0; index <= end.segmentIndex; index++) result.push(coords[index]);
+  } else {
+    for (let index = start.segmentIndex + 1; index <= end.segmentIndex; index++) result.push(coords[index]);
+  }
+  const last = result[result.length - 1];
+  if (!last || haversine(Number(last[1]), Number(last[0]), end.lat, end.lng) > 1) result.push(end.coordinates);
+  const busDistance = wraps ? totalDistance - start.distanceAlongMeters + end.distanceAlongMeters : end.distanceAlongMeters - start.distanceAlongMeters;
+  return { path: result, distance: busDistance };
+}
+
+function currentKmzCandidateFromPlan(plan, type = 'board') {
+  const source = type === 'board' ? plan.boardPoint : plan.alightPoint;
+  if (!source?.coordinates) return null;
+  return {
+    lat: Number(source.coordinates[1]),
+    lng: Number(source.coordinates[0]),
+    coordinates: source.coordinates,
+    segmentIndex: Number(source.segmentIndex) || 0,
+    distanceAlongMeters: Number(source.distanceAlongMeters) || 0,
+    walkDistance: type === 'board' ? Number(plan.walkBeforeDistance || plan.legs?.[0]?.distance || 0) : Number(plan.walkAfterDistance || plan.legs?.[2]?.distance || 0),
+    walkDuration: type === 'board' ? Number((plan.walkBeforeMinutes || 0) * 60 || plan.legs?.[0]?.duration || 0) : Number((plan.walkAfterMinutes || 0) * 60 || plan.legs?.[2]?.duration || 0),
+    walkGeometry: null,
+    score: type === 'board' ? Number(plan.walkBeforeDistance || plan.legs?.[0]?.distance || 0) : Number(plan.walkAfterDistance || plan.legs?.[2]?.distance || 0),
+    point: { lat: Number(source.coordinates[1]), lng: Number(source.coordinates[0]), label: 'Punto flexible sobre el recorrido' }
+  };
+}
+
+function applyFlexibleKmzAccess(plan, board, alight) {
+  const coords = plan.fullPath || plan.legs?.find(leg => leg.mode === 'bus')?.fullPath;
+  const sliced = sliceLngLatPathBetween(coords, board, alight);
+  if (!sliced || sliced.distance < 300) return false;
+  const busLeg = plan.legs.find(leg => leg.mode === 'bus');
+  const walkLegs = plan.legs.filter(leg => leg.mode === 'walk');
+  if (!busLeg || walkLegs.length < 2) return false;
+  const boardPoint = { lat: board.lat, lng: board.lng, label: 'Punto flexible para tomar el bus' };
+  const alightPoint = { lat: alight.lat, lng: alight.lng, label: 'Punto flexible para bajarse' };
+
+  walkLegs[0].to = boardPoint;
+  walkLegs[0].distance = Math.round(board.walkDistance || board.straightWalk || 0);
+  walkLegs[0].duration = board.walkDuration || (walkLegs[0].distance / WALK_SPEED_MPS);
+  walkLegs[0].geometry = Array.isArray(board.walkGeometry) && board.walkGeometry.length > 1 ? board.walkGeometry : null;
+  walkLegs[0].label = 'Caminata inicial hasta punto flexible del bus';
+
+  walkLegs[walkLegs.length - 1].from = alightPoint;
+  walkLegs[walkLegs.length - 1].distance = Math.round(alight.walkDistance || alight.straightWalk || 0);
+  walkLegs[walkLegs.length - 1].duration = alight.walkDuration || (walkLegs[walkLegs.length - 1].distance / WALK_SPEED_MPS);
+  walkLegs[walkLegs.length - 1].geometry = Array.isArray(alight.walkGeometry) && alight.walkGeometry.length > 1 ? alight.walkGeometry : null;
+  walkLegs[walkLegs.length - 1].label = 'Caminata final desde punto flexible del bus';
+
+  busLeg.from = boardPoint;
+  busLeg.to = alightPoint;
+  busLeg.path = sliced.path;
+  busLeg.ridePath = sliced.path;
+  busLeg.fullPath = coords;
+  busLeg.distance = Math.round(sliced.distance);
+  busLeg.duration = sliced.distance / BUS_SPEED_MPS;
+  busLeg.geometry = sliced.path.map(([lng, lat]) => [lat, lng]);
+  busLeg.geometrySource = 'official-kmz-flexible-access';
+  busLeg.flexibleBoarding = true;
+  busLeg.stopCount = null;
+
+  plan.boardPoint = { coordinates: board.coordinates, segmentIndex: board.segmentIndex, distanceAlongMeters: Math.round(board.distanceAlongMeters), walkDistance: walkLegs[0].distance, walkMinutes: Math.max(1, Math.ceil(walkLegs[0].duration / 60)) };
+  plan.alightPoint = { coordinates: alight.coordinates, segmentIndex: alight.segmentIndex, distanceAlongMeters: Math.round(alight.distanceAlongMeters), walkDistance: walkLegs[walkLegs.length - 1].distance, walkMinutes: Math.max(1, Math.ceil(walkLegs[walkLegs.length - 1].duration / 60)) };
+  plan.ridePath = sliced.path;
+  plan.rideMeters = Math.round(sliced.distance);
+  plan.rideMinutes = Math.max(1, Math.ceil(busLeg.duration / 60));
+  plan.walkMeters = walkLegs.reduce((sum, leg) => sum + (Number(leg.distance) || 0), 0);
+  plan.walkMinutes = Math.max(1, Math.ceil(walkLegs.reduce((sum, leg) => sum + (Number(leg.duration) || 0), 0) / 60));
+  plan.totalMinutes = plan.walkMinutes + plan.rideMinutes;
+  plan.flexibleAccessRefined = true;
+  plan.score = (Number(plan.score) || 0) - 900 + plan.walkMeters * 0.35;
+  return true;
+}
+
+async function refineFlexibleKmzAccessPlan(plan) {
+  if (!plan || plan.engine !== 'kmz' || !plan.flexibleBoarding) return plan;
+  const coords = plan.fullPath || plan.legs?.find(leg => leg.mode === 'bus')?.fullPath;
+  if (!Array.isArray(coords) || coords.length < 2) return plan;
+  const currentBoard = currentKmzCandidateFromPlan(plan, 'board');
+  const currentAlight = currentKmzCandidateFromPlan(plan, 'alight');
+  if (!currentBoard || !currentAlight) return plan;
+
+  // TRB v57: para buses urbanos, el abordaje y la bajada se corrigen usando ruta peatonal real.
+  // Así se evita recomendar el lado/calle contraria cuando otro punto del mismo recorrido es más caminable.
+  const board = await chooseFlexibleAccessPoint(plan.origin, coords, {
+    maxStraightMeters: BUS_FLEXIBLE_STOP_WALK_METERS + 260,
+    minAlongMeters: 0,
+    maxAlongMeters: Math.max(0, currentAlight.distanceAlongMeters - 350),
+    limit: 7
+  }) || currentBoard;
+  const alight = await chooseFlexibleAccessPoint(plan.destination, coords, {
+    maxStraightMeters: BUS_FLEXIBLE_DESTINATION_WALK_METERS + 260,
+    minAlongMeters: board.distanceAlongMeters + 350,
+    maxAlongMeters: Infinity,
+    reverseWalk: true,
+    limit: 7
+  }) || currentAlight;
+  const improvedStart = (board.walkDistance || Infinity) <= (currentBoard.walkDistance || Infinity) * 1.12;
+  const improvedEnd = (alight.walkDistance || Infinity) <= (currentAlight.walkDistance || Infinity) * 1.12;
+  if (improvedStart || improvedEnd) applyFlexibleKmzAccess(plan, improvedStart ? board : currentBoard, improvedEnd ? alight : currentAlight);
+  return plan;
+}
+
+async function refineFlexibleBusAccessPlans(plans = []) {
+  if (!Array.isArray(plans) || !plans.length || !navigator.onLine) return plans;
+  const targets = plans.filter(plan => plan?.engine === 'kmz' && plan.flexibleBoarding).slice(0, 10);
+  for (const plan of targets) {
+    try { await refineFlexibleKmzAccessPlan(plan); }
+    catch (error) { console.warn('[TRB] No se pudo refinar el punto flexible del bus:', error); }
+  }
+  return plans;
 }
 
 async function ensureWalkLegGeometry(leg) {
