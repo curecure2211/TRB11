@@ -836,6 +836,11 @@ const MAX_EGRESS_WALK_EXPANDED = 5200;
 const MAX_TRANSFER_WALK = 320;
 const MAX_TRANSFER_WALK_EXPANDED = 520;
 const MAX_ROUTING_WAYPOINTS = 24;
+// TRB v56: en buses urbanos SIBUS el abordaje/descenso puede ser sobre el recorrido,
+// no necesariamente en un paradero fijo. 10 min caminando ≈ 800 m.
+const BUS_FLEXIBLE_STOP_WALK_METERS = 800;
+const BUS_FLEXIBLE_STOP_IDEAL_METERS = 360;
+const BUS_FLEXIBLE_DESTINATION_WALK_METERS = 900;
 
 
 // TRB v48 · empresas aliadas autorizadas para conexiones oficiales con Transmetro.
@@ -1451,17 +1456,29 @@ function makeDirectPlan(route, stops, origin, destination, boarding, alighting) 
   const boardPoint = pointFromStop(boarding.stop);
   const alightPoint = pointFromStop(alighting.stop);
   const rideDistance = segmentDistance(stops, boarding.index, alighting.index);
-  return finalizeJourneyPlan({
+  const isFlexibleBus = plannerRouteSystem(route) === 'sibus';
+  let score = (boarding.distance + alighting.distance) * 1.4 + rideDistance * .075;
+  if (isFlexibleBus) {
+    // TRB v56: si el bus urbano pasa cerca, no castigues una caminata razonable
+    // de 4-10 min ni fuerces transbordos innecesarios.
+    score = (boarding.distance + alighting.distance) * .75 + rideDistance * .075;
+    if (boarding.distance <= BUS_FLEXIBLE_STOP_WALK_METERS && alighting.distance <= BUS_FLEXIBLE_DESTINATION_WALK_METERS) score -= 2600;
+    if (boarding.distance <= BUS_FLEXIBLE_STOP_IDEAL_METERS) score -= 500;
+  }
+  const plan = finalizeJourneyPlan({
     type: 'direct',
-    score: (boarding.distance + alighting.distance) * 1.4 + rideDistance * .075,
+    score,
+    flexibleBoarding: isFlexibleBus,
     origin,
     destination,
     legs: [
       { mode: 'walk', from: origin, to: boardPoint, distance: boarding.distance },
-      { mode: 'bus', route, stops, startIndex: boarding.index, endIndex: alighting.index, from: boardPoint, to: alightPoint, distance: rideDistance, stopCount: alighting.index - boarding.index },
+      { mode: 'bus', route, stops, startIndex: boarding.index, endIndex: alighting.index, from: boardPoint, to: alightPoint, distance: rideDistance, stopCount: isFlexibleBus ? null : alighting.index - boarding.index, flexibleBoarding: isFlexibleBus },
       { mode: 'walk', from: alightPoint, to: destination, distance: alighting.distance }
     ]
   });
+  if (isFlexibleBus && boarding.distance <= BUS_FLEXIBLE_STOP_WALK_METERS && alighting.distance <= BUS_FLEXIBLE_DESTINATION_WALK_METERS) plan.reasonableDirectBus = true;
+  return plan;
 }
 
 function makeTransferPlan(routeA, stopsA, routeB, stopsB, origin, destination, boarding, transferA, transferB, alighting) {
@@ -1656,16 +1673,29 @@ function plannerStopsFromPath(path, route, maximum = 420) {
     const [lngB, latB] = coordinates[index + 1];
     pathMeters += haversine(latA, lngA, latB, lngB);
   }
-  // Mantiene puntos cada ~140 m para no perder rutas cercanas entre muestras.
-  const desired = Math.max(70, Math.min(maximum, Math.ceil(pathMeters / 140)));
+
+  // TRB v56: para SIBUS los puntos del planificador son puntos flexibles sobre
+  // el trazado oficial, porque el bus urbano puede recoger/dejar a la persona en
+  // el trayecto. Transmetro conserva sus estaciones/paraderos reales en state.routes.
+  const isFlexibleBus = plannerRouteSystem(route) === 'sibus';
+  const intervalMeters = isFlexibleBus ? 60 : 140;
+  const minSamples = isFlexibleBus ? 110 : 70;
+  const maxSamples = isFlexibleBus ? Math.max(900, maximum) : maximum;
+  const desired = Math.max(minSamples, Math.min(maxSamples, Math.ceil(pathMeters / intervalMeters)));
   const indexes = sampleCoordinateIndexes(coordinates.length, desired);
   return indexes.map((pathIndex, index) => {
     const [lng, lat] = coordinates[pathIndex];
+    const flexibleName = index === 0
+      ? `Inicio del recorrido ${route.shortName}`
+      : index === indexes.length - 1
+        ? `Final del recorrido ${route.shortName}`
+        : `Punto del recorrido ${route.shortName}`;
     return {
       id: `${route.id}-p${index}`,
-      name: index === 0 ? `Inicio ${route.shortName}` : index === indexes.length - 1 ? `Final ${route.shortName}` : `${route.shortName} · punto ${index + 1}`,
+      name: isFlexibleBus ? flexibleName : (index === 0 ? `Inicio ${route.shortName}` : index === indexes.length - 1 ? `Final ${route.shortName}` : `${route.shortName} · punto ${index + 1}`),
       latitude: lat,
       longitude: lng,
+      flexibleBoarding: isFlexibleBus,
       _pathIndex: pathIndex
     };
   });
@@ -2117,6 +2147,8 @@ function engineResultToPlan(result, origin, destination) {
   return {
     engine: 'kmz',
     type: 'direct',
+    flexibleBoarding: true,
+    reasonableDirectBus: result.walkBeforeDistance <= BUS_FLEXIBLE_STOP_WALK_METERS && result.walkAfterDistance <= BUS_FLEXIBLE_DESTINATION_WALK_METERS,
     origin,
     destination,
     route,
@@ -2135,7 +2167,7 @@ function engineResultToPlan(result, origin, destination) {
     ridePath: result.ridePath,
     legs: [
       { mode: 'walk', from: origin, to: boardPoint, distance: result.walkBeforeDistance, duration: result.walkBeforeMinutes * 60, label: 'Caminata inicial' },
-      { mode: 'bus', route, from: boardPoint, to: alightPoint, distance: result.busDistance, duration: result.busMinutes * 60, direction: result.direction, path: result.ridePath, fullPath: result.fullPath },
+      { mode: 'bus', route, from: boardPoint, to: alightPoint, distance: result.busDistance, duration: result.busMinutes * 60, direction: result.direction, path: result.ridePath, fullPath: result.fullPath, flexibleBoarding: true, stopCount: null },
       { mode: 'walk', from: alightPoint, to: destination, distance: result.walkAfterDistance, duration: result.walkAfterMinutes * 60, label: 'Caminata final' }
     ]
   };
@@ -2160,13 +2192,14 @@ function journeyStepHTML(leg) {
     const minutes = Math.max(1, Math.ceil((leg.duration || leg.distance / BIKE_SPEED_MPS) / 60));
     return `<li><span class="journey-step-icon">🚲</span><span class="journey-step-copy"><b>Pedalea ${formatDistance(leg.distance)} · ≈ ${minutes} min</b><small>Ruta ciclista estimada hacia ${escapeHTML(target)}</small></span></li>`;
   }
-  const fromName = leg.from.stop?.name || leg.from.label || 'punto de abordaje';
-  const toName = leg.to.stop?.name || leg.to.label || 'punto de descenso';
-  const details = Number.isFinite(leg.stopCount)
+  const isBusUrbano = plannerRouteSystem(leg.route) === 'sibus';
+  const fromName = leg.from.stop?.name || leg.from.label || (isBusUrbano ? 'punto más cercano del recorrido' : 'punto de abordaje');
+  const toName = leg.to.stop?.name || leg.to.label || (isBusUrbano ? 'punto de descenso sobre la ruta' : 'punto de descenso');
+  const details = !isBusUrbano && Number.isFinite(leg.stopCount)
     ? `${leg.stopCount} ${leg.stopCount === 1 ? 'parada' : 'paradas'}`
     : `${formatDistance(leg.distance)} · ≈ ${Math.max(1, Math.ceil((leg.duration || 0) / 60))} min en bus`;
   const operator = leg.route.operator ? `${escapeHTML(leg.route.operator)} · ` : '';
-  const system = plannerRouteSystem(leg.route) === 'transmetro' ? 'Transmetro' : 'Bus urbano';
+  const system = isBusUrbano ? 'Bus urbano · parada flexible' : 'Transmetro';
   return `<li><span class="journey-step-icon">🚌</span><span class="journey-step-copy"><b>Toma ${transitLineCodeHTML(leg.route)} · ${escapeHTML(leg.route.longName)}</b><small>${system} · ${operator}desde ${escapeHTML(fromName)} hasta ${escapeHTML(toName)} · ${details}${leg.direction ? ` · ${escapeHTML(leg.direction)}` : ''}</small></span></li>`;
 }
 
@@ -2192,7 +2225,7 @@ function renderJourneyResults() {
     ? `${diagnostic.loadedCount} de ${diagnostic.totalCount} KMZ procesados${diagnostic.errorCount ? ` · ${diagnostic.errorCount} con error` : ''}.`
     : 'Resultado de respaldo con el catálogo histórico disponible.';
   container.classList.remove('hidden');
-  container.innerHTML = `<div class="journey-results__header"><div><span class="eyebrow">Opciones encontradas</span><h3>${escapeHTML(state.plannerOrigin.label)} → ${escapeHTML(state.plannerDestination.label)}</h3></div><p>${escapeHTML(diagnosticCopy)}<br>Rutas de un solo bus primero; transbordos al final.</p></div>` + state.plannerPlans.map((plan, index) => {
+  container.innerHTML = `<div class="journey-results__header"><div><span class="eyebrow">Opciones encontradas</span><h3>${escapeHTML(state.plannerOrigin.label)} → ${escapeHTML(state.plannerDestination.label)}</h3></div><p>${escapeHTML(diagnosticCopy)}<br>Buses urbanos: parada flexible sobre el recorrido; Transmetro: estaciones/paraderos.</p></div>` + state.plannerPlans.map((plan, index) => {
     const engineCard = plan.engine === 'kmz';
     const walkBefore = plan.legs.find(leg => leg.mode === 'walk');
     const walkAfter = [...plan.legs].reverse().find(leg => leg.mode === 'walk');
@@ -2805,6 +2838,16 @@ function planWalkingRank(plan = {}) {
   return (profile.initial * 2.2) + (profile.final * 1.8) + (profile.transfer * 1.55) + (profile.total * .35) + (transfers * 180);
 }
 
+function planIsReasonableDirectUrbanBus(plan = {}) {
+  if (!planIsDirectOneBus(plan)) return false;
+  const busLeg = (plan.legs || []).find(leg => leg.mode === 'bus');
+  if (!busLeg || plannerRouteSystem(busLeg.route) !== 'sibus') return false;
+  const profile = planWalkProfile(plan);
+  return profile.initial <= BUS_FLEXIBLE_STOP_WALK_METERS
+    && profile.final <= BUS_FLEXIBLE_DESTINATION_WALK_METERS
+    && (profile.initial + profile.final) <= 1700;
+}
+
 function comparePlannerVisibleResults(a, b) {
   if (state.plannerTransportSettings?.officialTransfers) {
     const directDiff = (planIsDirectOneBus(a) ? 0 : 1) - (planIsDirectOneBus(b) ? 0 : 1);
@@ -2815,6 +2858,10 @@ function comparePlannerVisibleResults(a, b) {
   const aCategory = planCategory(a || { legs: [] });
   const bCategory = planCategory(b || { legs: [] });
   if (aCategory === 'transit' && bCategory === 'transit') {
+    // TRB v56: si un bus urbano directo pasa a 4-10 min caminando, no lo mandes
+    // debajo de alternativas con otro bus. Esa regla no aplica para Transmetro.
+    const directUrbanDiff = (planIsReasonableDirectUrbanBus(a) ? 0 : 1) - (planIsReasonableDirectUrbanBus(b) ? 0 : 1);
+    if (directUrbanDiff) return directUrbanDiff;
     const aProfile = planWalkProfile(a);
     const bProfile = planWalkProfile(b);
     const aRank = planWalkingRank(a);
