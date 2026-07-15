@@ -64,6 +64,7 @@ const state = {
   mapPickerDestinationLayer: null,
   mapSelectedPlanIndex: -1,
   mapDrawRequestId: 0,
+  lineDrawRequestId: 0,
   baseMapLayer: null,
   baseMapFallbackUsed: false,
   mapUnavailableRendered: false,
@@ -157,6 +158,7 @@ function setRouteFocusMode(active, mode = 'suggestions') {
 }
 
 function clearSelectedJourneyFromMap({ resetSelection = true } = {}) {
+  state.lineDrawRequestId += 1;
   stopDemoBusAnimation();
   if (state.map && state.routeLayer && state.map.hasLayer(state.routeLayer)) state.map.removeLayer(state.routeLayer);
   state.routeLayer = null;
@@ -186,14 +188,23 @@ function showRouteSuggestionsPanel() {
   renderMapJourneyResults();
 }
 
-function transitLineDataAttributes(route = {}) {
+function transitLineDataAttributes(route = {}, extra = {}) {
   const system = plannerRouteSystem(route);
-  return `data-transit-line-id="${escapeHTML(String(route.id || ''))}" data-transit-line-code="${escapeHTML(String(route.shortName || route.code || ''))}" data-transit-line-operator="${escapeHTML(String(route.operator || ''))}" data-transit-line-system="${escapeHTML(system)}"`;
+  const attrs = [
+    `data-transit-line-id="${escapeHTML(String(route.id || ''))}"`,
+    `data-transit-line-code="${escapeHTML(String(route.shortName || route.code || ''))}"`,
+    `data-transit-line-operator="${escapeHTML(String(route.operator || ''))}"`,
+    `data-transit-line-system="${escapeHTML(system)}"`
+  ];
+  if (extra.planIndex !== undefined && extra.planIndex !== null) attrs.push(`data-transit-plan-index="${escapeHTML(String(extra.planIndex))}"`);
+  if (extra.legIndex !== undefined && extra.legIndex !== null) attrs.push(`data-transit-leg-index="${escapeHTML(String(extra.legIndex))}"`);
+  return attrs.join(' ');
 }
 
-function transitLineCodeHTML(route = {}, className = 'transit-line-link') {
+function transitLineCodeHTML(route = {}, className = 'transit-line-link', extra = {}) {
   const code = route.shortName || route.code || 'Ruta';
-  return `<span class="${className}" role="button" tabindex="0" ${transitLineDataAttributes(route)} title="Ver solamente la ruta ${escapeHTML(code)} en el mapa">${escapeHTML(code)}</span>`;
+  const title = extra.legIndex !== undefined ? `Ver solo el tramo usado de ${code}` : `Ver solamente la ruta ${code} en el mapa`;
+  return `<span class="${className}" role="button" tabindex="0" ${transitLineDataAttributes(route, extra)} title="${escapeHTML(title)}">${escapeHTML(code)}</span>`;
 }
 
 function resolveTransitLine(reference = {}) {
@@ -227,11 +238,18 @@ function openTransitLineDetails(reference = {}) {
     return;
   }
   const requestedPlanIndex = Number(reference.planIndex ?? state.mapSelectedPlanIndex);
+  const requestedLegIndex = Number(reference.legIndex);
   const canReturnToPlanner = state.mapPanelMode === 'instructions' || state.mapPanelMode === 'suggestions';
   state.lineReturnPlanIndex = canReturnToPlanner && Number.isInteger(requestedPlanIndex) && requestedPlanIndex >= 0
     ? requestedPlanIndex
     : -1;
   state.lineReturnMode = canReturnToPlanner ? state.mapPanelMode : 'default';
+  const plan = Number.isInteger(requestedPlanIndex) ? state.plannerPlans[requestedPlanIndex] : null;
+  const leg = plan && Number.isInteger(requestedLegIndex) ? plan.legs?.[requestedLegIndex] : null;
+  if (leg?.mode === 'bus') {
+    drawTransitLegDetails(resolved.route, leg, { ...reference, planIndex: requestedPlanIndex, legIndex: requestedLegIndex, system: resolved.system });
+    return;
+  }
   setRouteFocusMode(true, 'line');
   setMapJourneyOverlay('');
   showView('map');
@@ -263,7 +281,7 @@ function returnFromTransitLine() {
   exitRouteFocusMode();
 }
 
-function instructionLegHTML(leg, index, startOffset) {
+function instructionLegHTML(leg, index, startOffset, planIndex = state.mapSelectedPlanIndex) {
   const minutes = Math.max(1, Math.ceil((leg.duration || 60) / 60));
   const start = formatSuggestionClock(startOffset);
   const end = formatSuggestionClock(startOffset + minutes);
@@ -279,7 +297,7 @@ function instructionLegHTML(leg, index, startOffset) {
   const fromName = leg.from?.stop?.name || leg.from?.label || 'punto de abordaje';
   const toName = leg.to?.stop?.name || leg.to?.label || 'punto de descenso';
   const operator = leg.route?.operator || (plannerRouteSystem(leg.route) === 'transmetro' ? 'Transmetro' : 'Bus urbano');
-  return `<li class="trip-instruction-step is-transit" style="--step-color:${color}"><span class="trip-step-time">${start}</span><span class="trip-step-node">🚌</span><div><b>Sube a ${transitLineCodeHTML(leg.route, 'transit-line-link transit-line-link--instruction')}</b><small>${escapeHTML(operator)} · desde ${escapeHTML(fromName)}</small><span class="trip-step-ride">${escapeHTML(leg.route.longName || leg.route.shortName)} · ${minutes} min</span><small>Bájate en ${escapeHTML(toName)}</small></div><span class="trip-step-end">${end}</span></li>`;
+  return `<li class="trip-instruction-step is-transit" style="--step-color:${color}"><span class="trip-step-time">${start}</span><span class="trip-step-node">🚌</span><div><b>Sube a ${transitLineCodeHTML(leg.route, 'transit-line-link transit-line-link--instruction', { planIndex, legIndex: index })}</b><small>${escapeHTML(operator)} · desde ${escapeHTML(fromName)}</small><span class="trip-step-ride">${escapeHTML(leg.route.longName || leg.route.shortName)} · ${minutes} min</span><small>Bájate en ${escapeHTML(toName)}</small></div><span class="trip-step-end">${end}</span></li>`;
 }
 
 
@@ -329,13 +347,13 @@ function renderMapJourneyInstructions(plan, index) {
   if (!panel || !plan) return;
   let offset = 0;
   const steps = plan.legs.map((leg, legIndex) => {
-    const html = instructionLegHTML(leg, legIndex, offset);
+    const html = instructionLegHTML(leg, legIndex, offset, Number(index));
     offset += Math.max(1, Math.ceil((leg.duration || 60) / 60));
     return html;
   }).join('');
   const transitLegs = plan.legs.filter(leg => leg.mode === 'bus');
   const fare = plan.fare?.value ? formatCurrency(plan.fare.value) : 'Consulta al abordar';
-  const routeBadges = transitLegs.length ? transitLegs.map(leg => `<span class="trip-route-badge" style="--instruction-color:${routeColor(leg.route)};--instruction-text-color:${routeTextColor(leg.route)}" role="button" tabindex="0" ${transitLineDataAttributes(leg.route)} title="Ver la línea completa ${escapeHTML(leg.route.shortName)}">${escapeHTML(leg.route.shortName)}</span>`).join('') : `<span style="--instruction-color:${mapPlanRouteColor(plan)}">${planCategory(plan) === 'bike' ? 'Bici' : 'Caminar'}</span>`;
+  const routeBadges = transitLegs.length ? plan.legs.map((leg, legIndex) => leg.mode === 'bus' ? `<span class="trip-route-badge" style="--instruction-color:${routeColor(leg.route)};--instruction-text-color:${routeTextColor(leg.route)}" role="button" tabindex="0" ${transitLineDataAttributes(leg.route, { planIndex: Number(index), legIndex })} title="Ver solo el tramo usado de ${escapeHTML(leg.route.shortName)}">${escapeHTML(leg.route.shortName)}</span>` : '').join('') : `<span style="--instruction-color:${mapPlanRouteColor(plan)}">${planCategory(plan) === 'bike' ? 'Bici' : 'Caminar'}</span>`;
   panel.innerHTML = `<div class="trip-instructions-header">
       <button class="trip-back-button" type="button" data-back-to-suggestions aria-label="Volver a sugerencias">‹</button>
       <div><span class="eyebrow">Ruta seleccionada</span><h2>Instrucciones</h2></div>
@@ -2363,7 +2381,7 @@ function flexibleAccessCandidatesOnPath(anchor, coords, options = {}) {
   const maxStraightMeters = options.maxStraightMeters ?? 1100;
   const minAlongMeters = options.minAlongMeters ?? 0;
   const maxAlongMeters = options.maxAlongMeters ?? Infinity;
-  const hardLimit = options.limit ?? 9;
+  const hardLimit = options.limit ?? 24;
   const candidates = [];
   let distanceBefore = 0;
   for (let index = 0; index < coords.length - 1; index++) {
@@ -2393,7 +2411,7 @@ function flexibleAccessCandidatesOnPath(anchor, coords, options = {}) {
       const key = `${candidate.segmentIndex}:${candidate.t.toFixed(2)}`;
       if (!unique.has(key)) unique.set(key, candidate);
     });
-  return [...unique.values()].slice(0, hardLimit);
+  return [...unique.values()].slice(0, Math.max(hardLimit, 24));
 }
 
 async function scoreFlexibleWalkCandidate(anchor, candidate, reverse = false) {
@@ -2526,14 +2544,14 @@ async function refineFlexibleKmzAccessPlan(plan) {
     maxStraightMeters: BUS_FLEXIBLE_STOP_WALK_METERS + 260,
     minAlongMeters: 0,
     maxAlongMeters: Math.max(0, currentAlight.distanceAlongMeters - 350),
-    limit: 7
+    limit: 18
   }) || currentBoard;
   const alight = await chooseFlexibleAccessPoint(plan.destination, coords, {
     maxStraightMeters: BUS_FLEXIBLE_DESTINATION_WALK_METERS + 260,
     minAlongMeters: board.distanceAlongMeters + 350,
     maxAlongMeters: Infinity,
     reverseWalk: true,
-    limit: 7
+    limit: 18
   }) || currentAlight;
   const improvedStart = (board.walkDistance || Infinity) <= (currentBoard.walkDistance || Infinity) * 1.12;
   const improvedEnd = (alight.walkDistance || Infinity) <= (currentAlight.walkDistance || Infinity) * 1.12;
@@ -2885,6 +2903,7 @@ function drawJourneyPlan(index, options = {}) {
   const plan = state.plannerPlans[Number(index)];
   if (!plan) return;
   const drawRequestId = ++state.mapDrawRequestId;
+  state.lineDrawRequestId += 1;
   const showInstructions = options.showInstructions !== false;
   state.mapSelectedPlanIndex = Number(index);
   if (showInstructions) renderMapJourneyInstructions(plan, Number(index));
@@ -4770,7 +4789,95 @@ function buildOfficialMovementPath(paths = [], maximumPerPath = 420) {
   return movement;
 }
 
+
+function routeLayerLatLngPointsFromLeg(leg = {}) {
+  if (Array.isArray(leg.geometry) && leg.geometry.length > 1) {
+    return leg.geometry
+      .map(point => Array.isArray(point) ? [Number(point[0]), Number(point[1])] : [Number(point.lat), Number(point.lng)])
+      .filter(point => point.every(Number.isFinite));
+  }
+  const lngLatPath = Array.isArray(leg.ridePath) && leg.ridePath.length > 1 ? leg.ridePath : Array.isArray(leg.path) && leg.path.length > 1 ? leg.path : [];
+  if (lngLatPath.length > 1) {
+    return lngLatPath
+      .map(point => Array.isArray(point) ? [Number(point[1]), Number(point[0])] : [Number(point.lat), Number(point.lng)])
+      .filter(point => point.every(Number.isFinite));
+  }
+  const fallback = fallbackBusLegGeometry(leg);
+  if (fallback.length > 1) return fallback;
+  const start = leg.from && Number.isFinite(Number(leg.from.lat)) && Number.isFinite(Number(leg.from.lng)) ? [Number(leg.from.lat), Number(leg.from.lng)] : null;
+  const end = leg.to && Number.isFinite(Number(leg.to.lat)) && Number.isFinite(Number(leg.to.lng)) ? [Number(leg.to.lat), Number(leg.to.lng)] : null;
+  return start && end ? [start, end] : [];
+}
+
+function rideStopObjectsFromLatLngPath(path, prefix = 'ride') {
+  const coords = Array.isArray(path) && path.length > 1 ? sampleCoordinates(path, 24) : [];
+  return coords.map(([lat, lng], index, all) => ({
+    id: `${prefix}-${index}`,
+    name: index === 0 ? 'Inicio del tramo mostrado' : index === all.length - 1 ? 'Fin del tramo mostrado' : `Punto ${index + 1}`,
+    latitude: lat,
+    longitude: lng
+  }));
+}
+
+async function drawTransitLegDetails(route, leg, reference = {}, system = plannerRouteSystem(route)) {
+  const requestId = ++state.lineDrawRequestId;
+  state.mapDrawRequestId += 1;
+  setRouteFocusMode(true, 'line');
+  setMapJourneyOverlay('');
+  showView('map');
+  initializeMap();
+  if (!state.map) return;
+  stopDemoBusAnimation();
+  clearMapLibreRoute();
+  if (state.routeLayer) { state.map.removeLayer(state.routeLayer); state.routeLayer = null; }
+  if (state.busLayer) { state.map.removeLayer(state.busLayer); state.busLayer = null; }
+  if (state.allStopsLayer && state.map.hasLayer(state.allStopsLayer)) state.map.removeLayer(state.allStopsLayer);
+  if (state.liveVehicleLayer && state.map.hasLayer(state.liveVehicleLayer)) state.map.removeLayer(state.liveVehicleLayer);
+
+  try { await ensureBusLegGeometry(leg); } catch {}
+  if (requestId !== state.lineDrawRequestId) return;
+  const points = routeLayerLatLngPointsFromLeg(leg);
+  const color = routeColor(leg.route || route);
+  const code = leg.route?.shortName || route.shortName || route.code || reference.code || 'Ruta';
+  const operator = leg.route?.operator || route.operator || (system === 'transmetro' ? 'Transmetro' : 'Bus urbano');
+  $('#mapInfoDefault')?.classList.add('hidden');
+  $('#mapInfoContent')?.classList.remove('hidden');
+  if ($('#mapInfoContent')) $('#mapInfoContent').innerHTML = `${lineInfoBackHeaderHTML(code)}<div class="map-route-summary"><span class="route-code" style="--route-color:${color};--route-text-color:${readableRouteTextColor(color)}">${escapeHTML(code)}</span><div><span class="eyebrow">${escapeHTML(operator)}</span><h2>Tramo usado en esta alternativa</h2><p>Solo se muestra el pedazo de ruta que tomas en este viaje, no la línea completa.</p></div></div><div class="route-loading"><span></span><p>Dibujando solo el tramo seleccionado…</p></div>`;
+
+  if (points.length < 2) {
+    if ($('#mapInfoContent')) $('#mapInfoContent').innerHTML = `${lineInfoBackHeaderHTML(code)}<div class="notice notice--warning"><div class="notice__icon">!</div><div><strong>No se pudo aislar el tramo</strong><p>TRB no encontró geometría suficiente para este tramo. Vuelve a la alternativa e intenta otra ruta.</p></div></div>`;
+    return;
+  }
+  const group = L.layerGroup();
+  drawTransitPath(group, points, color, { weight: 9, opacity: 1, className: 'trb-transit-line trb-selected-leg-line' })
+    ?.bindPopup(`<strong>${escapeHTML(code)}</strong><br>${escapeHTML(operator)} · tramo seleccionado`);
+  addDirectionArrows(group, points, color);
+  const boardPoint = leg.from && Number.isFinite(Number(leg.from.lat)) ? [Number(leg.from.lat), Number(leg.from.lng)] : points[0];
+  const alightPoint = leg.to && Number.isFinite(Number(leg.to.lat)) ? [Number(leg.to.lat), Number(leg.to.lng)] : points[points.length - 1];
+  L.marker(boardPoint, { pane: 'routeStops', icon: routeTerminalIcon('↑', color), zIndexOffset: 780 })
+    .bindPopup(`<strong>Sube a ${escapeHTML(code)}</strong><br>${escapeHTML(leg.from?.stop?.name || leg.from?.label || 'Punto del recorrido')}`).addTo(group);
+  L.marker(alightPoint, { pane: 'routeStops', icon: routeTerminalIcon('↓', color), zIndexOffset: 780 })
+    .bindPopup(`<strong>Bájate de ${escapeHTML(code)}</strong><br>${escapeHTML(leg.to?.stop?.name || leg.to?.label || 'Punto del recorrido')}`).addTo(group);
+  const mid = points[Math.floor(points.length / 2)];
+  if (mid) L.marker(mid, { pane: 'routeStops', icon: routeLabelIcon(code, color), interactive: false, zIndexOffset: 760 }).addTo(group);
+  group.addTo(state.map);
+  state.routeLayer = group;
+  state.busLayer = L.layerGroup([], { pane: 'routeVehicles' }).addTo(state.map);
+  state.currentMapRoute = { ...(leg.route || route), id: leg.route?.id || route.id || code, shortName: code, longName: leg.route?.longName || route.name || '', colorHex: color.replace('#', ''), operator };
+  state.currentRouteStops = rideStopObjectsFromLatLngPath(points, `leg-${code}`);
+  state.currentRoutePath = points.map(([latitude, longitude]) => ({ latitude, longitude }));
+  state.demoBuses = createDemoBuses(state.currentMapRoute, state.currentRouteStops).slice(0, 3);
+  updateDemoBuses(false);
+  state.busTimer = window.setInterval(() => updateDemoBuses(true), 1500);
+  const rideDistance = points.slice(1).reduce((sum, point, index) => sum + haversine(points[index][0], points[index][1], point[0], point[1]), 0);
+  if ($('#mapInfoContent')) $('#mapInfoContent').innerHTML = `${lineInfoBackHeaderHTML(code)}<div class="map-route-summary"><span class="route-code" style="--route-color:${color};--route-text-color:${readableRouteTextColor(color)}">${escapeHTML(code)}</span><div><span class="eyebrow">${escapeHTML(operator)}</span><h2>Tramo usado en esta alternativa</h2><p>Se limpió cualquier ruta anterior: ahora solo ves este bus y el bus de demostración corre solo sobre este tramo.</p></div></div><div class="hsl-route-timeline"><span class="hsl-route-terminal" style="--timeline-color:${color}">↑</span><div><b>Subir</b><small>${escapeHTML(leg.from?.stop?.name || leg.from?.label || 'Punto del recorrido')}</small></div><span class="hsl-route-line" style="--timeline-color:${color}"></span><span class="hsl-route-terminal" style="--timeline-color:${color}">↓</span><div><b>Bajar</b><small>${escapeHTML(leg.to?.stop?.name || leg.to?.label || 'Punto del recorrido')}</small></div></div><div class="status-table route-metrics-table"><div><span>Tramo mostrado</span><b>${formatRouteDistance(rideDistance)} · ≈ ${Math.max(1, Math.ceil((leg.duration || rideDistance / BUS_SPEED_MPS) / 60))} min</b></div></div><section class="operations-section"><div class="operations-heading"><div><span class="eyebrow">Vehículos incluidos</span><h3>Buses solo sobre el tramo</h3></div><span class="simulation-badge">Simulación</span></div><div id="demoBusList" class="demo-bus-list"></div></section>`;
+  renderBusList();
+  setMapJourneyOverlay(`<div class="map-overlay__header"><span class="map-overlay__route" style="--overlay-color:${color}">${escapeHTML(code)}</span><button class="map-overlay__close" type="button" data-map-overlay-close aria-label="Cerrar resumen">×</button></div><strong>Solo tramo usado</strong><small>${escapeHTML(operator)} · ${formatRouteDistance(rideDistance)}</small><div class="map-overlay__legend"><i style="--overlay-color:${color}"></i> La ruta anterior fue limpiada</div>`);
+  fitMapToSelectedJourney(points.concat([boardPoint, alightPoint]), { rideMeters: rideDistance });
+}
+
 async function drawOfficialRoute(route) {
+  const officialRequestId = ++state.lineDrawRequestId;
   state.transmetroDrawRequestId += 1;
   state.currentRoutePath = [];
   syncMapRouteExplorer(`official::${route.id}`, route.operator);
@@ -4790,6 +4897,7 @@ async function drawOfficialRoute(route) {
     if (!catalogRoute) throw new Error('La ruta no aparece en data/trb_catalogo_rutas.json');
     if (!window.TRBRouteEngine) throw new Error('No se cargó trb_motor_rutas.js');
     const loaded = await loadOfficialGeometry(route, catalogRoute);
+    if (officialRequestId !== state.lineDrawRequestId) return;
     const color = routeColor(route);
     const group = L.layerGroup();
     const allBounds = [];
@@ -4895,6 +5003,7 @@ async function buildPreciseTransmetroGeometry(route, stops) {
 }
 
 async function drawRoute(route) {
+  const routeLineRequestId = ++state.lineDrawRequestId;
   syncMapRouteExplorer(`transmetro::${route.id}`);
   initializeMap();
   if (!state.map) return;
@@ -4931,7 +5040,7 @@ async function drawRoute(route) {
   } catch (error) {
     console.warn('TRB: no se pudo ajustar Transmetro a la red vial', route.shortName, error);
   }
-  if (requestId !== state.transmetroDrawRequestId) return;
+  if (requestId !== state.transmetroDrawRequestId || routeLineRequestId !== state.lineDrawRequestId) return;
 
   const points = routeMetrics.geometry?.length > 1 ? routeMetrics.geometry : fallbackPoints;
   if (state.routeLayer && state.map.hasLayer(state.routeLayer)) state.map.removeLayer(state.routeLayer);
@@ -4978,6 +5087,7 @@ function stopDemoBusAnimation() {
 }
 
 function clearMap() {
+  state.lineDrawRequestId += 1;
   if (state.networkExplorerMode) closeNetworkExplorer({ preserveMap: true });
   exitRouteFocusMode();
   if (!state.map) return;
@@ -5196,7 +5306,8 @@ function bindEvents() {
         code: transitLine.dataset.transitLineCode,
         operator: transitLine.dataset.transitLineOperator,
         system: transitLine.dataset.transitLineSystem,
-        planIndex: transitLine.closest('[data-map-plan-index]')?.dataset.mapPlanIndex ?? state.mapSelectedPlanIndex
+        planIndex: transitLine.dataset.transitPlanIndex ?? transitLine.closest('[data-map-plan-index]')?.dataset.mapPlanIndex ?? state.mapSelectedPlanIndex,
+        legIndex: transitLine.dataset.transitLegIndex
       });
       return;
     }

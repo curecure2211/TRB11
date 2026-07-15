@@ -441,16 +441,31 @@
     };
   }
 
+  function addRouteOption(options, option, penalty = 0) {
+    if (!option) return;
+    options.push({
+      ...option,
+      totalMinutes: option.totalMinutes + penalty,
+      scorePenalty: penalty,
+      directionPenaltyMinutes: penalty
+    });
+  }
+
   function estimateTripOnLoadedRoute(loaded, origin, destination, overrides = {}) {
     const options = [];
     loaded.paths.forEach(path => {
       const normal = estimateTripOnPath(path, origin, destination, overrides);
-      if (normal) options.push(normal);
-      if (path.direction === 'desconocido' || path.direction.startsWith('alternativa') || path.inferred) {
-        const reversePath = { ...path, direction: `${path.direction}-inversa`, coordinates: path.coordinates.slice().reverse() };
-        const reversed = estimateTripOnPath(reversePath, origin, destination, overrides);
-        if (reversed) options.push(reversed);
-      }
+      addRouteOption(options, normal, 0);
+
+      // TRB v58: algunos KMZ traen el LineString con el orden contrario o sin
+      // dirección confiable. Evaluamos también el trazado inverso para evitar
+      // que el plan mande al usuario a una calzada/sentido que no corresponde.
+      // Si el tramo original tiene dirección conocida, el inverso recibe una
+      // pequeña penalización; solo gana cuando realmente mejora caminata/recorrido.
+      const reversePath = { ...path, direction: `${path.direction || 'recorrido'}-ajustada`, coordinates: path.coordinates.slice().reverse(), directionAdjusted: true };
+      const reversed = estimateTripOnPath(reversePath, origin, destination, overrides);
+      const penalty = (path.direction === 'desconocido' || path.direction.startsWith('alternativa') || path.inferred) ? 0 : 4;
+      addRouteOption(options, reversed, penalty);
     });
     return options.sort((a, b) => a.totalMinutes - b.totalMinutes || a.totalWalkDistance - b.totalWalkDistance || a.busDistance - b.busDistance)[0] || null;
   }

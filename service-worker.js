@@ -1,4 +1,4 @@
-const CACHE = 'trb-web-v57-puntos-flexibles-misma-calle';
+const CACHE = 'trb-web-v58-tramos-limpios-direccion';
 const STATIC_ASSETS = [
   './', './index.html', './styles.css?v=57', './app.js?v=57', './trb_motor_rutas.js?v=57',
   './manifest.webmanifest', './driver.html', './data/transit_data.json', './data/trb_catalogo_rutas.json',
