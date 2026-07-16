@@ -2391,3 +2391,25 @@ html, body { overflow-x:hidden; }
   .trip-instruction-terminal { grid-template-columns:44px 34px minmax(0,1fr); }
   .trip-instruction-list::before { left:82px; }
 }
+
+
+/* TRB v60 · estado de carga real del planificador */
+.route-suggestion-empty.is-loading {
+  border-style: solid;
+  background: #f4f8ff;
+  color: #0759c8;
+  font-weight: 800;
+}
+.route-suggestion-empty.is-loading::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 8px;
+  border: 2px solid rgba(7, 89, 200, .22);
+  border-top-color: #0759c8;
+  border-radius: 999px;
+  vertical-align: -2px;
+  animation: trbSpin .8s linear infinite;
+}
+@keyframes trbSpin { to { transform: rotate(360deg); } }

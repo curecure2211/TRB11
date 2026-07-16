@@ -2,7 +2,7 @@
   "name": "TRB — Movilidad Barranquilla",
   "short_name": "TRB",
   "description": "TRB: aplicación web pública para consultar rutas, trayectos, caminatas y tiempos aproximados en Barranquilla.",
-  "start_url": "./?app=trb-v59#home",
+  "start_url": "./?app=trb-v60#home",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f3f6fa",
@@ -22,5 +22,5 @@
       "purpose": "any maskable"
     }
   ],
-  "id": "./?app=trb-v59"
+  "id": "./?app=trb-v60"
 }

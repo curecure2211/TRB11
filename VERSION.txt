@@ -1,1 +1,1 @@
-TRB Web v59 - móvil estilo HSL, ajustes únicos e iconos de viaje
+TRB Web v60 - ajustes activos por defecto y cálculo de rutas corregido

@@ -13,6 +13,31 @@ const storage = {
   set(key, value) { try { window.localStorage.setItem(key, value); } catch {} }
 };
 
+const TRANSPORT_SETTING_DEFAULTS = Object.freeze({ buses: true, transmetro: true, walk: true, bike: true, officialTransfers: false });
+
+function normalizePlannerTransportSettings(input = {}) {
+  const source = input && typeof input === 'object' ? input : {};
+  const normalized = { ...TRANSPORT_SETTING_DEFAULTS };
+  Object.keys(TRANSPORT_SETTING_DEFAULTS).forEach(key => {
+    if (typeof source[key] === 'boolean') normalized[key] = source[key];
+  });
+  const activeBaseModes = ['buses', 'transmetro', 'walk', 'bike'].filter(key => normalized[key] !== false);
+  // TRB v60: evita que versiones anteriores o el localStorage dejen todos los
+  // modos apagados. Eso provocaba “Calculando...” sin opciones visibles.
+  if (!activeBaseModes.length) {
+    normalized.buses = true;
+    normalized.transmetro = true;
+    normalized.walk = true;
+    normalized.bike = true;
+  }
+  return normalized;
+}
+
+function ensurePlannerTransportSettings() {
+  state.plannerTransportSettings = normalizePlannerTransportSettings(state.plannerTransportSettings);
+  return state.plannerTransportSettings;
+}
+
 const state = {
   data: null,
   routes: [],
@@ -43,10 +68,10 @@ const state = {
   plannerAllPlans: [],
   plannerFilter: 'all',
   plannerTransportSettings: (() => {
-    const defaults = { buses: true, transmetro: true, walk: true, bike: true, officialTransfers: false };
-    try { return { ...defaults, ...JSON.parse(storage.get('trb-transport-settings', '{}')) }; }
-    catch { return defaults; }
+    try { return normalizePlannerTransportSettings(JSON.parse(storage.get('trb-transport-settings', '{}'))); }
+    catch { return normalizePlannerTransportSettings(); }
   })(),
+  plannerLoading: false,
   officialPlannerNetwork: null,
   plannerOrigin: null,
   plannerDestination: null,
@@ -2122,7 +2147,7 @@ function mergeMultimodalPlans(plans) {
 }
 
 async function calculateMultimodalPlans(origin, destination, onProgress) {
-  const settings = state.plannerTransportSettings || {};
+  const settings = ensurePlannerTransportSettings();
   const wantsBus = settings.buses !== false || (settings.officialTransfers === true && settings.transmetro !== false);
   const wantsTransmetro = settings.transmetro !== false;
   const wantsWalk = settings.walk !== false;
@@ -3151,7 +3176,7 @@ function comparePlannerVisibleResults(a, b) {
 }
 
 function transportSettingAllowsFilter(filter) {
-  const settings = state.plannerTransportSettings || {};
+  const settings = ensurePlannerTransportSettings();
   if (settings.officialTransfers === true && ['walk', 'bike'].includes(filter)) return false;
   if (filter === 'buses') return settings.buses !== false;
   if (filter === 'transmetro') return settings.transmetro !== false;
@@ -3182,7 +3207,7 @@ function planIsOfficialTransmetroAllyConnection(plan = {}) {
 }
 
 function planTransportAllowed(plan) {
-  const settings = state.plannerTransportSettings || { buses: true, transmetro: true, walk: true, bike: true };
+  const settings = ensurePlannerTransportSettings();
   const category = planCategory(plan || { legs: [] });
   if (category === 'transit' && (Number(plan?.transfers) || 0) > 2) return false;
   const systems = planSystems(plan || { legs: [] });
@@ -3291,7 +3316,7 @@ function updateRouteSuggestionModes() {
 }
 
 function plannerActiveTransportSummary() {
-  const settings = state.plannerTransportSettings || {};
+  const settings = ensurePlannerTransportSettings();
   const active = [];
   if (settings.buses !== false) active.push('Bus');
   if (settings.transmetro !== false) active.push('Transmetro');
@@ -3308,7 +3333,11 @@ function renderMapJourneyResults() {
   updateRouteSuggestionModes();
   const indexed = plannerVisibleIndexedPlans(state.plannerFilter);
   if (!indexed.length) {
-    container.innerHTML = `<div class="route-suggestion-empty">${state.plannerTransportSettings?.officialTransfers ? 'No encontré ruta directa ni transbordo oficial para esos puntos. Desactiva “Transbordos oficiales” para ver todas las combinaciones.' : 'No hay opciones con los ajustes actuales. Activa Bus, Transmetro, Caminar o Bicicleta en Ajustes.'}</div>`;
+    const loadingMessage = 'Calculando rutas según tus Ajustes…';
+    const emptyMessage = state.plannerTransportSettings?.officialTransfers
+      ? 'No encontré ruta directa ni transbordo oficial para esos puntos. Desactiva “Transbordos oficiales” para ver todas las combinaciones.'
+      : 'No hay opciones con los ajustes actuales. Abre Ajustes y activa Bus, Transmetro, Caminar o Bicicleta.';
+    container.innerHTML = `<div class="route-suggestion-empty ${state.plannerLoading ? 'is-loading' : ''}">${state.plannerLoading ? loadingMessage : emptyMessage}</div>`;
     container.classList.remove('hidden');
     return;
   }
@@ -3348,10 +3377,12 @@ function activatePlannerFilter(filter) {
 }
 
 function savePlannerTransportSettings() {
+  state.plannerTransportSettings = normalizePlannerTransportSettings(state.plannerTransportSettings);
   storage.set('trb-transport-settings', JSON.stringify(state.plannerTransportSettings));
 }
 
 function renderPlannerTransportSettings() {
+  ensurePlannerTransportSettings();
   $$('[data-transport-toggle]').forEach(button => {
     const key = button.dataset.transportToggle;
     const active = state.plannerTransportSettings?.[key] !== false;
@@ -3368,6 +3399,7 @@ function renderPlannerTransportSettings() {
 }
 
 function applyPlannerTransportSettings(redraw = true) {
+  state.plannerTransportSettings = normalizePlannerTransportSettings(state.plannerTransportSettings);
   savePlannerTransportSettings();
   renderPlannerTransportSettings();
   if (!state.plannerAllPlans.length) { updateRouteSuggestionModes(); return; }
@@ -3386,9 +3418,10 @@ function applyPlannerTransportSettings(redraw = true) {
 }
 
 function toggleTransportSetting(key) {
-  const settings = state.plannerTransportSettings;
+  const settings = ensurePlannerTransportSettings();
   if (!settings || !(key in settings)) return;
   settings[key] = settings[key] === false;
+  state.plannerTransportSettings = normalizePlannerTransportSettings(settings);
   // TRB v59: ya no hay pestañas "Todas/Buses/Transmetro" visibles.
   // Las combinaciones se controlan únicamente desde Ajustes.
   state.plannerFilter = 'all';
@@ -3532,6 +3565,8 @@ async function handleMapJourneySubmit() {
   $('#journeyOrigin').value = originText;
   $('#journeyDestination').value = destinationText;
   const button = $('#mapJourneySubmit');
+  state.plannerTransportSettings = normalizePlannerTransportSettings(state.plannerTransportSettings);
+  savePlannerTransportSettings();
   if (button) { button.disabled = true; button.textContent = 'Calculando…'; }
   if (isMobileLayout()) {
     clearSelectedJourneyFromMap({ resetSelection: true });
@@ -3540,6 +3575,7 @@ async function handleMapJourneySubmit() {
     setRouteFocusMode(true, 'suggestions');
   }
   setMapPlannerStatus('Buscando rutas de buses, Transmetro y conexiones entre ambas redes…');
+  state.plannerLoading = true;
   state.plannerPlans = [];
   state.plannerAllPlans = [];
   state.mapSelectedPlanIndex = -1;
@@ -3556,6 +3592,7 @@ async function handleMapJourneySubmit() {
     const plans = await calculateMultimodalPlans(origin, destination, () => {});
     if (searchId !== state.plannerSearchId) return;
     if (!plans.length) throw new Error('No encontré una combinación adecuada para esos puntos.');
+    state.plannerLoading = false;
     state.plannerAllPlans = plans;
     state.plannerPlans = plans;
     state.plannerFilter = 'all';
@@ -3576,13 +3613,15 @@ async function handleMapJourneySubmit() {
     const transmetroCount = plans.filter(plan => plannerFilterKey(plan) === 'transmetro').length;
     const combinedCount = plans.filter(plan => plannerFilterKey(plan) === 'combined').length;
     const officialCount = plans.filter(plan => plan.officialTransfer).length;
-    setMapPlannerStatus(`Rutas listas: ${busCount + transmetroCount + combinedCount} opciones visibles según Ajustes${officialCount ? ` · ${officialCount} especiales` : ''}.`);
+    setMapPlannerStatus(`Rutas listas según tus Ajustes${officialCount ? ` · especiales incluidos` : ''}.`);
   } catch (error) {
+    state.plannerLoading = false;
     state.plannerAllPlans = [];
     state.plannerPlans = [];
     renderMapJourneyResults();
     setMapPlannerStatus(error.message || 'No se pudo calcular el viaje.', true);
   } finally {
+    state.plannerLoading = false;
     if (button) { button.disabled = false; button.textContent = 'Buscar rutas'; }
   }
 }
