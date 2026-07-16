@@ -531,6 +531,21 @@ async function loadOfficialGeometry(route, catalogRoute) {
   return window.TRBRouteEngine.loadKmzRoute(catalogRoute, { localKmzBase: 'kmz/', fetchTimeoutMs: 26000, allowRemoteFallback: true });
 }
 
+
+async function plannerMapWithConcurrency(items, worker, concurrency = 8) {
+  const results = new Array(items.length);
+  let cursor = 0;
+  async function run() {
+    while (cursor < items.length) {
+      const index = cursor++;
+      try { results[index] = await worker(items[index], index); }
+      catch (error) { results[index] = { error, item: items[index] }; }
+    }
+  }
+  await Promise.all(Array.from({ length: Math.max(1, Math.min(concurrency, items.length || 1)) }, run));
+  return results;
+}
+
 function routeMapOverlayHTML(route, color, metrics, source, pointCount) {
   const primary = metrics?.directions?.[0];
   return `<div class="map-overlay__header"><span class="map-overlay__route" style="--overlay-color:${color}">${escapeHTML(route.code)}</span><button class="map-overlay__close" type="button" data-map-overlay-close aria-label="Cerrar resumen">×</button></div>
@@ -1727,9 +1742,12 @@ function plannerStopsFromPath(path, route, maximum = 420) {
   // el trazado oficial, porque el bus urbano puede recoger/dejar a la persona en
   // el trayecto. Transmetro conserva sus estaciones/paraderos reales en state.routes.
   const isFlexibleBus = plannerRouteSystem(route) === 'sibus';
-  const intervalMeters = isFlexibleBus ? 60 : 140;
-  const minSamples = isFlexibleBus ? 110 : 70;
-  const maxSamples = isFlexibleBus ? Math.max(900, maximum) : maximum;
+  // TRB v61: baja la densidad de puntos flexibles para que el cálculo inicial
+  // no se demore tanto. El bus sigue pudiendo recoger/dejar sobre el recorrido,
+  // pero el planificador ya no crea cientos de puntos innecesarios por ruta.
+  const intervalMeters = isFlexibleBus ? 115 : 140;
+  const minSamples = isFlexibleBus ? 55 : 70;
+  const maxSamples = isFlexibleBus ? Math.max(260, Math.min(320, maximum)) : maximum;
   const desired = Math.max(minSamples, Math.min(maxSamples, Math.ceil(pathMeters / intervalMeters)));
   const indexes = sampleCoordinateIndexes(coordinates.length, desired);
   return indexes.map((pathIndex, index) => {
@@ -1764,12 +1782,21 @@ function officialGeometryForLeg(leg) {
 
 async function loadOfficialPlannerRouteData(config) {
   if (state.officialPlannerNetwork) return state.officialPlannerNetwork;
-  const items = [];
-  const routes = state.routeCatalog?.rutas || [];
-  for (const catalogRoute of routes) {
-    try {
-      const loaded = await window.TRBRouteEngine.loadKmzRoute(catalogRoute, config);
-      loaded.paths.forEach((path, pathIndex) => {
+  if (state.officialPlannerNetworkPromise) return state.officialPlannerNetworkPromise;
+  state.officialPlannerNetworkPromise = (async () => {
+    const items = [];
+    const routes = state.routeCatalog?.rutas || [];
+    const results = await plannerMapWithConcurrency(routes, async catalogRoute => {
+      // TRB v61: en Render se usa /api/route-geometry, que aprovecha la caché del
+      // servidor. Si falla, queda el respaldo local/remoto del motor KMZ.
+      const loaded = await loadOfficialGeometry(null, catalogRoute)
+        .catch(() => window.TRBRouteEngine.loadKmzRoute(catalogRoute, config));
+      return { catalogRoute, loaded };
+    }, 8);
+    results.forEach(result => {
+      if (!result || result.error || !result.loaded) return;
+      const { catalogRoute, loaded } = result;
+      (loaded.paths || []).forEach((path, pathIndex) => {
         const route = {
           id: `sibus::${catalogRoute.id}::${pathIndex}`,
           shortName: catalogRoute.ruta,
@@ -1784,14 +1811,17 @@ async function loadOfficialPlannerRouteData(config) {
         const stops = plannerStopsFromPath(path, route);
         if (stops.length >= 3) items.push({ route, stops });
       });
-    } catch {
-      // Las rutas con KMZ temporalmente inaccesible se omiten de la red combinada.
-    }
+    });
+    state.officialPlannerNetwork = items;
+    state.officialPlannerNetworkPromise = null;
+    return items;
+  })();
+  try { return await state.officialPlannerNetworkPromise; }
+  catch (error) {
+    state.officialPlannerNetworkPromise = null;
+    throw error;
   }
-  state.officialPlannerNetwork = items;
-  return items;
 }
-
 function nearestRouteDistance(item, point) {
   return nearestStopCandidates(point, item.stops, 1)[0]?.distance ?? Infinity;
 }
@@ -1991,76 +2021,76 @@ function findOfficialTransferJourneyPlans(origin, destination, officialData, tra
   return [...unique.values()].slice(0, options.resultLimit ?? 18);
 }
 
-async function findUnifiedJourneyPlans(origin, destination, config) {
-  const transmetroData = state.routes
+async function findUnifiedJourneyPlans(origin, destination, config, settings = {}) {
+  const wantsTransmetro = settings.transmetro !== false;
+  const wantsOfficial = settings.officialTransfers === true;
+  const wantsRegularBus = settings.buses !== false;
+  // Si Bus está apagado pero Transmetro + Especiales está activo, se cargan solo
+  // para poder conectar Transmetro con las empresas oficiales aliadas.
+  const wantsOfficialBusConnector = wantsOfficial && wantsTransmetro;
+  const wantsBusData = wantsRegularBus || wantsOfficialBusConnector;
+
+  const transmetroData = wantsTransmetro ? state.routes
     .map(route => ({ route: { ...route, system: 'transmetro', operator: route.operator || 'Transmetro' }, stops: plannerStopObjects(route) }))
-    .filter(item => item.stops.length >= 3);
-  const officialData = await loadOfficialPlannerRouteData(config);
+    .filter(item => item.stops.length >= 3) : [];
+  const officialData = wantsBusData ? await loadOfficialPlannerRouteData(config) : [];
   const all = [...transmetroData, ...officialData];
 
-  const busDirect = findDirectJourneyPlans(origin, destination, officialData, {
-    maxAccessWalk: 2300, maxEgressWalk: 2600, maxTotalWalk: 4300, candidateCount: 7
-  });
-  const busTransfers = findLimitedTransferJourneyPlans(origin, destination, officialData, 28, {
-    maxAccessWalk: 2600, maxEgressWalk: 3100, maxTransferWalk: 420, maxTotalWalk: 5200, candidateCount: 6, resultLimit: 16
-  });
-  const transmetroDirect = findDirectJourneyPlans(origin, destination, transmetroData, {
-    maxAccessWalk: 2600, maxEgressWalk: 3100, maxTotalWalk: 5000, candidateCount: 8
-  });
-  const transmetroTransfers = findLimitedTransferJourneyPlans(origin, destination, transmetroData, 24, {
-    maxAccessWalk: 2800, maxEgressWalk: 3400, maxTransferWalk: 520, maxTotalWalk: 5800, candidateCount: 7, resultLimit: 14
-  });
+  const plans = [];
 
-  // Combinaciones explícitas en ambos sentidos. Se favorecen buses cortos como
-  // conectores hacia o desde Transmetro, sin excluir otras combinaciones útiles.
-  const busToTransmetro = findCrossSystemJourneyPlans(origin, destination, officialData, transmetroData, {
-    maxAccessWalk: 2800, maxEgressWalk: 3600, maxTransferWalk: 560, maxTotalWalk: 6100,
-    accessLimit: 20, egressLimit: 22, candidateCount: 3, resultLimit: 12, shortConnectorMeters: 6500
-  });
-  const transmetroToBus = findCrossSystemJourneyPlans(origin, destination, transmetroData, officialData, {
-    maxAccessWalk: 3000, maxEgressWalk: 3800, maxTransferWalk: 560, maxTotalWalk: 6300,
-    accessLimit: 18, egressLimit: 24, candidateCount: 3, resultLimit: 12, shortConnectorMeters: 6500
-  });
-  const mixedTwoTransfers = findTwoTransferJourneyPlans(origin, destination, all, {
-    maxAccessWalk: 3200, maxEgressWalk: MAX_EGRESS_WALK_EXPANDED,
-    maxTransferWalk: 650, maxTotalWalk: 8500, minRideMeters: 1600,
-    middleLimit: 28, accessLimit: 9, egressLimit: 12, resultLimit: 12,
-    mixedOnly: true, shortConnectorMeters: 6500
-  });
+  if (wantsRegularBus) {
+    plans.push(...findDirectJourneyPlans(origin, destination, officialData, {
+      maxAccessWalk: 2200, maxEgressWalk: 2600, maxTotalWalk: 4300, candidateCount: 4
+    }));
+    plans.push(...findLimitedTransferJourneyPlans(origin, destination, officialData, 16, {
+      maxAccessWalk: 2500, maxEgressWalk: 3000, maxTransferWalk: 420, maxTotalWalk: 5200,
+      candidateCount: 3, resultLimit: 8
+    }));
+  }
 
-  // Conserva la búsqueda ampliada de versiones anteriores para sectores donde
-  // el acceso o la salida requieren una caminata mayor antes de conectar con la red.
-  const expandedDirect = findDirectJourneyPlans(origin, destination, all, {
-    maxAccessWalk: MAX_ACCESS_WALK_EXPANDED,
-    maxEgressWalk: MAX_EGRESS_WALK_EXPANDED,
-    maxTotalWalk: 6900, minRideMeters: 700, candidateCount: 9, expanded: true
-  });
-  const expandedTransfers = findLimitedTransferJourneyPlans(origin, destination, all, 34, {
-    maxAccessWalk: MAX_ACCESS_WALK_EXPANDED,
-    maxEgressWalk: MAX_EGRESS_WALK_EXPANDED,
-    maxTransferWalk: MAX_TRANSFER_WALK_EXPANDED,
-    maxTotalWalk: 7600, minRideMeters: 1100, candidateCount: 7,
-    egressLimit: 38, resultLimit: 20, expanded: true
-  });
-  const twoTransfers = findTwoTransferJourneyPlans(origin, destination, all, {
-    maxAccessWalk: 3000, maxEgressWalk: MAX_EGRESS_WALK_EXPANDED,
-    maxTransferWalk: MAX_TRANSFER_WALK_EXPANDED,
-    maxTotalWalk: 8200, resultLimit: 10
-  });
-  const officialTransfers = findOfficialTransferJourneyPlans(origin, destination, officialData, transmetroData, {
-    maxAccessWalk: 3200, maxEgressWalk: 4200, maxTransferWalk: 720,
-    maxTotalWalk: 7600, candidateCount: 6, resultLimit: 18
-  });
+  if (wantsTransmetro) {
+    plans.push(...findDirectJourneyPlans(origin, destination, transmetroData, {
+      maxAccessWalk: 2600, maxEgressWalk: 3100, maxTotalWalk: 5000, candidateCount: 6
+    }));
+    plans.push(...findLimitedTransferJourneyPlans(origin, destination, transmetroData, 18, {
+      maxAccessWalk: 2800, maxEgressWalk: 3400, maxTransferWalk: 520, maxTotalWalk: 5800,
+      candidateCount: 4, resultLimit: 10
+    }));
+  }
 
-  return [
-    ...busDirect, ...busTransfers,
-    ...transmetroDirect, ...transmetroTransfers,
-    ...officialTransfers,
-    ...busToTransmetro, ...transmetroToBus, ...mixedTwoTransfers,
-    ...expandedDirect, ...expandedTransfers, ...twoTransfers
-  ].map(plan => ({ ...plan, engine: plan.engine || 'network' }));
+  if (wantsRegularBus && wantsTransmetro) {
+    plans.push(...findCrossSystemJourneyPlans(origin, destination, officialData, transmetroData, {
+      maxAccessWalk: 2800, maxEgressWalk: 3500, maxTransferWalk: 560, maxTotalWalk: 6100,
+      accessLimit: 12, egressLimit: 14, candidateCount: 2, resultLimit: 7, shortConnectorMeters: 6500
+    }));
+    plans.push(...findCrossSystemJourneyPlans(origin, destination, transmetroData, officialData, {
+      maxAccessWalk: 3000, maxEgressWalk: 3600, maxTransferWalk: 560, maxTotalWalk: 6300,
+      accessLimit: 12, egressLimit: 14, candidateCount: 2, resultLimit: 7, shortConnectorMeters: 6500
+    }));
+  }
+
+  if (wantsOfficial && wantsTransmetro) {
+    plans.push(...findOfficialTransferJourneyPlans(origin, destination, officialData, transmetroData, {
+      maxAccessWalk: 3100, maxEgressWalk: 4000, maxTransferWalk: 720,
+      maxTotalWalk: 7600, candidateCount: 3, resultLimit: 10
+    }));
+  }
+
+  // Búsqueda ampliada ligera: solo cuando no hay casi opciones. Evita que cada
+  // consulta recorra miles de combinaciones antes de mostrar los primeros resultados.
+  if (plans.length < 4 && all.length) {
+    plans.push(...findDirectJourneyPlans(origin, destination, all, {
+      maxAccessWalk: MAX_ACCESS_WALK_EXPANDED,
+      maxEgressWalk: MAX_EGRESS_WALK_EXPANDED,
+      maxTotalWalk: 6900,
+      minRideMeters: 700,
+      candidateCount: 4,
+      expanded: true
+    }));
+  }
+
+  return plans.map(plan => ({ ...plan, engine: plan.engine || 'network' }));
 }
-
 function plannerPlanSignature(plan) {
   const modes = plan.legs.map(leg => leg.mode === 'bus' ? `${plannerRouteSystem(leg.route)}:${leg.route.shortName}` : leg.mode).join('>');
   return `${modes}:${Math.round(plan.totalMinutes)}`;
@@ -2158,30 +2188,22 @@ async function calculateMultimodalPlans(origin, destination, onProgress) {
   const config = {
     maxWalkMeters: 2400, minRideMeters: 300, busMetersPerMinute: 250,
     walkMetersPerMinute: 80, walkDistanceFactor: 1.18,
-    localKmzBase: 'kmz/', allowRemoteFallback: !state.kmzServerAvailable, fetchTimeoutMs: 45000
+    localKmzBase: 'kmz/', allowRemoteFallback: !state.kmzServerAvailable, fetchTimeoutMs: 26000
   };
-  let exact = [];
-  let unified = [];
-  const engineError = engineReadyMessage();
-  if (!engineError && wantsBus) {
-    const detailed = await window.TRBRouteEngine.findBestRoutesDetailed(state.routeCatalog, origin, destination, {
-      limit: settings.buses === false ? 6 : 9,
-      concurrency: 7,
-      config,
-      onProgress
-    });
-    state.plannerDiagnostics = { engine: 'multimodal', loadedCount: detailed.loadedCount, totalCount: detailed.totalCount, errorCount: detailed.errors.length, errors: detailed.errors };
-    exact = detailed.options.map(option => engineResultToPlan(option, origin, destination));
-    await refineFlexibleBusAccessPlans(exact, origin, destination);
-  } else if (engineError) {
-    state.plannerDiagnostics = { engine: 'fallback', loadedCount: state.routes.length, totalCount: state.routes.length, errorCount: 0, errors: [] };
-  }
-  if (!engineError && (wantsBus || wantsTransmetro)) {
-    unified = await findUnifiedJourneyPlans(origin, destination, config);
-  }
-  return mergeMultimodalPlans([walk, bike, ...exact, ...unified, ...transmetroFallback].filter(Boolean));
-}
 
+  let unified = [];
+  if (!engineReadyMessage() && (wantsBus || wantsTransmetro)) {
+    unified = await findUnifiedJourneyPlans(origin, destination, config, settings);
+    state.plannerDiagnostics = {
+      engine: 'optimized-v61',
+      loadedCount: state.officialPlannerNetwork?.length || 0,
+      totalCount: state.routeCatalog?.rutas?.length || 0,
+      errorCount: 0,
+      errors: []
+    };
+  }
+  return mergeMultimodalPlans([walk, bike, ...unified, ...transmetroFallback].filter(Boolean));
+}
 
 function engineResultToPlan(result, origin, destination) {
   const route = {
@@ -2281,9 +2303,11 @@ function renderJourneyResults() {
     return;
   }
   const diagnostic = state.plannerDiagnostics;
-  const diagnosticCopy = diagnostic?.engine === 'kmz'
-    ? `${diagnostic.loadedCount} de ${diagnostic.totalCount} KMZ procesados${diagnostic.errorCount ? ` · ${diagnostic.errorCount} con error` : ''}.`
-    : 'Resultado de respaldo con el catálogo histórico disponible.';
+  const diagnosticCopy = diagnostic?.engine === 'optimized-v61'
+    ? 'Resultados calculados con red optimizada de rutas.'
+    : diagnostic?.engine === 'kmz'
+      ? 'Resultados calculados con recorridos oficiales.'
+      : 'Resultado de respaldo con el catálogo histórico disponible.';
   container.classList.remove('hidden');
   container.innerHTML = `<div class="journey-results__header"><div><span class="eyebrow">Opciones encontradas</span><h3>${escapeHTML(state.plannerOrigin.label)} → ${escapeHTML(state.plannerDestination.label)}</h3></div><p>${escapeHTML(diagnosticCopy)}<br>Buses urbanos: parada flexible sobre el recorrido; Transmetro: estaciones/paraderos.</p></div>` + state.plannerPlans.map((plan, index) => {
     const engineCard = plan.engine === 'kmz';
@@ -3588,7 +3612,7 @@ async function handleMapJourneySubmit() {
     if (haversine(origin.lat, origin.lng, destination.lat, destination.lng) < 120) throw new Error('El origen y el destino están prácticamente en el mismo lugar.');
     state.plannerOrigin = origin;
     state.plannerDestination = destination;
-    setMapPlannerStatus('Buscando las mejores rutas según tus Ajustes…');
+    setMapPlannerStatus('Buscando rutas rápidas según tus Ajustes…');
     const plans = await calculateMultimodalPlans(origin, destination, () => {});
     if (searchId !== state.plannerSearchId) return;
     if (!plans.length) throw new Error('No encontré una combinación adecuada para esos puntos.');

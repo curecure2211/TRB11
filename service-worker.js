@@ -1,6 +1,6 @@
-const CACHE = 'trb-web-v60-ajustes-activos-rutas';
+const CACHE = 'trb-web-v61-rapido-limpio';
 const STATIC_ASSETS = [
-  './', './index.html', './styles.css?v=60', './app.js?v=60', './trb_motor_rutas.js?v=60',
+  './', './index.html', './styles.css?v=61', './app.js?v=61', './trb_motor_rutas.js?v=61',
   './manifest.webmanifest', './driver.html', './data/transit_data.json', './data/trb_catalogo_rutas.json',
   './vendor/jszip.min.js?v=33', './vendor/maplibre/maplibre-gl.js?v=33', './vendor/maplibre/maplibre-gl.css?v=33', './vendor/maplibre/leaflet-maplibre-gl.js?v=33', './maps/trb-map-style.json', './assets/trb-home-hero.jpg', './maps/README_MAPA_TRB.md', './icons/icon-192.png', './icons/icon-512.png', './icons/trb-favicon.png', './icons/favicon-32.png'
 ];
