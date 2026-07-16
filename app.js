@@ -100,6 +100,7 @@ const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 const normalize = (text = '') => text.toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
 const escapeHTML = (value = '') => value.toString().replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+const isMobileLayout = () => window.matchMedia?.('(max-width: 900px)').matches ?? false;
 
 
 function setMapRuntimeStatus(message = '', type = 'info') {
@@ -182,7 +183,12 @@ function exitRouteFocusMode() {
   window.setTimeout(() => state.map?.invalidateSize({ animate: false }), 80);
 }
 
-function showRouteSuggestionsPanel() {
+function showRouteSuggestionsPanel(options = {}) {
+  if (options.keepSelection) {
+    setRouteFocusMode(true, 'suggestions');
+    renderMapJourneyResults();
+    return;
+  }
   clearSelectedJourneyFromMap();
   setRouteFocusMode(true, 'suggestions');
   renderMapJourneyResults();
@@ -287,17 +293,17 @@ function instructionLegHTML(leg, index, startOffset, planIndex = state.mapSelect
   const end = formatSuggestionClock(startOffset + minutes);
   if (leg.mode === 'walk') {
     const target = leg.to?.stop?.name || leg.to?.label || 'el siguiente punto';
-    return `<li class="trip-instruction-step is-walk"><span class="trip-step-time">${start}</span><span class="trip-step-node">🚶</span><div><b>${leg.isTransfer ? 'Camina para hacer el transbordo' : 'Camina'} ${formatDistance(leg.distance || 0)}</b><small>${minutes} min · hacia ${escapeHTML(target)}</small></div><span class="trip-step-end">${end}</span></li>`;
+    return `<li class="trip-instruction-step is-walk"><span class="trip-step-time">${start}</span><span class="trip-step-node trip-step-node--walk">🚶</span><div><b>${leg.isTransfer ? 'Camina para hacer el transbordo' : 'Camina'} ${formatDistance(leg.distance || 0)}</b><small>${minutes} min · hacia ${escapeHTML(target)}</small></div><span class="trip-step-end">${end}</span></li>`;
   }
   if (leg.mode === 'bike') {
     const target = leg.to?.label || 'el destino';
-    return `<li class="trip-instruction-step is-bike"><span class="trip-step-time">${start}</span><span class="trip-step-node">🚲</span><div><b>Pedalea ${formatDistance(leg.distance || 0)}</b><small>${minutes} min · hacia ${escapeHTML(target)}</small></div><span class="trip-step-end">${end}</span></li>`;
+    return `<li class="trip-instruction-step is-bike"><span class="trip-step-time">${start}</span><span class="trip-step-node trip-step-node--bike">🚲</span><div><b>Pedalea ${formatDistance(leg.distance || 0)}</b><small>${minutes} min · hacia ${escapeHTML(target)}</small></div><span class="trip-step-end">${end}</span></li>`;
   }
   const color = routeColor(leg.route);
   const fromName = leg.from?.stop?.name || leg.from?.label || 'punto de abordaje';
   const toName = leg.to?.stop?.name || leg.to?.label || 'punto de descenso';
   const operator = leg.route?.operator || (plannerRouteSystem(leg.route) === 'transmetro' ? 'Transmetro' : 'Bus urbano');
-  return `<li class="trip-instruction-step is-transit" style="--step-color:${color}"><span class="trip-step-time">${start}</span><span class="trip-step-node">🚌</span><div><b>Sube a ${transitLineCodeHTML(leg.route, 'transit-line-link transit-line-link--instruction', { planIndex, legIndex: index })}</b><small>${escapeHTML(operator)} · desde ${escapeHTML(fromName)}</small><span class="trip-step-ride">${escapeHTML(leg.route.longName || leg.route.shortName)} · ${minutes} min</span><small>Bájate en ${escapeHTML(toName)}</small></div><span class="trip-step-end">${end}</span></li>`;
+  return `<li class="trip-instruction-step is-transit" style="--step-color:${color}"><span class="trip-step-time">${start}</span><span class="trip-step-node trip-step-node--bus">${trbBusIconSVG('trb-bus-svg trb-bus-svg--step')}</span><div><b>Sube a ${transitLineCodeHTML(leg.route, 'transit-line-link transit-line-link--instruction', { planIndex, legIndex: index })}</b><small>${escapeHTML(operator)} · desde ${escapeHTML(fromName)}</small><span class="trip-step-ride">${escapeHTML(leg.route.longName || leg.route.shortName)} · ${minutes} min</span><small>Bájate en ${escapeHTML(toName)}</small></div><span class="trip-step-end">${end}</span></li>`;
 }
 
 
@@ -2116,9 +2122,14 @@ function mergeMultimodalPlans(plans) {
 }
 
 async function calculateMultimodalPlans(origin, destination, onProgress) {
-  const walk = makeActiveJourneyPlan('walk', origin, destination);
-  const bike = makeActiveJourneyPlan('bike', origin, destination);
-  const transmetroFallback = findJourneyPlans(origin, destination).map(plan => ({ ...plan, engine: 'transmetro' }));
+  const settings = state.plannerTransportSettings || {};
+  const wantsBus = settings.buses !== false || (settings.officialTransfers === true && settings.transmetro !== false);
+  const wantsTransmetro = settings.transmetro !== false;
+  const wantsWalk = settings.walk !== false;
+  const wantsBike = settings.bike !== false;
+  const walk = wantsWalk ? makeActiveJourneyPlan('walk', origin, destination) : null;
+  const bike = wantsBike ? makeActiveJourneyPlan('bike', origin, destination) : null;
+  const transmetroFallback = wantsTransmetro ? findJourneyPlans(origin, destination).map(plan => ({ ...plan, engine: 'transmetro' })) : [];
   const config = {
     maxWalkMeters: 2400, minRideMeters: 300, busMetersPerMinute: 250,
     walkMetersPerMinute: 80, walkDistanceFactor: 1.18,
@@ -2127,18 +2138,23 @@ async function calculateMultimodalPlans(origin, destination, onProgress) {
   let exact = [];
   let unified = [];
   const engineError = engineReadyMessage();
-  if (!engineError) {
+  if (!engineError && wantsBus) {
     const detailed = await window.TRBRouteEngine.findBestRoutesDetailed(state.routeCatalog, origin, destination, {
-      limit: 10, concurrency: 6, config, onProgress
+      limit: settings.buses === false ? 6 : 9,
+      concurrency: 7,
+      config,
+      onProgress
     });
     state.plannerDiagnostics = { engine: 'multimodal', loadedCount: detailed.loadedCount, totalCount: detailed.totalCount, errorCount: detailed.errors.length, errors: detailed.errors };
     exact = detailed.options.map(option => engineResultToPlan(option, origin, destination));
     await refineFlexibleBusAccessPlans(exact, origin, destination);
-    unified = await findUnifiedJourneyPlans(origin, destination, config);
-  } else {
+  } else if (engineError) {
     state.plannerDiagnostics = { engine: 'fallback', loadedCount: state.routes.length, totalCount: state.routes.length, errorCount: 0, errors: [] };
   }
-  return mergeMultimodalPlans([walk, bike, ...exact, ...unified, ...transmetroFallback]);
+  if (!engineError && (wantsBus || wantsTransmetro)) {
+    unified = await findUnifiedJourneyPlans(origin, destination, config);
+  }
+  return mergeMultimodalPlans([walk, bike, ...exact, ...unified, ...transmetroFallback].filter(Boolean));
 }
 
 
@@ -2814,12 +2830,14 @@ function swapJourneyFields() {
 }
 
 function journeyMarkerIcon(type, label) {
+  const kind = type === 'destination' ? 'destination' : type === 'transfer' ? 'transfer' : 'origin';
+  const readable = kind === 'destination' ? 'Destino' : kind === 'transfer' ? 'Transbordo' : 'Origen';
   return L.divIcon({
     className: 'trb-stop-icon-wrap',
-    html: `<div class="journey-marker journey-marker--${type}">${escapeHTML(label)}</div>`,
-    iconSize: [38, 38],
-    iconAnchor: [19, 19],
-    popupAnchor: [0, -20]
+    html: `<div class="journey-marker journey-marker--${kind}" aria-label="${readable}">${trbPlaceIconHTML(kind)}<small>${escapeHTML(label)}</small></div>`,
+    iconSize: [42, 42],
+    iconAnchor: [21, 21],
+    popupAnchor: [0, -22]
   });
 }
 
@@ -2835,9 +2853,9 @@ function journeyMapPanelHTML(plan) {
   const movingLabel = planCategory(plan) === 'bike' ? `${formatDistance(plan.bikeMeters || plan.legs[0]?.distance || 0)} en bici` : `${formatDistance(plan.walkMeters || 0)} caminando`;
   return `<div class="hsl-sidebar-shell">
       <div class="hsl-sidebar-search">
-        <div class="hsl-place-box hsl-place-box--origin"><span class="hsl-place-dot"></span><div><small>Origen</small><strong>${escapeHTML(plan.origin.label)}</strong></div></div>
+        <div class="hsl-place-box hsl-place-box--origin">${trbPlaceIconHTML('origin')}<div><small>Origen</small><strong>${escapeHTML(plan.origin.label)}</strong></div></div>
         <div class="hsl-place-divider"></div>
-        <div class="hsl-place-box hsl-place-box--destination"><span class="hsl-place-dot"></span><div><small>Destino</small><strong>${escapeHTML(plan.destination.label)}</strong></div></div>
+        <div class="hsl-place-box hsl-place-box--destination">${trbPlaceIconHTML('destination')}<div><small>Destino</small><strong>${escapeHTML(plan.destination.label)}</strong></div></div>
         <div class="hsl-search-meta"><span>Salida ahora</span><span>${movingLabel}</span></div>
       </div>
       <div class="hsl-trip-summary-card">
@@ -2907,7 +2925,7 @@ function drawJourneyPlan(index, options = {}) {
   const showInstructions = options.showInstructions !== false;
   state.mapSelectedPlanIndex = Number(index);
   if (showInstructions) renderMapJourneyInstructions(plan, Number(index));
-  else showRouteSuggestionsPanel();
+  else showRouteSuggestionsPanel({ keepSelection: true });
   if ($('#mapJourneyOrigin')) $('#mapJourneyOrigin').value = plan.origin.label;
   if ($('#mapJourneyDestination')) $('#mapJourneyDestination').value = plan.destination.label;
   renderMapJourneyResults();
@@ -3272,6 +3290,17 @@ function updateRouteSuggestionModes() {
   renderPlannerTransportSettings();
 }
 
+function plannerActiveTransportSummary() {
+  const settings = state.plannerTransportSettings || {};
+  const active = [];
+  if (settings.buses !== false) active.push('Bus');
+  if (settings.transmetro !== false) active.push('Transmetro');
+  if (settings.walk !== false) active.push('Caminar');
+  if (settings.bike !== false) active.push('Bici');
+  if (settings.officialTransfers === true) active.push('Especiales');
+  return active.length ? active.join(' + ') : 'sin transporte activo';
+}
+
 function renderMapJourneyResults() {
   const container = $('#mapJourneyResults');
   if (!container) return;
@@ -3284,7 +3313,8 @@ function renderMapJourneyResults() {
     return;
   }
   container.classList.remove('hidden');
-  container.innerHTML = `<div class="route-suggestion-heading"><div><b>Sugerencias de ruta</b><small>${indexed.length} alternativas · prioriza menor caminata de inicio, transbordo y llegada · máximo 2 transbordos</small></div><span>Salida ahora</span></div>` + indexed.map(({ plan, index }, visibleIndex) => {
+  const activeTransportSummary = plannerActiveTransportSummary();
+  container.innerHTML = `<div class="route-suggestion-heading route-suggestion-heading--hsl"><div><b>Opciones de ruta</b><small>${indexed.length} alternativa${indexed.length === 1 ? '' : 's'} según Ajustes · ${escapeHTML(activeTransportSummary)}</small></div><span>Salida ahora</span></div>` + indexed.map(({ plan, index }, visibleIndex) => {
     const selected = Number(state.mapSelectedPlanIndex) === index;
     const color = mapPlanRouteColor(plan);
     const systems = planSystems(plan);
@@ -3359,7 +3389,9 @@ function toggleTransportSetting(key) {
   const settings = state.plannerTransportSettings;
   if (!settings || !(key in settings)) return;
   settings[key] = settings[key] === false;
-  if (key === 'officialTransfers' && settings[key] === true) state.plannerFilter = 'all';
+  // TRB v59: ya no hay pestañas "Todas/Buses/Transmetro" visibles.
+  // Las combinaciones se controlan únicamente desde Ajustes.
+  state.plannerFilter = 'all';
   applyPlannerTransportSettings(true);
 }
 
@@ -3473,19 +3505,19 @@ function showCurrentPositionOnMap(position, zoom = 16) {
 
 function useMapPlannerLocation() {
   if (!navigator.geolocation) return setMapPlannerStatus('Tu navegador no permite usar ubicación.', true);
-  const button = $('#mapJourneyUseLocation');
-  if (button) { button.disabled = true; button.textContent = 'Buscando…'; }
+  const buttons = [$('#mapJourneyUseLocation'), $('#mapLocateFloating')].filter(Boolean);
+  buttons.forEach(button => { button.disabled = true; button.classList.add('is-loading'); });
   navigator.geolocation.getCurrentPosition(position => {
     state.plannerCurrentPosition = { lat: position.coords.latitude, lng: position.coords.longitude, accuracy: position.coords.accuracy };
     $('#mapJourneyOrigin').value = 'Mi ubicación';
     $('#journeyOrigin').value = 'Mi ubicación';
     showCurrentPositionOnMap(position);
     setMapPlannerStatus('Tu ubicación quedó establecida como origen.');
-    if (button) { button.disabled = false; button.textContent = '◎ Mi ubicación'; }
+    buttons.forEach(button => { button.disabled = false; button.classList.remove('is-loading'); });
   }, error => {
     const messages = { 1: 'Debes permitir el acceso a tu ubicación.', 2: 'No se pudo determinar tu ubicación.', 3: 'La ubicación tardó demasiado.' };
     setMapPlannerStatus(messages[error.code] || 'No se pudo acceder a tu ubicación.', true);
-    if (button) { button.disabled = false; button.textContent = '◎ Mi ubicación'; }
+    buttons.forEach(button => { button.disabled = false; button.classList.remove('is-loading'); });
   }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
 }
 
@@ -3501,7 +3533,12 @@ async function handleMapJourneySubmit() {
   $('#journeyDestination').value = destinationText;
   const button = $('#mapJourneySubmit');
   if (button) { button.disabled = true; button.textContent = 'Calculando…'; }
-  setRouteFocusMode(true, 'suggestions');
+  if (isMobileLayout()) {
+    clearSelectedJourneyFromMap({ resetSelection: true });
+    setRouteFocusMode(false, 'default');
+  } else {
+    setRouteFocusMode(true, 'suggestions');
+  }
   setMapPlannerStatus('Buscando rutas de buses, Transmetro y conexiones entre ambas redes…');
   state.plannerPlans = [];
   state.plannerAllPlans = [];
@@ -3515,14 +3552,8 @@ async function handleMapJourneySubmit() {
     if (haversine(origin.lat, origin.lng, destination.lat, destination.lng) < 120) throw new Error('El origen y el destino están prácticamente en el mismo lugar.');
     state.plannerOrigin = origin;
     state.plannerDestination = destination;
-    let lastStatusAt = 0;
-    const plans = await calculateMultimodalPlans(origin, destination, ({ completed, total }) => {
-      const now = Date.now();
-      if (completed === total || now - lastStatusAt > 220) {
-        lastStatusAt = now;
-        setMapPlannerStatus(`Analizando buses y conexiones multimodales: ${completed} de ${total} rutas…`);
-      }
-    });
+    setMapPlannerStatus('Buscando las mejores rutas según tus Ajustes…');
+    const plans = await calculateMultimodalPlans(origin, destination, () => {});
     if (searchId !== state.plannerSearchId) return;
     if (!plans.length) throw new Error('No encontré una combinación adecuada para esos puntos.');
     state.plannerAllPlans = plans;
@@ -3530,16 +3561,22 @@ async function handleMapJourneySubmit() {
     state.plannerFilter = 'all';
     const firstVisible = firstVisiblePlannerIndex('all');
     state.plannerFilter = firstVisible.filter;
-    state.mapSelectedPlanIndex = firstVisible.index >= 0 ? firstVisible.index : 0;
-    renderJourneyResults();
-    renderMapJourneyResults();
-    showRouteSuggestionsPanel();
+    if (isMobileLayout()) {
+      state.mapSelectedPlanIndex = -1;
+      setRouteFocusMode(false, 'default');
+      renderJourneyResults();
+      renderMapJourneyResults();
+    } else {
+      state.mapSelectedPlanIndex = firstVisible.index >= 0 ? firstVisible.index : 0;
+      renderJourneyResults();
+      renderMapJourneyResults();
+      drawJourneyPlan(state.mapSelectedPlanIndex, { showInstructions: false });
+    }
     const busCount = plans.filter(plan => plannerFilterKey(plan) === 'buses').length;
     const transmetroCount = plans.filter(plan => plannerFilterKey(plan) === 'transmetro').length;
     const combinedCount = plans.filter(plan => plannerFilterKey(plan) === 'combined').length;
     const officialCount = plans.filter(plan => plan.officialTransfer).length;
-    setMapPlannerStatus(`${busCount} opciones de buses · ${transmetroCount} de Transmetro · ${combinedCount} combinadas${officialCount ? ` · ${officialCount} transbordos oficiales` : ''}.`);
-    drawJourneyPlan(state.mapSelectedPlanIndex, { showInstructions: false });
+    setMapPlannerStatus(`Rutas listas: ${busCount + transmetroCount + combinedCount} opciones visibles según Ajustes${officialCount ? ` · ${officialCount} especiales` : ''}.`);
   } catch (error) {
     state.plannerAllPlans = [];
     state.plannerPlans = [];
@@ -4532,13 +4569,27 @@ function stopMarkerIcon(number, color, isTerminal = false) {
   });
 }
 
+function trbBusIconSVG(className = 'trb-bus-svg') {
+  return `<svg class="${className}" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+    <rect x="7" y="5" width="18" height="20" rx="4"></rect>
+    <path d="M10 9h12v6H10z"></path>
+    <circle cx="11.5" cy="22.5" r="2.1"></circle>
+    <circle cx="20.5" cy="22.5" r="2.1"></circle>
+    <path d="M9 17h14"></path>
+  </svg>`;
+}
+
+function trbPlaceIconHTML(type = 'origin') {
+  return `<span class="trb-place-icon is-${type}" aria-hidden="true"></span>`;
+}
+
 function busMarkerIcon(bus, color) {
   return L.divIcon({
     className: 'trb-bus-icon-wrap',
-    html: `<div class="trb-bus-marker" style="--bus-color:${color}" title="${escapeHTML(bus.id)}"><span class="trb-bus-symbol">▣</span><small>SIM</small></div>`,
-    iconSize: [46, 46],
-    iconAnchor: [23, 23],
-    popupAnchor: [0, -21]
+    html: `<div class="trb-bus-marker" style="--bus-color:${color}" title="${escapeHTML(bus.id)}">${trbBusIconSVG()}<small>SIM</small></div>`,
+    iconSize: [48, 48],
+    iconAnchor: [24, 24],
+    popupAnchor: [0, -22]
   });
 }
 
@@ -4547,7 +4598,7 @@ function liveVehicleMarkerIcon(vehicle) {
   const bearing = Number(vehicle.bearing || 0);
   return L.divIcon({
     className: 'trb-live-bus-icon-wrap',
-    html: `<div class="trb-live-bus-marker" style="--live-bus-color:${color};--live-bearing:${bearing}deg"><span>▣</span><small>EN VIVO</small></div>`,
+    html: `<div class="trb-live-bus-marker" style="--live-bus-color:${color};--live-bearing:${bearing}deg">${trbBusIconSVG('trb-bus-svg trb-bus-svg--live')}<small>EN VIVO</small></div>`,
     iconSize: [54, 54],
     iconAnchor: [27, 27],
     popupAnchor: [0, -24]
@@ -4670,7 +4721,7 @@ function renderBusList() {
   list.innerHTML = state.demoBuses.map((bus, index) => {
     const stop = state.currentRouteStops[bus.nextStopIndex];
     return `<button class="demo-bus-row" type="button" data-demo-bus-index="${index}">
-      <span class="demo-bus-row__icon">▣</span>
+      <span class="demo-bus-row__icon">${trbBusIconSVG('trb-bus-svg trb-bus-svg--row')}</span>
       <span class="demo-bus-row__body"><b>${escapeHTML(bus.id)}</b><small>${escapeHTML(bus.status)} · Próximo: ${escapeHTML(stop?.name || '—')}</small></span>
       <span class="demo-chip">SIM</span>
     </button>`;
@@ -5404,7 +5455,8 @@ function bindEvents() {
   $('#mapSettingsClose')?.addEventListener('click', () => toggleMapSettingsPanel(false));
   $('#mapSettingsPanel')?.addEventListener('click', event => { const button = event.target.closest('[data-transport-toggle]'); if (button) toggleTransportSetting(button.dataset.transportToggle); });
   renderPlannerTransportSettings();
-  $('#mapJourneyUseLocation').addEventListener('click', useMapPlannerLocation);
+  $('#mapJourneyUseLocation')?.addEventListener('click', useMapPlannerLocation);
+  $('#mapLocateFloating')?.addEventListener('click', useMapPlannerLocation);
   $('#mapJourneySwap').addEventListener('click', swapMapJourneyFields);
   $('#mapJourneyPickOrigin').addEventListener('click', () => startMapPointPick('origin'));
   $('#mapJourneyPickDestination').addEventListener('click', () => startMapPointPick('destination'));

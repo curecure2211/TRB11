@@ -1,1 +1,1 @@
-TRB Web v58 - tramos limpios y corrección de dirección de buses urbanos
+TRB Web v59 - móvil estilo HSL, ajustes únicos e iconos de viaje

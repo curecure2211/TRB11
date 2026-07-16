@@ -1,6 +1,6 @@
-const CACHE = 'trb-web-v58-tramos-limpios-direccion';
+const CACHE = 'trb-web-v59-hsl-mobile-ajustes';
 const STATIC_ASSETS = [
-  './', './index.html', './styles.css?v=57', './app.js?v=57', './trb_motor_rutas.js?v=57',
+  './', './index.html', './styles.css?v=59', './app.js?v=59', './trb_motor_rutas.js?v=59',
   './manifest.webmanifest', './driver.html', './data/transit_data.json', './data/trb_catalogo_rutas.json',
   './vendor/jszip.min.js?v=33', './vendor/maplibre/maplibre-gl.js?v=33', './vendor/maplibre/maplibre-gl.css?v=33', './vendor/maplibre/leaflet-maplibre-gl.js?v=33', './maps/trb-map-style.json', './assets/trb-home-hero.jpg', './maps/README_MAPA_TRB.md', './icons/icon-192.png', './icons/icon-512.png', './icons/trb-favicon.png', './icons/favicon-32.png'
 ];
