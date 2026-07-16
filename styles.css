@@ -2413,3 +2413,57 @@ html, body { overflow-x:hidden; }
   animation: trbSpin .8s linear infinite;
 }
 @keyframes trbSpin { to { transform: rotate(360deg); } }
+
+/* TRB v62 · icono de bus de referencia y simulados sobre tramo real */
+.trb-bus-icon-wrap {
+  background: transparent !important;
+  border: 0 !important;
+}
+.trb-bus-marker {
+  display: grid !important;
+  place-items: center !important;
+  width: 34px !important;
+  height: 34px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: transparent !important;
+  color: inherit !important;
+  box-shadow: 0 6px 14px rgba(9,35,69,.20) !important;
+  overflow: visible !important;
+}
+.trb-bus-marker small { display: none !important; }
+.trb-bus-svg {
+  display: block !important;
+  width: 34px !important;
+  height: 34px !important;
+  object-fit: contain !important;
+  border-radius: 999px !important;
+  filter: drop-shadow(0 4px 8px rgba(9,35,69,.22));
+}
+.trb-live-bus-marker .trb-bus-svg { width: 36px !important; height: 36px !important; }
+.demo-bus-row__icon {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 999px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+.demo-bus-row__icon .trb-bus-svg { width: 30px !important; height: 30px !important; }
+.trip-step-node--bus {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+.trip-step-node--bus .trb-bus-svg { width: 28px !important; height: 28px !important; }
+.legend__bus--svg {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.legend__bus--svg::before {
+  width: 22px !important;
+  height: 22px !important;
+  background: url('assets/trb-bus-reference.png') center/contain no-repeat !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+}

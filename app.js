@@ -193,6 +193,7 @@ function clearSelectedJourneyFromMap({ resetSelection = true } = {}) {
   clearMapLibreRoute();
   state.currentMapRoute = null;
   state.currentRouteStops = [];
+  state.currentRoutePath = [];
   state.demoBuses = [];
   if (resetSelection) state.mapSelectedPlanIndex = -1;
   setMapJourneyOverlay('');
@@ -2991,6 +2992,9 @@ function drawJourneyPlan(index, options = {}) {
     if (state.routeLayer) state.map.removeLayer(state.routeLayer);
     if (state.busLayer) { state.map.removeLayer(state.busLayer); state.busLayer = null; }
     if (state.allStopsLayer && state.map.hasLayer(state.allStopsLayer)) state.map.removeLayer(state.allStopsLayer);
+    state.currentRouteStops = [];
+    state.currentRoutePath = [];
+    state.demoBuses = [];
     const group = L.layerGroup();
     const bounds = [];
     const color = mapPlanRouteColor(plan);
@@ -3040,6 +3044,7 @@ function drawJourneyPlan(index, options = {}) {
         state.busLayer = L.layerGroup([], { pane: 'routeVehicles' }).addTo(state.map);
         state.currentMapRoute = { ...plan.route, colorHex: color.replace('#', '') };
         state.currentRouteStops = demoStops;
+        state.currentRoutePath = demoStops.map(stop => ({ latitude: stop.latitude, longitude: stop.longitude }));
         state.demoBuses = createDemoBuses(state.currentMapRoute, demoStops).slice(0, 4);
         updateDemoBuses(false);
         state.busTimer = window.setInterval(() => updateDemoBuses(true), 1500);
@@ -3073,11 +3078,15 @@ function drawJourneyPlan(index, options = {}) {
         }
       });
       const mainBusLeg = plan.legs.find(leg => leg.mode === 'bus');
-      const demoStops = mainBusLeg ? mainBusLeg.stops.slice(mainBusLeg.startIndex, mainBusLeg.endIndex + 1).map((stop, idx) => ({ id: `fallback-${idx}`, name: stop.name, latitude: stop.latitude, longitude: stop.longitude })) : [];
+      const mainBusLegPath = mainBusLeg ? routeLayerLatLngPointsFromLeg(mainBusLeg) : [];
+      const demoStops = mainBusLegPath.length > 1
+        ? rideStopObjectsFromLatLngPath(mainBusLegPath, `plan-${mainBusLeg.route?.shortName || 'bus'}`)
+        : mainBusLeg ? mainBusLeg.stops.slice(mainBusLeg.startIndex, mainBusLeg.endIndex + 1).map((stop, idx) => ({ id: `fallback-${idx}`, name: stop.name, latitude: stop.latitude, longitude: stop.longitude })) : [];
       if (demoStops.length > 1) {
         state.busLayer = L.layerGroup([], { pane: 'routeVehicles' }).addTo(state.map);
         state.currentMapRoute = { ...mainBusLeg.route, colorHex: routeColor(mainBusLeg.route).replace('#', '') };
         state.currentRouteStops = demoStops;
+        state.currentRoutePath = mainBusLegPath.length > 1 ? mainBusLegPath.map(([latitude, longitude]) => ({ latitude, longitude })) : demoStops.map(stop => ({ latitude: stop.latitude, longitude: stop.longitude }));
         state.demoBuses = createDemoBuses(state.currentMapRoute, demoStops).slice(0, 3);
         updateDemoBuses(false);
         state.busTimer = window.setInterval(() => updateDemoBuses(true), 1500);
@@ -4633,13 +4642,7 @@ function stopMarkerIcon(number, color, isTerminal = false) {
 }
 
 function trbBusIconSVG(className = 'trb-bus-svg') {
-  return `<svg class="${className}" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-    <rect x="7" y="5" width="18" height="20" rx="4"></rect>
-    <path d="M10 9h12v6H10z"></path>
-    <circle cx="11.5" cy="22.5" r="2.1"></circle>
-    <circle cx="20.5" cy="22.5" r="2.1"></circle>
-    <path d="M9 17h14"></path>
-  </svg>`;
+  return `<img class="${className}" src="assets/trb-bus-reference.png" alt="" aria-hidden="true" loading="lazy" />`;
 }
 
 function trbPlaceIconHTML(type = 'origin') {
@@ -4649,10 +4652,10 @@ function trbPlaceIconHTML(type = 'origin') {
 function busMarkerIcon(bus, color) {
   return L.divIcon({
     className: 'trb-bus-icon-wrap',
-    html: `<div class="trb-bus-marker" style="--bus-color:${color}" title="${escapeHTML(bus.id)}">${trbBusIconSVG()}<small>SIM</small></div>`,
-    iconSize: [48, 48],
-    iconAnchor: [24, 24],
-    popupAnchor: [0, -22]
+    html: `<div class="trb-bus-marker" style="--bus-color:${color}" title="${escapeHTML(bus.id)}">${trbBusIconSVG()}</div>`,
+    iconSize: [34, 34],
+    iconAnchor: [17, 17],
+    popupAnchor: [0, -18]
   });
 }
 

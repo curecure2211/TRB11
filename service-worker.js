@@ -1,8 +1,8 @@
-const CACHE = 'trb-web-v61-rapido-limpio';
+const CACHE = 'trb-web-v62-bus-icono-tramo';
 const STATIC_ASSETS = [
-  './', './index.html', './styles.css?v=61', './app.js?v=61', './trb_motor_rutas.js?v=61',
+  './', './index.html', './styles.css?v=62', './app.js?v=62', './trb_motor_rutas.js?v=62',
   './manifest.webmanifest', './driver.html', './data/transit_data.json', './data/trb_catalogo_rutas.json',
-  './vendor/jszip.min.js?v=33', './vendor/maplibre/maplibre-gl.js?v=33', './vendor/maplibre/maplibre-gl.css?v=33', './vendor/maplibre/leaflet-maplibre-gl.js?v=33', './maps/trb-map-style.json', './assets/trb-home-hero.jpg', './maps/README_MAPA_TRB.md', './icons/icon-192.png', './icons/icon-512.png', './icons/trb-favicon.png', './icons/favicon-32.png'
+  './vendor/jszip.min.js?v=33', './vendor/maplibre/maplibre-gl.js?v=33', './vendor/maplibre/maplibre-gl.css?v=33', './vendor/maplibre/leaflet-maplibre-gl.js?v=33', './maps/trb-map-style.json', './assets/trb-home-hero.jpg', './assets/trb-bus-reference.png', './maps/README_MAPA_TRB.md', './icons/icon-192.png', './icons/icon-512.png', './icons/trb-favicon.png', './icons/favicon-32.png'
 ];
 
 self.addEventListener('install', event => event.waitUntil(
