@@ -1,0 +1,125 @@
+/* TRB v66 hotfix - WebView móvil e historial */
+
+@media (max-width: 760px) {
+  html,
+  body,
+  #app,
+  .app-shell,
+  .view,
+  .screen,
+  .page,
+  .map-shell,
+  .map-layout,
+  .planner-panel,
+  .route-detail,
+  .trip-panel,
+  .route-panel,
+  .route-sheet,
+  .mobile-route-sheet,
+  .bottom-sheet,
+  .instructions-panel,
+  .journey-panel,
+  [class*="sheet"],
+  [class*="detail"],
+  [class*="instruction"],
+  [class*="journey"],
+  [class*="panel"] {
+    background: #ffffff !important;
+    color: #071a33 !important;
+  }
+
+  .route-detail,
+  .trip-panel,
+  .route-sheet,
+  .mobile-route-sheet,
+  .bottom-sheet,
+  .instructions-panel {
+    min-height: auto !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+    border-radius: 22px 22px 0 0 !important;
+  }
+
+  .map-route-detail,
+  .route-detail-map,
+  .selected-route-map {
+    background: #ffffff !important;
+  }
+
+  .is-route-selected .map-canvas,
+  .route-selected .map-canvas,
+  body.route-open .map-canvas {
+    min-height: 42vh !important;
+  }
+
+  .route-detail * ,
+  .trip-panel * ,
+  .route-sheet * ,
+  .mobile-route-sheet * ,
+  .bottom-sheet * ,
+  .instructions-panel * {
+    color: inherit;
+  }
+
+  .route-step,
+  .instruction-step,
+  .timeline-step,
+  .journey-step {
+    background: #ffffff !important;
+  }
+}
+
+.trb-history-card {
+  margin: 18px 0;
+  padding: 18px;
+  border: 1px solid #dbe6f5;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 12px 32px rgba(7, 26, 51, 0.08);
+}
+
+.trb-history-card h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  color: #071a33;
+}
+
+.trb-history-empty {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.trb-history-item {
+  width: 100%;
+  text-align: left;
+  border: 1px solid #e5edf7;
+  background: #f8fbff;
+  border-radius: 16px;
+  padding: 12px;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.trb-history-item strong {
+  display: block;
+  color: #071a33;
+  font-size: 15px;
+}
+
+.trb-history-item span {
+  display: block;
+  margin-top: 4px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.trb-history-clear {
+  margin-top: 8px;
+  border: 0;
+  background: #e8f1ff;
+  color: #006fd6;
+  border-radius: 999px;
+  padding: 8px 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
